@@ -5,8 +5,11 @@ Route::middleware('auth')->group(function () {
 
 });
 
+
 //non auth routes goes here
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', 'admin\adminController@admin');	

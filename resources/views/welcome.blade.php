@@ -97,4 +97,7 @@
             </div>
         </div>
     </body>
+     <script type="text/javascript" src="assets/js/server-request.js"></script>
+    <script type="text/javascript" src="assets/js/demo.js"></script>
+       
 </html>

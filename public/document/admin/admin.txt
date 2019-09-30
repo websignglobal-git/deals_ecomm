@@ -1,0 +1,64 @@
+Suggestions:
+--------------
+write only javascript
+Avoid using Length code in single function
+Seperate Big functions into small
+write common things in seperate functions
+Give Meaningful Names to functions
+Variable names should be in Camel case
+Function names Shoukd be in Camel Case
+routes name should be small case seperated by "-"
+Filenames should be in small case seperated by "-"
+Write ajax only once
+
+
+
+Admin:
+Controller Name: adminController - under folder app/http/controller/admin/
+Function Name : loadAdmin
+route Name : admin - under folder routes/web.php
+View Name : admin.blade.php - under folder resources/views/admin/
+
+Admin Left menu Categories:
+
+1. Buyers 
+ 1.1 manage Buyers
+    1.1.1 Payment Transactions
+2. Sellers
+   2.1 Sellers Products
+   2.2 Seller - buyer Transactions 
+3. Products
+  3.1 Categories
+  3.2 See all Products 
+4. Delivery employess
+   4.1 Manage Delivery Employees
+   4.2 Track delivery employees
+5. Track orders
+6. GST configuration
+7. Service Tax configuration
+
+
+1.Buyers - Manage Buyers 
+ Create Buyers
+ Edit Buyers
+ Delete Buyers
+ Block Buyers
+ 
+ Controller Name : adminBuyercontroller - under app/http/controller/admin/buyer/
+ Functions: create, edit, delete, block                 
+ route name: admin/buyer/create,  admin/buyer/edit, admin/buyer/delete, admin/buyer/block
+
+Buyers should have Search options (Phone number search , email search, created date search, buyer name search)
+Buyers Should be paginated or Infinite scroll options (If paginated 20 should come in a page)
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,10 +5,19 @@ Route::middleware('auth')->group(function () {
 
 });
 
+
 //non auth routes goes here
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::post('/login','security\loginController@login');
+
+//security route
+Route::post('/register', 'security\registerController@register');
+Route::post('/register-address', 'security\registerController@registerAddress');
+
+Route::get('/admin', 'admin\adminController@admin');	
+

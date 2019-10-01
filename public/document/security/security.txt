@@ -1,0 +1,65 @@
+Security:  
+
+Register Validations:
+1. Check all field mandatory
+2. check email exists
+3. check phone number exists
+4. Check password 6 characters
+
+Login Validations: 
+1. Check all field Mandatory
+2. valid Username or password Check
+3. Login using Email
+4. Login Using phone number
+
+
+Create Controller : 
+Model Create: 
+
+Login:
+
+Controller Name : loginController - under folder app/http/controller/security/
+Route Name : login - under folder routes/web.php
+Model Name : login - under model/
+View Name : login.blade.php - under folder resources/views/security/
+javascript file Name : login.js - under public/assets/js
+css file name : login.css - under public/assets/css
+
+Ajax should be in Javascript
+Pass Csrf token compulsorily otherwise will throw 419 error
+
+
+Register:
+---------
+Controller Name : registerController - under folder app/http/controller/security/
+Route Name : register - under folder routes/web.php
+Model Name : register - under model/
+javascript file Name : register.js -under public/assets/js
+css file name : register.css -  under public/assets/css
+
+
+Ajax should be in Javascript
+Pass Csrf token compulsorily otherwise will throw 419 error
+
+
+Suggestions:
+--------------
+Avoid using Length code in single function
+Seperate Big functions into small
+write common things in seperate functions
+Give Meaningful Names to functions
+Variable names should be in Camel case
+Function names Shoukd be in Camel Case
+routes name should be small case seperated by "-"
+Filenames should be in small case seperated by "-"
+Write ajax only once
+
+
+
+
+
+
+
+
+
+

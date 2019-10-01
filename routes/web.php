@@ -10,3 +10,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/login','security\loginController@login');

@@ -18,7 +18,11 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
+<<<<<<< HEAD
+    protected $except = ['login'
+=======
     protected $except = ["register","register-address"
+>>>>>>> d6a2ffbea4fd4dbca5fd3213a9f3dde92d1b0b3e
         //
     ];
 }

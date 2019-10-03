@@ -1,1 +1,1 @@
-hello
+@include('security/header')

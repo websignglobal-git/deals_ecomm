@@ -11,16 +11,16 @@ class homeTemplateController extends Controller
    		
    // }
    public function homeFetchData(){
-   	mysql_query("START TRANSACTION");
+ //   	mysql_query("START TRANSACTION");
 
-	$a1 = mysql_query("INSERT INTO rarara (l_id) VALUES('1')");
-	$a2 = mysql_query("INSERT INTO rarara (l_id) VALUES('2')");
+	// $a1 = mysql_query("INSERT INTO rarara (l_id) VALUES('1')");
+	// $a2 = mysql_query("INSERT INTO rarara (l_id) VALUES('2')");
 
-	if ($a1 and $a2) {
-	    mysql_query("COMMIT");
-	} else {        
-	    mysql_query("ROLLBACK");
-	}
+	// if ($a1 and $a2) {
+	//     mysql_query("COMMIT");
+	// } else {        
+	//     mysql_query("ROLLBACK");
+	// }
    		return view('buyers/home');
    }
 }

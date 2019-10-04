@@ -8,9 +8,7 @@ Route::middleware('auth')->group(function () {
 
 //non auth routes goes here
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'home\homeTemplateController@homeFetchData');
 
 
 Route::post('/login','security\loginController@login');

@@ -1,18 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/common/header.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/common/footer.css">
-    <title>Deals of Market</title>
-  </head>
-  <body>
-    <section>
-      <div class="header">
+
+  <body onscroll="scroll()">
+    <section class="header_bg_clr">
+    <div class="header_sticky">
+      <div id="scroll_full" class="header">
         <div class="logo">
             <h1 class="logo_title">Deals of Market</h1>
             <img class="cart_logo" src="assets/images/common/cartlist.png">
@@ -27,7 +17,7 @@
           </div>
           <div class="accnt_sec">
             <div class="acc_list_carts">
-              <p class="acc_list">Categories</p></a><span class="acc_list_icon">
+              <p class="acc_list">Categories</p><span class="acc_list_icon">
             <a href="#" class="icon_link"><i class="fas fa-chevron-down"></i></a></span>
           </div>
           <div class="userimg_accnts">
@@ -41,5 +31,7 @@
         </div>
       </div>
       </div>
-</section>
+      </div>
+      
+
 

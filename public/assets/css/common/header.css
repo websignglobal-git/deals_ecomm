@@ -1,4 +1,6 @@
-
+body{
+    background-color: #eaeded;
+}
 .section_tag{
     height: 500px;
 }
@@ -9,15 +11,14 @@
     z-index: 999;
 }
 .header_bg_clr{
-    background: linear-gradient(180deg, #FFFFFF 0, #01D4B3 14%, #01D4B3 86%, #FFFFFF 100%);/* W3C */
+    background: linear-gradient(180deg, #d8f8f3 0, #01D4B3 14%, #01D4B3 86%, #eaeded 100%)
 }
 .header {
     background-color: #0A507D;
-    height: 72px;
+    height: 68px;
     display: flex;
     width: 80%;
     margin: auto;
-    margin-top: 20px
 }
 
 .cart_logo {
@@ -27,7 +28,7 @@
 
 .logo {
     display: flex;
-    padding-top: 15px;
+    padding-top: 12px;
     padding-bottom: 10px;
     justify-content: center;
     flex: 1;
@@ -50,14 +51,14 @@
 }
 
 .search_box .input-group-append {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .search_box {
     border-radius: 1.25rem;
     border: none;
     flex: 2;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .search_btn {
@@ -161,12 +162,13 @@
 
 .userimg_accnts {
     flex: 1;
-    margin-top: 10px;
+   display: flex;
 }
 
 .shopping_carts {
     flex: 1;
-    text-align: center;
+    justify-content: center;
+    display: flex;
 }
 
 .my_accnt {
@@ -199,23 +201,19 @@
 .shop_cart_img {
     width: 30px;
     height: 30px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 20px;
 }
 .btn.dropdown_btn.dropdown_btn_name {
     padding-top: 0px;
 }
 .shop_cart_text {
-    padding-left: 32px;
+    padding-left: 5px;
     font-family: Source Sans Pro;
-    font-style: normal;
     font-weight: 600;
     font-size: 15px;
     line-height: 19px;
-    /* identical to box height */
-
-    letter-spacing: 0.05em;
-
+    margin-top: 20px;
     color: #FFFFFF;
 }
 

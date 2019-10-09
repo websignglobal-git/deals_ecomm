@@ -34,7 +34,7 @@
               <li class="main-li">SOCIAL</li>
               <li><a href="#">FaceBook</a></li>
               <li><a href="#">Twitter</a></li>
-              <li><a href="#">YouTubeYouTube</a></li>
+              <li><a href="#">YouTube</a></li>
               <li><a href="#">LinkedIN</a></li>
             </ul>
           </div>

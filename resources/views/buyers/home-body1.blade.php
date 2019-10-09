@@ -9,7 +9,7 @@
 
  ?>
 
-  <section class="owl_carousel">
+  <section class="owl_carousel producut1_cmn">
     <div class="container_width">
       <div class="prodct1_head">
         Top Picks for you

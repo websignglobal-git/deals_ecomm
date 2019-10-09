@@ -74,10 +74,10 @@
                         </div>
                     </div>
                     <div class="userimg_accnts">
-                        <div class="user_detail"><img class="img-fluid cart_icon" src="assets/images/common/user_img.png"></div>
+                       <!--  <div class="user_detail"><img class="img-fluid cart_icon" src="assets/images/common/user_img.png"></div> -->
                         <div class="my_accnt">
                             <div class="btn-group">
-                                <button type="button" class="btn dropdown_btn dropdown_btn_name">Accounts</button>
+                                <button type="button" class="btn dropdown_btn dropdown_btn_name">My Account</button>
                             <button type="button" class="btn dropdown_btn dropdown-toggle dropdown-toggle-split" onclick="icon_change2(this)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="link_arrow_icon"><i class="fas fa-angle-down btn dropdown-toggle dropdown-toggle-split" id="arrow_change2"></i></span>
                             </button>

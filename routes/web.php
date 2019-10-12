@@ -18,4 +18,8 @@ Route::post('/register', 'security\registerController@register');
 Route::post('/register-address', 'security\registerController@registerAddress');
 
 Route::get('/admin', 'admin\adminController@admin');	
+Route::get('/view-product', 'byers\viewproductController@view_product');	
+Route::get('/list-all-category', 'byers\listallcategoryController@list_all_category');	
+Route::get('/view-cart', 'byers\cartController@view_cart');	
+Route::get('/checkout', 'byers\checkoutController@checkout');	
 

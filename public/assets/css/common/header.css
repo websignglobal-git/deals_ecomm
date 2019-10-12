@@ -6,9 +6,10 @@ body{
 }
 .header_sticky{
     position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 999;
+    width: 100%;
 }
 .header_bg_clr{
     background: linear-gradient(180deg, #d8f8f3 0, #01D4B3 14%, #01D4B3 86%, #eaeded 100%)
@@ -163,6 +164,7 @@ body{
 .userimg_accnts {
     flex: 1;
    display: flex;
+   justify-content: center;
 }
 
 .shopping_carts {
@@ -209,12 +211,15 @@ body{
 }
 .shop_cart_text {
     padding-left: 5px;
+    margin-top: 20px;
+}
+.shop_cart_text a{
     font-family: Source Sans Pro;
     font-weight: 600;
     font-size: 15px;
     line-height: 19px;
-    margin-top: 20px;
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 /*Drop down*/

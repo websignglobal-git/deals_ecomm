@@ -93,7 +93,7 @@
                     </div>
                     <div class="shopping_carts">
                         <img class="img-fluid shop_cart_img" src="assets/images/common/cart_box.png">
-                        <p class="shop_cart_text">Cart</p>
+                        <p class="shop_cart_text"><a href="view-cart" class="cart_a">Cart</a></p>
                     </div>
                 </div>
             </div>

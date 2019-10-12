@@ -19,3 +19,4 @@ Route::post('/register-address', 'security\registerController@registerAddress');
 
 Route::get('/admin', 'admin\adminController@admin');	
 
+Route::view('/reg','buyers\register');

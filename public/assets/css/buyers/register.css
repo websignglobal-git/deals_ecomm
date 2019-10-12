@@ -1,0 +1,132 @@
+.logo_title{
+	display: flex;
+    justify-content: center;
+}
+.reg_title{
+    display: flex;
+    justify-content: center;
+    margin-left: -8%;
+    margin-top: 2%;
+}
+.reg_name_row{
+	display: flex;
+	justify-content: center;
+}
+.name_label {
+    margin-left: 18px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.email_label {
+    margin-left: 18px;
+    margin-top: 10px;
+     font-size: 13px;
+     font-weight: 700;
+}
+.mob_label {
+    margin-left: -40%;
+    margin-top: 10px;
+     font-size: 13px;
+     font-weight: 700;
+}
+.pwd_label {
+    margin-left: 18px;
+    margin-top: 10px;
+     font-size: 13px;
+     font-weight: 700;
+}
+.name_text_box{
+	    width: 90%;
+    margin: auto;
+}
+.name_text_box:focus{
+	box-shadow: none !important;
+}
+.reg_border {
+    border: 1px solid #d1d1d1;
+    width: 33%;
+    margin: auto;
+}
+.reg_mobile_num{
+	display: flex;
+}
+.reg_mobile_num {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    margin-top: 1%;
+}
+.reg_mob_num {
+    display: flex;
+    justify-content: center;
+    margin-right: 23%;
+    margin-top: 2%;
+}
+.pwd_text{
+	text-align: center;
+	font-size: 12px;
+}
+.pwd_verify{
+	list-style-type: none;
+	font-size: 13px;
+	padding: 0px;
+}
+.btn_continue{
+	width: 90%;
+    margin: auto;
+}
+.already_accnt {
+    margin-top: 15%;
+    margin-left: 5%;
+    font-size: 13px;
+}
+.mob_code{
+	width: 30% !important;
+	box-shadow: none !important;
+}
+
+@media screen and (max-width: 991px){
+	.reg_border {
+    width: 50%;
+    margin: auto;
+}
+}
+@media screen and (max-width: 767px){
+	.reg_border {
+    width: 70%;
+    margin: auto;
+}
+}
+@media screen and (max-width: 567px){
+	.reg_border {
+    width: 100%;
+    margin: auto;
+}
+.reg_mob_num {
+		margin-right: 31%;
+	}
+	.name_label {
+		margin-left: 25px;
+	}
+	.email_label {
+		margin-left: 25px;
+	}
+	.pwd_label {
+		margin-left: 25px;
+	}
+}
+@media screen and (max-width: 330px){
+	.reg_mob_num {
+		margin-right: 27%;
+	}
+	.name_label {
+		margin-left: 20px;
+	}
+	.email_label {
+		margin-left: 20px;
+	}
+	.pwd_label {
+		margin-left: 20px;
+	}
+}

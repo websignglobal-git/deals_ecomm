@@ -56,7 +56,7 @@ Xiaomi Mi A2 (Black, 4GB RAM, 64GB Storage)','500'));
 			 	<span class="checkout_total_txt">Subtotal</span> <span class="checkout_total_item">(2 items)</span> : <span class="checkout_total_rs"> 1000.00</span>
 			 </div>
 			 <div class="checkout_btn_div">
-			 	<a href="#" class="checkout_btn_a"><button type="button" class="checkout_btn">Check out</button></a> 
+			 	<a href="checkout" class="checkout_btn_a"><button type="button" class="checkout_btn">Check out</button></a> 
 			 </div>
 		</div>
 	</section>

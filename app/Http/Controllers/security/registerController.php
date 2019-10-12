@@ -39,9 +39,4 @@ class registerController extends Controller
 
     	return response("success");
    }
-
-
-
-
-
 }

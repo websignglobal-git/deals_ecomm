@@ -23,3 +23,4 @@ Route::get('/list-all-category', 'byers\listallcategoryController@list_all_categ
 Route::get('/view-cart', 'byers\cartController@view_cart');	
 Route::get('/checkout', 'byers\checkoutController@checkout');	
 
+Route::view('/reg','buyers\register');

@@ -355,15 +355,15 @@ a{
     width: 35%;
 }
 .input_pincode {
-    border: 0px;
-    border-bottom: 1px solid #0f1010;
-    border-radius: 0px;
+    border: 0px !important;
+    border-bottom: 1px solid #0f1010 !important;
+    border-radius: 0px !important;
 }
 .check_txt{
-    border: 0px;
-    border-bottom: 1px solid #0f1010;
-    border-radius: 0px;
-    background-color: transparent;
+    border: 0px !important;
+    border-bottom: 1px solid #0f1010 !important; 
+    border-radius: 0px !important;
+    background-color: transparent !important;
 }
 .prodct_highlit_cmn {
     display: flex;
@@ -589,6 +589,9 @@ p.name_cart_prod{
 }
 .checkout_total_rs{
 	margin-left: 10px;
+}
+.shopping_carts a {
+    color: #fff !important;
 }
 /****view cart page*****/
 /****checkout page*****/

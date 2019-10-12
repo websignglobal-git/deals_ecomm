@@ -1,5 +1,6 @@
 
-  <section>
+  <section class="footer_cmn_ends">
+  <div class="footer_cmn_end">
     <div class="footer_main_div">
       <div class="container_footer">
         <div class="row row-one">
@@ -34,7 +35,7 @@
               <li class="main-li">SOCIAL</li>
               <li><a href="#">FaceBook</a></li>
               <li><a href="#">Twitter</a></li>
-              <li><a href="#">YouTubeYouTube</a></li>
+              <li><a href="#">YouTube</a></li>
               <li><a href="#">LinkedIN</a></li>
             </ul>
           </div>
@@ -60,6 +61,7 @@
               <p class="copyright">© Copyright 2019 &nbsp&nbsp&nbsp Deals of Market &nbsp&nbsp&nbsp - All Rights Reserved</p>
         </div> 
       </div>
+    </div>
     </div>
   </section>
 </body>

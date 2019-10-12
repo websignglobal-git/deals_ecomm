@@ -19,8 +19,15 @@ Route::post('/register-address', 'security\registerController@registerAddress');
 Route::post('/make-payment', 'payment\paymentController@makePayment');
 Route::post('/send-mail', 'common_services\emailController@send');
 Route::post('/file-upload', 'common_services\fileUploadController@fileUpload');
+Route::post('/find-home-product', 'buyers\findHomeProduct@findHomeProduct');
 
 Route::get('/admin', 'admin\adminController@admin');	
+Route::get('/view-product', 'buyers\viewproductController@view_product');	
+Route::get('/list-all-category', 'buyers\listallcategoryController@list_all_category');	
+Route::get('/view-cart', 'buyers\cartController@view_cart');	
+Route::get('/checkout', 'buyers\checkoutController@checkout');	
 
 Route::get('/payment', 'payment\paymentController@paymentPage');
 Route::get('/mail-home', 'common_services\emailController@mailDetail');
+Route::view('/reg','buyers\register');
+

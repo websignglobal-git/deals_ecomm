@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="assets/css/common/footer.css">
     <link rel="stylesheet" type="text/css" href="assets/css/common/style.css">
     <link rel="stylesheet" href="assets/css/common/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/common/owl.theme.default.min.css">
     <link href="https://fonts.googleapis.com/css?family=Aldrich|Aleo|Athiti|Source+Sans+Pro" rel="stylesheet">
     <title>Deals of Market</title>
   </head>

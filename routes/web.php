@@ -19,7 +19,7 @@ Route::post('/register-address', 'security\registerController@registerAddress');
 Route::post('/make-payment', 'payment\paymentController@makePayment');
 Route::post('/send-mail', 'common_services\emailController@send');
 Route::post('/file-upload', 'common_services\fileUploadController@fileUpload');
-Route::post('/find-home-product', 'buyers\findHomeProduct@findHomeProduct');
+Route::post('/find-home-product', 'buyers\homeProductController@findHomeProduct');
 
 Route::get('/admin', 'admin\adminController@admin');	
 Route::get('/view-product', 'buyers\viewproductController@view_product');	

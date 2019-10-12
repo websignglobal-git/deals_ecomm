@@ -1,7 +1,9 @@
+@include('common/buyer/header-scripts')
 @include('common/buyer/header')
+@include('common/buyer/top-banner')
+@include('buyers/home-body1')
 
-<section class="section_tag">
-  jhgfhfhgfgh
-</section>
 
 @include('common/buyer/footer')
+@include('common/buyer/footer-scripts')
+

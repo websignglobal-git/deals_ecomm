@@ -1,0 +1,122 @@
+.ban_imgs{
+	height: 500px;
+	width: 100%;
+}
+.carousel_main_div{
+	width: 80%;
+	margin: auto;
+    /*background: linear-gradient(180deg, #01D4B3 82%, #FFFFFF 100%);*/
+    height: 600px;
+}
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+.carousel-indicators .active{
+	 width: 14px;
+	 height: 14px;
+	 background-color: #0A507D;
+}
+.carousel-control-next, .carousel-control-prev{
+	color: #000 !important;
+	opacity: 1;
+}
+.carousel-control-prev{
+	left: 0% !important;
+}
+.carousel-control-next{
+	right: 0% !important;
+}
+.container_width{
+	width: 80%;
+	margin: auto;
+    box-shadow:0 0 6px #b3b3b3;
+    padding: 15px;
+    background-color: #fff;
+}
+.product_items {
+    height: 250px;
+    background: #FFFFFF;
+	border: 0.2px solid rgba(199, 199, 199, 0.5);
+	box-sizing: border-box;
+    padding: 20px;
+    width: 99%;
+}
+.owl_carousel {
+    background-color: #eaeded;
+}
+.prodct1_head{
+	font-family: Source Sans Pro;
+	font-size: 20px;
+	color: #000000;
+	margin-bottom: 20px;
+}
+#owl-carousel1,#owl-carousel2,#owl-carousel3{
+	position: relative;
+}
+#owl-carousel1 .owl-prev,#owl-carousel2 .owl-prev,#owl-carousel3 .owl-prev {
+    top: 20%;
+    position: absolute;
+    left: 0;
+    font-size: 80px;
+}
+#owl-carousel1 .owl-next:hover,#owl-carousel1 .owl-prev:hover,#owl-carousel2 .owl-next:hover,#owl-carousel2 .owl-prev:hover,#owl-carousel3 .owl-next:hover,#owl-carousel3 .owl-prev:hover {
+	background-color: transparent;
+	color: #000;
+}
+#owl-carousel1 .owl-next:focus,#owl-carousel1 .owl-prev:focus,#owl-carousel2 .owl-next:focus,#owl-carousel2 .owl-prev:focus,#owl-carousel3 .owl-next:focus,#owl-carousel3 .owl-prev:focus {
+	box-shadow: none;
+	outline: 0px;
+}
+#owl-carousel1 .owl-next,#owl-carousel2 .owl-next,#owl-carousel3 .owl-next {
+    top: 20%;
+    position: absolute;
+    right: 0;
+    font-size: 80px;
+}
+.product_imgs {
+   width: 80%;
+    margin: 20px auto 0px;
+    height: 150px;
+}
+.product_txt {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+.product_txt p {
+    margin-bottom: 0px;
+    font-family: Aleo;
+	font-size: 12px;
+	color: #000000;
+}
+.price_txt {
+	width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+.prod_dics{
+	color: #515151;
+	font-family: Aleo;
+	font-size: 12px;
+}
+.prod_price{
+	font-family: Aleo;
+	font-size: 13px;
+	color: #000;
+}
+.prod_off{
+	font-family: Aleo;
+	font-size: 12px;
+	color: #52DE97;
+}
+.producut2_cmn,.producut3_cmn,.producut1_cmn{
+	padding: 30px 0px;
+}
+@media screen and (max-width: 1199px) {
+	.carousel_main_div{
+		width: 100%;
+	}
+}

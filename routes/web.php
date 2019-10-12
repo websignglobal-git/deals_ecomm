@@ -16,6 +16,11 @@ Route::post('/login','security\loginController@login');
 //security route
 Route::post('/register', 'security\registerController@register');
 Route::post('/register-address', 'security\registerController@registerAddress');
+Route::post('/make-payment', 'payment\paymentController@makePayment');
+Route::post('/send-mail', 'common_services\emailController@send');
+Route::post('/file-upload', 'common_services\fileUploadController@fileUpload');
 
 Route::get('/admin', 'admin\adminController@admin');	
 
+Route::get('/payment', 'payment\paymentController@paymentPage');
+Route::get('/mail-home', 'common_services\emailController@mailDetail');

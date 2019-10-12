@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\home;
+namespace App\Http\Controllers\buyers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class genarateHomeController extends Controller
+class homeProductController extends Controller
 {
     //
 }

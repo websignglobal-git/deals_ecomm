@@ -32,7 +32,7 @@ body{
 				<hr class="chckout_hr1"><p class="chckout_hr_p">New to Deals of market?</p><hr class="chckout_hr2">
 			</div>
 			<div class="cmn_signup_btn">
-				<a href="#" class="sign_btn_a"><button class="sign_btn_choutpg">Create Your deals of market account</button></a>
+				<a href="register" class="sign_btn_a"><button class="sign_btn_choutpg">Create Your deals of market account</button></a>
 			</div>
 		</div>
 	</section>

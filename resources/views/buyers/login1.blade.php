@@ -19,7 +19,7 @@ body{
 				    <input type="text" class="form-control mail_num_checkout">
 			    </div>
 			    <div class="chkout_coninue_btn">
-				   <button class="continue_btn" type="button">Continue</button>
+				   <a href="checkout-address"><button class="continue_btn" type="button">Continue</button></a>
 			    </div>
 			    <div class="forget_pass_checkout">
 			    	<details>

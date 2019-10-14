@@ -10,10 +10,6 @@ class checkoutController extends Controller
    public function checkout(){
      	
    		return view('buyers/checkout');
-   } 
-   public function email_verification(){
-     	
-   		return view('buyers/email-verification');
    }
    public function checkout_address(){
      	

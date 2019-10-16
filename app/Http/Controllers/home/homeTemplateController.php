@@ -4,6 +4,8 @@ namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\models\home_products;
+
 
 class homeTemplateController extends Controller
 {
@@ -11,16 +13,8 @@ class homeTemplateController extends Controller
    		
    // }
    public function homeFetchData(){
- //   	mysql_query("START TRANSACTION");
-
-	// $a1 = mysql_query("SELECT * FROM `home` LIMIT 20");
-	// $a2 = mysql_query("INSERT INTO rarara (l_id) VALUES('2')");
-
-	// if ($a1 and $a2) {
-	//     mysql_query("COMMIT");
-	// } else {        
-	//     mysql_query("ROLLBACK");
-	// }
-   		return view('buyers/home');
+ 
+   		$data=home_products::get();
+		return view('buyers/home', compact('data'));
    }
 }

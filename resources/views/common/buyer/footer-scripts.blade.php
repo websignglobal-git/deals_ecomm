@@ -3,6 +3,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="assets/js/jquery-1.9.1.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
-      <script type="text/javascript" src="assets/js/home-slider.js"></script>
+    <script type="text/javascript" src="assets/js/server-request.js"></script>
+    <script type="text/javascript" src="assets/js/home-slider.js"></script>
     <script type="text/javascript" src="assets/js/owl-carousel-custom.js"></script>
     <script type="text/javascript" src="assets/js/top-menu.js"></script>
+    <script type="text/javascript" src="assets/js/home.js"></script>

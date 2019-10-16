@@ -10,7 +10,7 @@ use DB;
 use App\models\users;
 class loginController extends Controller
 {
-    public function login(Request $req)
+    public function buyerLogin(Request $req)
     {
     	$req->validate([
 		  'name' => ['alpha_dash'],
@@ -39,4 +39,9 @@ class loginController extends Controller
       }
 	  return response($res);
     }
+
+    public function login(){
+      
+      return view('buyers/login');
+   }
 }

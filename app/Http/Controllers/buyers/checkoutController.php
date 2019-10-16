@@ -11,4 +11,8 @@ class checkoutController extends Controller
      	
    		return view('buyers/checkout');
    }
+   public function checkout_address(){
+     	
+   		return view('buyers/checkout-address');
+   }
 }

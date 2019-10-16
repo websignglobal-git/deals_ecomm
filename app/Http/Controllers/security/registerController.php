@@ -9,7 +9,7 @@ use App\models\users;
 use App\models\user_details;
 class registerController extends Controller
 {
-   public function register(Request $req){
+   public function buyerDetailRegister(Request $req){
 
    	$req->validate([
     'name' => 'required',
@@ -38,5 +38,10 @@ class registerController extends Controller
    	// $data=$req->all();
 
     	return response("success");
+   }
+
+    public function register(){
+      
+      return view('buyers/register');
    }
 }

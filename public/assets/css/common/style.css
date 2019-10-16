@@ -625,8 +625,9 @@ p.name_cart_prod{
 .continue_btn {
     width: 100%;
     height: 40px;
-    border: 1px solid #868080;
-    background-color: #f5d482;
+    border: 1px solid #0a507d;
+    background-color: #0a507d;
+    color: #fff;
     border-radius: 5px;
 }
 .check_login_labl{
@@ -679,4 +680,350 @@ button.sign_btn_choutpg{
     height: 40px;
     border: 1px solid #868080;
 }
+.reg_cmn_drop_dwn {
+    display: flex;
+    justify-content: space-between;
+}.custom-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: none;
+}
+ul.pwd_verify {
+    list-style: none;
+    padding: 0px;
+    font-size: 13px;
+    font-family: Source Sans Pro;
+}
+.pwd_text{
+	font-size: 14px;
+    font-family: Source Sans Pro;
+}
+.reg_name_row {
+    margin-bottom: 15px;
+}
+.checkout_cmn input::placeholder,select.custom-select option{
+	font-size: 14px;
+    font-family: Source Sans Pro;
+}
+.already_accnt p{
+	font-size: 14px;
+    font-family: Source Sans Pro;
+    margin-top: 15px;
+}
+.btn_continue{
+	border: 1px solid #0a507d;
+    background-color: #0a507d;
+    color: #fff;
+}
 /****checkout page*****/
+/****email verfy page*****/
+.checkout_cmn_veryfy {
+    width: 90%;
+    margin: auto;
+}
+.veryfi_p{
+	font-size: 18px;
+    font-family: Source Sans Pro;
+}
+.verifypg_cmn{
+    background-color: #fff;
+    border: 1px solid #d2d1d1;
+    padding: 20px;
+    box-shadow: 0 0 7px #d6d2d2;
+    width: 30%;
+}
+.resnd_veryfy{
+	text-align: center;
+}
+/****email verfy page*****/
+/****checkout-address page*****/
+.checkout_address_main {
+    width: 40%;
+    margin: auto;
+}
+.delivery_head {
+    text-align: center;
+    font-size: 25px;
+    font-family: Source Sans Pro;
+}
+.delivery_txt {
+    text-align: justify;
+    font-size: 16px;
+    font-family: Source Sans Pro;
+}
+p.address_head {
+    font-size: 20px;
+     font-family: Source Sans Pro;
+     font-weight: bold;
+     margin-bottom: 6px;
+}
+p.address_head1 {
+    font-size: 17px;
+     font-family: Source Sans Pro;
+     margin-bottom: 6px;
+}
+label.lbl_chek_addrs {
+    font-size: 15px;
+     font-family: Source Sans Pro;
+     font-weight: bold;
+         margin-bottom: 0px;
+}
+.btn_chk-adrs{
+	width: 100%;
+    height: 40px;
+    border: 1px solid #0a507d;
+    background-color: #0a507d;
+    color: #fff;
+    border-radius: 5px;
+   
+}
+.chk_addr_btn{
+	text-align: center;
+}
+@media screen and (max-width: 1199px) {
+.checkout_address_main {
+    width: 70%;
+    margin: auto;
+}
+}
+@media screen and (max-width: 991px) {
+.checkout_address_main {
+    width: 80%;
+    margin: auto;
+}
+}
+@media screen and (max-width: 767px) {
+.checkout_address_main {
+    width: 80%;
+    margin: auto;
+}
+}
+@media screen and (max-width: 576px) {
+.checkout_address_main {
+    width: 90%;
+    margin: auto;
+}
+}
+/****checkout-address page*****/
+/****payment-methode page*****/
+.payment_methode_main {
+    width: 60%;
+    margin: auto;
+}
+.payment_meth_head1 {
+    font-size: 26px;
+    text-align: center;
+     font-family: Source Sans Pro;
+}
+.payment_meth_sub {
+    border: 1px solid #bfbfbf;
+    padding: 20px;
+}
+.payment_meth_box {
+    border: 1px solid #bbbaba;
+    padding: 10px;
+}
+.payment_meth_box p{
+	margin-bottom: 0px;
+}
+.paybox_head{
+	font-size: 18px;
+     font-family: Source Sans Pro;
+}
+.paybox_sub_head {
+    margin-bottom: 0px;
+    margin-top: 5px;
+    font-size: 20px;
+     font-family: Source Sans Pro;
+     font-weight: bold;
+}
+.pay_hr {
+    margin: 10px 0px;
+}
+.optio_radio1{
+	 font-size: 17px;
+     font-family: Source Sans Pro;
+      margin-bottom: 0px;
+      font-weight: bold;
+}
+.optio_radio2{
+	 font-size: 17px;
+     font-family: Source Sans Pro;
+      margin-bottom: 0px;
+      font-weight: normal;
+}
+.optio_radio1 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b1b1b1;
+    margin-bottom: 20px;
+   
+}
+.optio_input{
+	 margin-right: 5px;
+}
+.pay_methode_btn{
+	width: 100%;
+    height: 40px;
+    border: 1px solid #0a507d;
+    background-color: #0a507d;
+    color: #fff;
+    border-radius: 5px;	
+}
+@media screen and (max-width: 991px) {
+.payment_methode_main {
+    width: 80%;
+}
+}
+@media screen and (max-width: 576px) {
+.payment_methode_main {
+    width: 90%;
+}
+}
+/****payment-methode page*****/
+/****order-summary page*****/
+.order_sum_paymethode {
+    border: 1px solid #b9b6b6;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.order_summary_main {
+    width: 50%;
+    margin: auto;
+}
+.order_sum_ship {
+    flex-basis: 50%;
+    border: 1px solid #bfb9b9;
+    padding: 10px;
+    margin-right: 5px;
+}
+.order_sum_payment {
+    flex-basis: 50%;
+    border: 1px solid #bfb9b9;
+    padding: 10px;
+}
+.order_sum_ship p,.order_sum_addrss{
+	margin-bottom: 5px;
+	font-size: 15px;
+     font-family: Source Sans Pro;
+}
+p.order_sum_shiping,.order_sum_paytype{
+	font-size: 18px;
+     font-family: Source Sans Pro;
+      margin-bottom: 0px;
+      font-weight: bold;
+}
+.change_methodes{
+	font-size: 16px;
+     font-family: Source Sans Pro;
+      font-weight: normal;
+}
+.delivery_detail_summary {
+    border: 1px solid #b9b6b6;
+    padding: 20px;
+    margin-top: 7px;
+}
+.estimate_date {
+    font-size: 22px;
+    font-family: Source Sans Pro;
+    font-weight: bold;
+    color: #f54812;
+}
+.delivery_date_cmn {
+    display: flex;
+}
+.delivery_things {
+    width: 25%;
+}
+.delivery_things_detl {
+   width: 75%;
+}
+/*.delivery_speed {
+    width: 35%;
+}*/
+.delivery_things_detl p {
+    margin-bottom: 5px;
+    font-family: Source Sans Pro;
+      font-weight: normal;
+}
+p.name_order,.qtyl_order{
+	font-family: Source Sans Pro;
+      font-weight: bold;
+}
+.order_summary_btn{
+	width: 200px;
+    height: 40px;
+    border: 1px solid #0a507d;
+    background-color: #0a507d;
+    color: #fff;
+    border-radius: 5px;	
+}
+.delivery_place_order {
+   width: 100%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: flex-end;
+}
+@media screen and (max-width: 1199px) {
+.order_summary_main {
+    width: 80%;
+}
+}
+@media screen and (max-width: 767px) {
+.order_sum_paymethode{
+	display: block;
+}
+.order_sum_ship{
+	margin-right: 0px;
+}
+}
+@media screen and (max-width: 576px) {
+.order_summary_main {
+    width: 90%;
+}
+}
+/****order-summary page*****/
+/****order-successful page*****/
+.order_successful_main {
+    margin-top: 100px !important;
+    border: 2px solid #41c56d9c;
+    width: 55%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+p.order_successful_head {
+   font-size: 23px;
+    font-family: Source Sans Pro;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2a2a2d;
+}
+/****order-successful page*****/
+/****payment page*****/
+.cmn_payment_pg_box {
+    width: 40%;
+    margin: auto;
+    border: 1px solid #c7c7c7;
+    padding: 20px;
+}
+.razorpay-payment-button {
+    width: 100%;
+ 	width: 100%;
+    height: 40px;
+    border: 1px solid #0a507d;
+    background-color: #0a507d;
+    color: #fff;
+    border-radius: 5px;	
+}
+.razay_pay_img {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.razar_img {
+   border: 1px solid #062553;
+   border-radius: 10px;
+}
+/****payment page*****/

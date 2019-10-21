@@ -111,7 +111,11 @@ body{
 
 </style>
 <?php
-
+if(isset($_Get['data'])){
+	echo $_Get['data'];
+}else{
+	echo "string";
+}
  $product_img_parts = [['test.php', './assets/images/buyers/prod1.jpg'],['test.php', './assets/images/buyers/prod2.jpg'],['test.php', './assets/images/buyers/prod3.jpg'],['test.php', './assets/images/buyers/prod4.jpg'],['test.php', './assets/images/buyers/prod5.jpg']]; 
 
   $product_img_full = [['test.php', './assets/images/buyers/prod1.jpg'],['test.php', './assets/images/buyers/prod2.jpg'],['test.php', './assets/images/buyers/prod3.jpg'],['test.php', './assets/images/buyers/prod4.jpg'],['test.php', './assets/images/buyers/prod5.jpg']];

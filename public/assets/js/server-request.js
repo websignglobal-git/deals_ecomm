@@ -1,3 +1,5 @@
+var csrf = document.getElementById('csrf').getAttribute('content');
+
 function serverRequest(data,method,url,asyn,type,callback){
  	var params = 'user_city=ipsum&user_state=binny';
 	var xhttp = new XMLHttpRequest();
@@ -8,6 +10,6 @@ function serverRequest(data,method,url,asyn,type,callback){
     };
     xhttp.open(method, url, asyn);
     xhttp.setRequestHeader("Content-type", type);
-    //xhttp.setRequestHeader('X-CSRF-TOKEN', csrf_token);
+    xhttp.setRequestHeader('X-CSRF-TOKEN', csrf);
     xhttp.send(params);
 }

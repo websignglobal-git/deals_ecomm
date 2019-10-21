@@ -20,5 +20,17 @@ class paymentController extends Controller
 
     public function paymentPage(Request $req){
     	return view("payment/payment");
+    } 
+    public function paymentmethode(){
+        return view("payment/payment-methode");
+    }
+    public function order_summary(){
+        return view("payment/order-summary");
+    }
+    public function order_successful(){
+        return view("payment/order-successful");
+    }
+    public function online_order_summary(){
+        return view("payment/online-order-summary");
     }
 }

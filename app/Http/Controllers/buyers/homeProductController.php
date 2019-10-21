@@ -12,11 +12,11 @@ class homeProductController extends Controller
 {
     //
 
-	public function findHomeProduct(){
+	public function findHomeProduct(Request $req){
 
-		$qry=DB::table('home_products')->get();
-
-		return Response()->json($qry);
+		$data=home_products::get();
+		// return Response()->json($data);
+		return view('find-job',compact('users'));
 	}
 
 

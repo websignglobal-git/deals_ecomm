@@ -25,3 +25,13 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
+
+#frmDiv {
+	color: #fff;
+	border: 1px solid;
+	border-color: #fff6;
+	margin-top: 60px !important;
+	margin-bottom: 60px !important;
+	padding: 20px;
+	border-radius: 10px;
+}

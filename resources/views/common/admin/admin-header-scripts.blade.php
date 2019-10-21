@@ -9,5 +9,6 @@
 		<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/admin/admin-template.css">
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/admin/products.css">
+		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/widgEditor.css">
 	</head>
 	<body>

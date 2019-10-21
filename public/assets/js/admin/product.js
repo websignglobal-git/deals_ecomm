@@ -54,6 +54,8 @@ function canclBtn() {
     document.getElementById('productdiv').innerHTML = products.productList;
     document.getElementById('btncls').style.display = 'block';
     document.getElementById('canclbtn').style.display = 'none';
+    document.getElementById('frmDiv').style.display = 'none';
+    document.getElementById("nxtbtn").style.display = 'none'
 }
 
 var allData = [];

@@ -1,0 +1,27 @@
+.nav1 {
+	background: #252636;
+}
+
+.ul1 {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    list-style: none;
+}
+
+.addbtn {
+	font-size: 55px;
+}
+
+.tbody {
+	text-align: center;
+}
+
+.thead {
+	text-align: center;
+}
+
+.cmnhght {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}

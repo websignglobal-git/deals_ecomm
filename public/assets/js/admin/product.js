@@ -104,7 +104,7 @@ function dynamicDropDown(id) {
         }
     });
     if (id.value == "") {} else {
-        var appendId = document.querySelectorAll('select');
+        var appendId = document.querySelectorAll('#productdiv select');
         var element = appendId[appendId.length - 1];
         var idChk = element.getAttribute('id');
         var valid = false;
@@ -126,4 +126,15 @@ function dynamicDropDown(id) {
 
 function nxtBtn() {
     document.getElementById('frmDiv').style.display = 'block';
+    var data = "";
+    var type = "application/x-www-form-urlencoded";
+    var url = "attribute_list";
+    var asyn = "true";
+    var method = "POST";
+
+    var respCallback = function(resp) {
+        console.log(resp)
+    }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
+

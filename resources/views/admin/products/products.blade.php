@@ -96,6 +96,24 @@
 					<input type="email" class="form-control" placeholder="Email">
 				</div>
 			</div>
+			<label class="form-label">Select Specifications</label>
+			<div class="form-row">
+				<div id="attributeList" class="form-group col-md-4">
+					<select name="AttributeList" class="custom-select form-control">
+						<option value="">select</option>
+					</select>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="form-group col-md-5">
+					<input type="text" class="form-control" placeholder="Enter the Specifications...">
+				</div>
+				<div class="form-group col-md-1 d-flex justify-content-end">
+					<button class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></button>
+				</div>
+				<div class="form-group col-md-1 d-flex justify-content-end">
+					<button class="btn btn-outline-primary" type="button"><i class="fa fa-plus-circle"></i></button>
+				</div>
+			</div>
 		</form>
 	</div>
 </section>

@@ -11,8 +11,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/', 'home\homeTemplateController@homeFetchData');
 
 
-Route::post('/login','security\loginController@login');
-
 //security route
 Route::post('/buyer-register', 'security\registerController@buyerDetailRegister');
 Route::post('/buyer-login', 'security\loginController@buyerLogin');

@@ -14,12 +14,16 @@ body{
 			</div>
 			<div class="checkout_cmn_login">
 				<p class="login_p">Login</p>
-				<p class="check_login_labl">Email or mobile phone number</p>
+				<p class="check_login_labl">Email</p>
 				<div class="form-group">
-				    <input type="text" class="form-control mail_num_checkout">
+				    <input type="email" id="login_email" class="form-control mail_num_checkout">
+			    </div>
+			    <p class="check_login_labl">Password</p>
+			    <div class="form-group">
+				    <input type="password" id="login_pass" class="form-control mail_num_checkout">
 			    </div>
 			    <div class="chkout_coninue_btn">
-				   <a href="checkout-address"><button class="continue_btn" type="button">Continue</button></a>
+				  <button class="continue_btn btn_click_save" type="button">Continue</button>
 			    </div>
 			    <div class="forget_pass_checkout">
 			    	<details>

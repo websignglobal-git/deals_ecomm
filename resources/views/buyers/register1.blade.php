@@ -17,23 +17,23 @@ body{
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="name_label check_login_labl">Your Name</label>
-	            <input type="text" class="form-control name_text_box" name="name">
+	            <input type="text" id="reg_name" class="form-control name_text_box" name="name">
 	          </div>
 	        </div>
 	        <div class="reg_name_row">
 	          <div class="reg_mobile">
 	            <label class="reg_mob_num mob_label check_login_labl">Mobile number</label>
 	            <div class="reg_cmn_drop_dwn">
-		            <div class="dropdown reg_mobile_num">
+		           <!--  <div class="dropdown reg_mobile_num">
 		              <select class="custom-select mob_code">
 		                <option selected>select</option>
 		                <option value="1">IN+91</option>
 		                <option value="2">USA+69</option>
 		                <option value="3">CAN+07</option>
 		              </select>
-		            </div>
+		            </div> -->
 		            <div class="reg_mobile_num_input">
-		               <input type="text" class="form-control name_text_box" placeholder="Your mobile number" name="">
+		               <input type="text" id="reg_phone" class="form-control name_text_box" placeholder="Your mobile number" name="">
 		            </div>
 	            </div>
 	          </div>
@@ -41,13 +41,13 @@ body{
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="email_label check_login_labl">Your Email(optional)</label>
-	            <input type="text" class="form-control name_text_box" name="name">
+	            <input type="text" id="reg_email" class="form-control name_text_box" name="name">
 	          </div>
 	        </div>
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="pwd_label check_login_labl">Password</label>
-	            <input type="text" class="form-control name_text_box" name="name" placeholder="Password atleast 6 characters">
+	            <input type="text" id="reg_pass" class="form-control name_text_box" name="name" placeholder="Password atleast 6 characters">
 	            <p class="pwd_text">Password must be atleast 6 characters</p>
 	          </div>
 	          <div class="pwd_req">
@@ -57,7 +57,7 @@ body{
 	            </ul>
 	          </div>
 	        </div>
-	        <div class="reg_contnue_btn"><a href="email-verification"><button class="btn btn-success btn-block btn_continue">Continue</button></a></div>
+	        <div class="reg_contnue_btn"><button class="btn btn-success btn-block btn_reg_save btn_continue">Continue</button></div>
 	        <div class="already_accnt"><p>Already have an account? <a href="checkout">Sign in</a></p></div>
 	      </div>
 		</div>

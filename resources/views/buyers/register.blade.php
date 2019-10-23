@@ -2,6 +2,6 @@
 @include('buyers/register1')
 
 @include('common/buyer/footer-scripts')
-<!doctype html>
+<script type="text/javascript" src="assets/js/register.js"></script>
 
       

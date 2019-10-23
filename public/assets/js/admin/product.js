@@ -35,13 +35,13 @@ var products = {
                             <td>data</td>\
                             <td>data</td>\
                             <td><input type="checkbox" name="approval" value="approval"></td>\
-                            <td><button class="btn btn-outline-info btn-lg" type="button"><i class="fa fa-pencil-square"></i></button> <button class="btn btn-outline-danger btn-lg" type="button"><i class="fa fa-trash"></i></button></td>\
+                            <td><button class="btn btn-outline-info" type="button"><i class="fa fa-pencil-square"></i></button> <button class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></button></td>\
                         </tr>\
                     </tbody>\
                 </table>',
 
     addProd: '<div>\
-                <select  class="maincat1" onchange="subCat(this)" id="mainCat">\
+                <select class="maincat1 custom-select" onchange="subCat(this)" id="mainCat">\
                 </select>\
               </div>'
 }
@@ -63,7 +63,7 @@ var allData = [];
 function frstDropdown() {
     document.getElementById('btncls').style.display = 'none';
     document.getElementById('canclbtn').style.display = 'block';
-    if (true) {};
+    //if (true) {};
     var data = "";
     var type = "application/x-www-form-urlencoded";
     var url = "get_initial_category";
@@ -88,6 +88,8 @@ function frstDropdown() {
 document.getElementById('nxtbtn').style.display = 'none';
 
 function dynamicDropDown(id) {
+    document.getElementById('frmDiv').style.display = 'none';
+    document.getElementById("nxtbtn").style.display = 'none';
     id.classList.add('uniq_identify');
     var uni = false;
     document.querySelectorAll('#productdiv select').forEach(function(sel) {
@@ -104,7 +106,7 @@ function dynamicDropDown(id) {
         }
     });
     if (id.value == "") {} else {
-        var appendId = document.querySelectorAll('select');
+        var appendId = document.querySelectorAll('#productdiv select');
         var element = appendId[appendId.length - 1];
         var idChk = element.getAttribute('id');
         var valid = false;
@@ -126,4 +128,26 @@ function dynamicDropDown(id) {
 
 function nxtBtn() {
     document.getElementById('frmDiv').style.display = 'block';
+}
+
+function addAttribute() {
+    var addAtt = document.getElementById('attributeID');
+    var data = "";
+    var type = "application/x-www-form-urlencoded";
+    var url = "get_initial_category";
+    var asyn = "true";
+    var method = "POST";
+
+    var respCallback = function(resp) {
+        var catList = JSON.parse(resp);
+        allData = catList;
+        var options = '<option value = ""> select </option>';
+        for (var i = 0; i < allData.length; i++) {
+            if (allData[i].product_cat_parent_id == 0) {
+                options += '<option value = "' + allData[i].product_cat_id + '"> ' + allData[i].product_cat_name + '</option>'
+            }
+        }
+        document.getElementById('productdiv').innerHTML = '<div id="nodrop_alert" style="color:red"></div><select onchange = "dynamicDropDown(this)">' + options + '</select>';
+    }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
 }

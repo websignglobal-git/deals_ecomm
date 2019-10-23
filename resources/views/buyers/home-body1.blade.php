@@ -22,7 +22,7 @@
           <div class="item">
             <div class="product_items">
               <div class="product_imgs">
-                <a href=""><img src="<?php $images=json_decode($data[$i]->home_product_images); echo $images->image1;?>" class="img-fluid product_imgs"></a>
+                <a href="view-product"><img src="<?php $images=json_decode($data[$i]->home_product_images); echo $images->image1;?>" class="img-fluid product_imgs"/></a>
               </div>
               <div class="product_txt">
                 <p><?php echo $data[$i]->home_product_name; ?></p>

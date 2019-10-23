@@ -23,6 +23,8 @@ Route::post('/file-upload', 'common_services\fileUploadController@fileUpload');
 // Route::get('/', 'buyers\homeProductController@findHomeProduct');
 
 Route::get('/admin', 'admin\adminController@admin');	
+Route::get('/admin/product', 'admin\productController@product');	
+Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
 Route::get('/view-product', 'buyers\viewproductController@view_product');	
 Route::get('/list-all-category', 'buyers\listallcategoryController@list_all_category');	
 Route::get('/view-cart', 'buyers\cartController@view_cart');	

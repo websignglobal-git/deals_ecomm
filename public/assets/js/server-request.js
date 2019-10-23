@@ -1,3 +1,5 @@
+var csrf = document.getElementById('csrf').getAttribute('content');
+
 function serverRequest(data,method,url,asyn,type,callback){
 	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -7,6 +9,7 @@ function serverRequest(data,method,url,asyn,type,callback){
     };
     xhttp.open(method, url, asyn);
     xhttp.setRequestHeader("Content-type", type);
-    //xhttp.setRequestHeader('X-CSRF-TOKEN', csrf_token);
+    xhttp.setRequestHeader('X-CSRF-TOKEN', csrf);
     xhttp.send(data);
+
 }

@@ -22,10 +22,6 @@ Route::post('/send-mail', 'common_services\emailController@send');
 Route::post('/file-upload', 'common_services\fileUploadController@fileUpload');
 // Route::get('/', 'buyers\homeProductController@findHomeProduct');
 
-Route::get('/admin', 'admin\adminController@admin');	
-Route::get('/admin/product', 'admin\productController@product');	
-Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
-Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');	
 Route::get('/view-product', 'buyers\viewproductController@view_product');	
 Route::get('/list-all-category', 'buyers\listallcategoryController@list_all_category');	
 Route::get('/view-cart', 'buyers\cartController@view_cart');	
@@ -40,3 +36,7 @@ Route::get('/online-order-summary', 'payment\paymentController@online_order_summ
 Route::get('/order-successful', 'payment\paymentController@order_successful');
 Route::get('/mail-home', 'common_services\emailController@mailDetail');
 
+Route::get('/admin', 'admin\adminController@admin');	
+Route::get('/admin/product', 'admin\productController@product');	
+Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
+Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');	

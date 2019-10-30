@@ -40,4 +40,4 @@
   </div>
   </section>
 
-  
+    <script type="text/javascript" src="{{ URL::asset('assets/js/home-slider.js')}}"></script>

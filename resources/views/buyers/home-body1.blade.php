@@ -17,25 +17,23 @@
           Top Picks for you
         </div>
         <div id="owl-carousel1" class="owl-carousel owlcarosel_cmn">
-         <?php for($i=0; $i<count($data); $i++){ 
-            ?>
+          @foreach ($datas as $data)
           <div class="item">
             <div class="product_items">
               <div class="product_imgs">
-                <a href="view-product"><img src="<?php $images=json_decode($data[$i]->home_product_images); echo $images->image1;?>" class="img-fluid product_imgs"/></a>
+                <a href="{{ URL('view-product/'.$data->home_product_id )}}"><img src="<?php $images=json_decode($data->home_product_images);?>{{$images[0]}}" class="img-fluid product_imgs"/></a>
               </div>
               <div class="product_txt">
-                <p><?php echo $data[$i]->home_product_name; ?></p>
+                <p>{{ $data->home_product_name }}</p>
               </div>
               <div class="price_txt">
-                <div class="prod_price">₹<?php $amount=json_decode($data[$i]->home_product_amount); echo $amount->actual_price?></div>
-                <div class="prod_dics"><strike>₹<?php echo $amount->cost?></strike></div>
-                <div class="prod_off">₹<?php echo $amount->discount;?> Off</div>
+                <div class="prod_price">₹<?php $amount=json_decode($data->home_product_amount);?>{{ $amount->actual_price }}</div>
+                <div class="prod_dics"><strike>₹{{ $amount->cost }}</strike></div>
+                <div class="prod_off">₹{{ $amount->discount }} Off</div>
               </div>
             </div>
           </div>
-
-          <?php  } ?>
+        @endforeach
       </div>
     </div>
     </section> 
@@ -96,3 +94,4 @@
     </section>
   </section>
   </section>
+ 

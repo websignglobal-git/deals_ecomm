@@ -111,11 +111,6 @@ body{
 
 </style>
 <?php
-if(isset($_Get['data'])){
-	echo $_Get['data'];
-}else{
-	echo "string";
-}
  $product_img_parts = [['test.php', './assets/images/buyers/prod1.jpg'],['test.php', './assets/images/buyers/prod2.jpg'],['test.php', './assets/images/buyers/prod3.jpg'],['test.php', './assets/images/buyers/prod4.jpg'],['test.php', './assets/images/buyers/prod5.jpg']]; 
 
   $product_img_full = [['test.php', './assets/images/buyers/prod1.jpg'],['test.php', './assets/images/buyers/prod2.jpg'],['test.php', './assets/images/buyers/prod3.jpg'],['test.php', './assets/images/buyers/prod4.jpg'],['test.php', './assets/images/buyers/prod5.jpg']];
@@ -133,26 +128,26 @@ if(isset($_Get['data'])){
 			    <div class="cmn_prod_crsl">
 			      <div class="prodct_pg_carosl_sub">
 			        <div class="carousel-indicators">
-			        	<?php for($i=0; $i<count($product_img_parts); $i++){ ?>
-			          <div data-target="#demo" data-slide-to="<?php echo $i; ?>" class="item"><img src="<?php echo $product_img_parts[$i][1]; ?>" class="img-fluid img_ful_wid"></div>
+			           <?php for($i=0; $i<count($imgs); $i++){ ?>
+				          <div data-target="#demo" data-slide-to="<?php echo $i; ?>" class="item"><img src="{{ URL::asset($imgs[$i])}}" class="img-fluid img_ful_wid"></div>
 			           <?php  } ?>
 			        </div>
 			      </div><!-- col-sm-4 Indicators -->
 			      <div class="prodct_pg_details_sub">
 			        <div class="carousel-inner adst_border_img">
-		        	<?php for($i=0; $i<count($product_img_full); $i++){ ?>
-			          <div class="carousel-item">
-			      	<div class="heart_iconm"><i class="fa fa-heart"></i></div>
-			            <img src="<?php echo $product_img_full[$i][1]; ?>" class="img-fluid img_full_wid">
-			          </div>
-		           <?php  } ?>
+			        	<?php for($i=0; $i<count($imgs); $i++){ ?>
+				          <div class="carousel-item">
+				      		<div class="heart_iconm"><i class="fa fa-heart"></i></div>
+				            	<img src="{{ URL::asset($imgs[$i])}}" class="img-fluid img_full_wid">
+				          </div>
+				         <?php  } ?>
 			        </div>
 			        <div class="cmn_prod_btns">
 				        <div class="cmn_prod_btns_addcart addcart_btn">
-				        	<button class="btn_add" type="button">Add to cart</button>
+				        	<button class="btn_add addtocart_id" cid="{{ $datas[0]->home_product_id }}" type="button">Add to cart</button>
 				        </div>
 				        <div class="cmn_prod_btns_addcart buynow_btn">
-				        	<button class="btn_add" type="button">Add to cart</button>
+				        	<button class="btn_add" type="button">Buy now</button>
 				        </div>
 			        </div>
 			      </div>
@@ -161,13 +156,33 @@ if(isset($_Get['data'])){
 			</div>
 			<div class="prodct_pg_details">
 				<div class="product_view_menu"><a href="" class="pro_view_home">Home</a><i class="fa fa-chevron-right"></i></div>
-				<div class="product_view_head">Product Name</div>
-				<div class="product_view_rating_cmn"><span class="product_view_rating">5.0 <i class="fa fa-star satr"></i></span><span class="product_view_rate_txt">Rating & Reviews Count</span></div>
-				<div class="product_view_disc_amnt">Discount Amount</div>
-				<div class="product_view_price"><span class="price_p">price</span><span class="price_cut">Real Price</span><span class="price_original">Offer Price</span></div>
-				<div class="product_view_color"><span class="color_p">color</span><span class="color_colon">:</span><span class="color_col">red</span></div>
-				<div class="product_color"><span class="color_box1"></span><span class="color_box2"></span></div>
-				<div class="delivery_pincode">Delivery Pincode Check</div>
+				<div class="product_view_head">
+					{{ $datas[0]->home_product_name }}	
+					</div>
+				<!-- <div class="product_view_rating_cmn"><span class="product_view_rating">5.0 <i class="fa fa-star satr"></i></span><span class="product_view_rate_txt">Rating & Reviews Count</span></div> -->
+				<div class="product_view_price">
+					<span class="price_p">
+					<?php $amount=json_decode($datas[0]->home_product_amount);
+					?>
+					{{ $amount->actual_price }}
+				</span>
+				<span class="price_cut">{{ $amount->cost }}</span><span class="price_original">
+					{{ $amount->discount }}</span></div>
+				<div class="product_view_color">
+					<span class="color_p">color</span><span class="color_colon">:</span>
+					<span class="color_col"></span>
+				</div>
+				<div class="product_color">
+					<?php $general=json_decode($datas[0]->home_product_attributes);
+						for($i=0; $i<count($general); $i++){
+							if(isset($general[$i]->color)){
+							  $color = $general[$i]->color;
+								for($j=0; $j<count($color); $j++){
+						?>
+						<span class="color_box1" style="background-color: {{$color[$j]}}"></span>
+					 <?php }}} ?>
+				</div>
+				<!-- <div class="delivery_pincode">Delivery Pincode Check</div>
 				<div class="delivery_pincode_input"> 
 					<div class="input-group mb-3">
 					    <input type="text" class="form-control input_pincode" placeholder="enter pincode">
@@ -175,89 +190,61 @@ if(isset($_Get['data'])){
 					      <span class="input-group-text check_txt">check</span>
 					    </div>
 					  </div>
-				</div>
+				</div> -->
 				<div class="prodct_highlit_cmn">
 					<div class="prodct_highlit">
 						<p class="prodct_highlit_head"> Highlights </p>
-						<p class="prodct_highlit_point">points</p>
-						<p class="prodct_highlit_point">points</p>
-						<p class="prodct_highlit_point">points</p>
-						<p class="prodct_highlit_point">points</p>
+						<?php $highlihts=json_decode($datas[0]->home_products_highlights);
+					
+						foreach($highlihts[0] as $key=>$value){
+							?>
+							<div class="cmn_prodct_highlit" >
+								<span class="prodct_highlit_point" >{{$key}}</span> : <span class="prodct_highlit_point">{{$value}}</span>
+							</div>
+							<?php
+						}
+						?>
 					</div>
 					<div class="prodct_payoption">
 						<p class="prodct_highlit_head"> Payment Options </p>
-						<p class="prodct_highlit_point">Credit / Debit Card </p>
-						<p class="prodct_highlit_point">Cash on Delivery</p>
+						<p class="prodct_highlit_point"><a href="#" class="payment_proct_view"> Credit / Debit Card </a></p>
+						<p class="prodct_highlit_point"><a href="#" class="payment_proct_view">Cash on Delivery</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="detail_cmn">
 			<div class="detail_technical">
-				<p class="tech_detail_head">Additional Details</p>
+				<p class="tech_detail_head">specifications</p>
 				<div>
 					<table class="table table-bordered product_view_tbl">
 				    <tbody>
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr>
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr> 
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr> 
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr>
-				       <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr> 
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr> 
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr> 
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr>
-				       <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr>
-				       <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr> 
-				      <tr class="prodct_tr">
-				        <td class="lft_tbl"></td>
-				        <td class="rht_tbl"></td>
-				      </tr>
+				    	<?php $soecification=json_decode($datas[0]->home_product_specification);
+					
+						foreach($soecification[0] as $key=>$value){
+							?>
+							<tr class="prodct_tr">
+					        <td class="lft_tbl">{{$key}}</td>
+					        <td class="rht_tbl">{{$value}}</td>
+					      </tr>
+							<?php
+						}
+						?>
 				    </tbody>
 				  </table>
 				</div>
 			</div>
 			<div class="detail_additional">
-				<p class="tech_detail_head">Additional Details</p>
+				<p class="tech_detail_head">Description</p>
 				<div class="detail_addi_txt">
 					<div class="detail_addi_warrnt">
-						<p class="detail_addi_warrnt_head">
-							 Warrent & Support 
-						</p>
 						<p class="detail_addi_warrnt_txt">
-							1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase
+							<?php $prod_desc=json_decode($datas[0]->home_product_description);
+							?>
+							{{ $prod_desc->empty }}
 						</p>
 					</div>
-					<div class="detail_addi_feedback">
+					<!-- <div class="detail_addi_feedback">
 						<p class="detail_addi_feedback_head">
 							Feedback
 						</p>
@@ -265,7 +252,7 @@ if(isset($_Get['data'])){
 							Would you like to tell us about a lower price?
 							If you are a seller for this product, would you like to suggest updates through seller support?
 						</p>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -328,3 +315,4 @@ if(isset($_Get['data'])){
 		</div>
 	 </div>
 </section>
+<script type="text/javascript" src="{{ URL::asset('assets/js/product.js')}}"></script>

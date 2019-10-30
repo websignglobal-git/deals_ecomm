@@ -14,7 +14,7 @@ class homeTemplateController extends Controller
    // }
    public function homeFetchData(){
  
-   		$data=home_products::get();
-		return view('buyers/home', compact('data'));
+   		$datas=home_products::get();
+		return view('buyers/home', compact('datas'));
    }
 }

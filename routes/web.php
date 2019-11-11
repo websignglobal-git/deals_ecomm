@@ -22,6 +22,7 @@ Route::post('/cart-products', 'buyers\cartController@cart_products');
 // Route::get('/', 'buyers\homeProductController@findHomeProduct');
 
 Route::get('/view-product/{id}', 'buyers\viewproductController@view_product');	
+
 Route::get('/list-all-category', 'buyers\listallcategoryController@list_all_category');	
 Route::get('/view-cart', 'buyers\cartController@view_cart');	
 Route::get('/checkout', 'buyers\checkoutController@checkout');	
@@ -38,3 +39,5 @@ Route::get('/mail-home', 'common_services\emailController@mailDetail');
 Route::get('/admin', 'admin\adminController@admin');	
 Route::get('/admin/product', 'admin\productController@product');	
 Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
+Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');	
+

@@ -9,9 +9,10 @@ function setproductid() {
 	var arr = JSON.parse(getprodid);
 	if(arr.length > 0){
 		if(arr.includes(prodid)){
-		}else{
+		}
+		else{
 		arr.push(prodid);
-		localStorage.setItem("product_id" , JSON.stringify(arr));
+			localStorage.setItem("product_id" , JSON.stringify(arr));
 		}
 	}else{
 	arr.push(prodid);

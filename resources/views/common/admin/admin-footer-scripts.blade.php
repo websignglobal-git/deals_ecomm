@@ -7,4 +7,9 @@
 <script src='{{URL::to('/')}}/assets/js/server-request.js'></script>
 <script>
 	CKEDITOR.replace('txtEditor');
+	CKEDITOR.replace('txtattrEditor1');
+	CKEDITOR.replace('txtattrEditor2');
+	CKEDITOR.replace('txtattrEditor3');
+	CKEDITOR.replace('txtattrEditor4');
+	CKEDITOR.replace('txtattrEditor5');
 </script>

@@ -11,4 +11,4 @@
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/admin/products.css">
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/widgEditor.css">
 	</head>
-	<body>
+	<body onload="getProductsData()">

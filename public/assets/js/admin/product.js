@@ -1,5 +1,5 @@
 var products = {
-    productList: '<table class="table table-bordered" style="color:white">\
+    productList: '<table id="prodTable" class="table table-bordered" style="color:white">\
                     <thead class="thead">\
                         <tr class="font-weight-bold">\
                             <th>No.</th>\
@@ -14,29 +14,12 @@ var products = {
                             <th>Attributes</th>\
                             <th>Available Stock</th>\
                             <th>Payment Method</th>\
-                            <th>Approval Status</th>\
                             <th>Approve</th>\
+                            <th>Deal of the Day</th>\
                             <th>Edit & Delete</th>\
                         </tr>\
                     </thead>\
                     <tbody class="tbody">\
-                        <tr>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td>data</td>\
-                            <td><input type="checkbox" name="approval" value="approval"></td>\
-                            <td><button class="btn btn-outline-info" type="button"><i class="fa fa-pencil-square"></i></button> <button class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></button></td>\
-                        </tr>\
                     </tbody>\
                 </table>',
 
@@ -48,7 +31,65 @@ var products = {
 
 document.getElementById('productdiv').innerHTML = products.productList;
 document.getElementById('canclbtn').style.display = 'none';
-document.getElementById('frmDiv').style.display = 'block';
+document.getElementById('frmDiv').style.display = 'none';
+
+function getProductsData() {
+    var data = "";
+    var type = "application/x-www-form-urlencoded";
+    var url = "get_product_data";
+    var asyn = "true";
+    var method = "POST";
+    var respCallback = function(resp) {
+        var proddata = JSON.parse(resp);
+        var table = document.getElementById('prodTable');
+        proddata.forEach((object) => {
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + object.home_product_id + '</td>' +
+                '<td>' + object.home_product_name + '</td>' +
+                '<td>' + object.home_product_category + '</td>' +
+                '<td>' + object.home_product_slug + '</td>' +
+                '<td>' + object.home_product_amount + '</td>' +
+                '<td>' + object.home_product_gst + '</td>' +
+                '<td>' + object.home_product_keywords + '</td>' +
+                '<td>' + object.home_product_specification + '</td>' +
+                '<td>' + object.home_product_description + '</td>' +
+                '<td>' + object.home_product_attributes + '</td>' +
+                '<td>' + object.home_product_available_stock + '</td>' +
+                '<td>' + object.home_product_payment_method + '</td>' +
+                '<td><lable><input type="checkbox" id="approveProd' + object.home_product_id + '" onclick="approveProduct(this)" data="approve" data-approve-product="' + object.home_product_id + '" name="approval' + object.home_product_id + '" value=' + object.home_product_approval_status + '>Approve</label></td>' +
+                '<td><label><input type="checkbox" id="DealoftheDay' + object.home_product_id + '" onclick="dealsofthedayProduct(this)" data="dealofday" data-dealoftheday-product="' + object.home_product_id + '" name="dealoftheday' + object.home_product_id + '" value=' + object.home_product_deal_of_the_day + '>Deal of the Day</label></td>' +
+                '<td><button class="btn btn-outline-info" type="button"><i class="fa fa-pencil-square"></i></button> <button class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></button></td>';
+            table.appendChild(tr);
+        });
+        var check = document.querySelectorAll('input');
+        for (var i = 0; i < check.length; i++) {
+            if (check[i].value == "1") {
+                check[i].checked = true;
+            } else {
+                check[i].checked = false;
+            }
+        };
+    }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
+}
+
+function approveProduct() {
+    var chkid = document.querySelectorAll('input');
+    for (var i = 0; i < chkid.length; i++) {
+        var type = chkid[i].getAttribute('data');
+        if (type == "approve") {
+            var chk = chkid[i].getAttribute('data_approve_product');
+            var chk1 = chkid[i].checked;
+            if (chk1 == true) {
+                if (confirm("Press a button!")) {
+                    console.log("You pressed OK!");
+                } else {
+                    console.log("You pressed Cancel!");
+                }
+            };
+        };
+    };
+}
 
 function canclBtn() {
     document.getElementById('productdiv').innerHTML = products.productList;
@@ -63,7 +104,7 @@ var allData = [];
 function frstDropdown() {
     document.getElementById('btncls').style.display = 'none';
     document.getElementById('canclbtn').style.display = 'block';
-    //if (true) {};
+    // if (true) {};
     var data = "";
     var type = "application/x-www-form-urlencoded";
     var url = "get_initial_category";
@@ -79,7 +120,7 @@ function frstDropdown() {
                 options += '<option value = "' + allData[i].product_cat_id + '"> ' + allData[i].product_cat_name + '</option>'
             }
         }
-        document.getElementById('productdiv').innerHTML = '<div id="nodrop_alert" style="color:red"></div><select id="mainCat" onchange = "dynamicDropDown(this)">' + options + '</select>';
+        document.getElementById('productdiv').innerHTML = '<select id="mainCat" onchange = "dynamicDropDown(this)">' + options + '</select>';
     }
     var res = serverRequest(data, method, url, asyn, type, respCallback);
 
@@ -118,7 +159,7 @@ function dynamicDropDown(id) {
             }
         }
         if (valid) {
-            element.insertAdjacentHTML('afterend', '<span style="color:#fff5">----------</span><select id ="' + id.value + '"  onchange="dynamicDropDown(this)">' + options + '</select>');
+            element.insertAdjacentHTML('afterend', '<span style="color:#fff5">----------</span><select class="subCatList" id ="' + id.value + '"  onchange="dynamicDropDown(this)">' + options + '</select>');
         } else {
             //document.querySelector('#nodrop_alert').innerHTML = 'No data found'
             document.getElementById("nxtbtn").style.display = 'block'
@@ -141,12 +182,17 @@ function nxtBtn() {
         var attrList = JSON.parse(resp);
         var attrOpt = '<option value = ""> select </option>';
         for (var i = 0; i < attrList.length; i++) {
-            attrOpt += '<option value = "' + attrList[i].attribute_id + '"> ' + attrList[i].attribute_name + '</option>'
+            attrOpt += '<option id="' + attrList[i].attribute_id + '" value = "' + attrList[i].attribute_name + '"> ' + attrList[i].attribute_name + '</option>'
         };
 
-        document.getElementById('attributeList').innerHTML = '<select name="AttributeList" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList').innerHTML = '<select name="AttributeList" onblur="AttrList()" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList1').innerHTML = '<select name="AttributeList1" onblur="AttrList1()" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList2').innerHTML = '<select name="AttributeList2" onblur="AttrList2()" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList3').innerHTML = '<select name="AttributeList3" onblur="AttrList3()" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList4').innerHTML = '<select name="AttributeList4" onblur="" class="custom-select form-control">' + attrOpt + '</select>';
     }
     var res = serverRequest(data, method, url, asyn, type, respCallback);
+    document.prodForm.prodName.focus();
 }
 
 var i = 0;
@@ -166,10 +212,6 @@ function delAttrBtn(e) {
     document.getElementById("attdelBtn").disabled = true;
 }
 
-window.onload = function() {
-    document.prodForm.prodName.focus();
-}
-
 function prodName_validate() {
     var name = document.prodForm.prodName;
     var nameVal = name.value;
@@ -179,7 +221,7 @@ function prodName_validate() {
         return false;
     };
     name.style.border = "";
-    document.prodForm.prodDescription.focus();
+    document.prodForm.prodPrice.focus();
     return true;
 }
 
@@ -205,6 +247,19 @@ function prodDiscount_validate() {
         return false;
     };
     discount.style.border = "";
+    document.prodForm.prodDiscountPrice.focus();
+    return true;
+}
+
+function prodDiscountPrice_validate() {
+    var Discountprice = document.prodForm.prodDiscountPrice;
+    var DiscountpriceVal = Discountprice.value;
+    if (DiscountpriceVal == "") {
+        Discountprice.style.border = "2px solid red";
+        Discountprice.focus();
+        return false;
+    };
+    Discountprice.style.border = "";
     document.prodForm.prodQuantity.focus();
     return true;
 }
@@ -218,6 +273,7 @@ function prodQuantity_validate() {
         return false;
     };
     quantity.style.border = "";
+    document.prodForm.prodManufacturer.focus();
     return true;
 }
 
@@ -230,25 +286,190 @@ function prodManufacturer_validate() {
         return false;
     };
     manufacturer.style.border = "";
+    document.prodForm.AttributeList.focus();
     return true;
 }
 
+function AttrList() {
+    var select = document.prodForm.AttributeList;
+    var selectVal = select.value;
+    if (selectVal == "") {
+        select.style.border = "2px solid red";
+        select.focus;
+        return false;
+    };
+    select.style.border = "";
+    document.prodForm.AttributeList1.focus();
+    return true;
+}
+
+function AttrList1() {
+    var select = document.prodForm.AttributeList1;
+    var selectVal = select.value;
+    if (selectVal == "") {
+        select.style.border = "2px solid red";
+        select.focus;
+        return false;
+    };
+    select.style.border = "";
+    document.prodForm.AttributeList2.focus();
+    return true;
+}
+
+function AttrList2() {
+    var select = document.prodForm.AttributeList2;
+    var selectVal = select.value;
+    if (selectVal == "") {
+        select.style.border = "2px solid red";
+        select.focus;
+        return false;
+    };
+    select.style.border = "";
+    document.prodForm.AttributeList3.focus();
+    return true;
+}
+
+function AttrList3() {
+    var select = document.prodForm.AttributeList3;
+    var selectVal = select.value;
+    if (selectVal == "") {
+        select.style.border = "2px solid red";
+        select.focus;
+        return false;
+    };
+    select.style.border = "";
+    document.prodForm.AttributeList4.focus();
+    return true;
+}
+
+// function AttrList4() {
+//     var select = document.prodForm.AttributeList4;
+//     var selectVal = select.value;
+//     if (selectVal == "") {
+//         select.style.border = "2px solid red";
+//         select.focus;
+//         return false;
+//     };
+//     select.style.border = "";
+//     return true;
+// }
+
 function productValidate() {
+    var MainCategory = document.getElementById('mainCat');
+    var MainCategoryText = MainCategory.options[MainCategory.selectedIndex].text;
+    var Category = document.getElementsByClassName('subCatList');
+    var CategoryArray = [];
+    CategoryArray.push(MainCategoryText);
+    for (var i = 0; i < Category.length; i++) {
+        var text = Category[i].options[Category[i].selectedIndex].text;
+        CategoryArray.push(text);
+    };
     var productName = document.getElementsByName("prodName")[0].value;
-    var productDescription = document.getElementsByName("prodDescription")[0].value;
+    var productDescription = CKEDITOR.instances["txtEditor"].getData();
     var productPrice = document.getElementsByName("prodPrice")[0].value;
     var productDiscount = document.getElementsByName("prodDiscount")[0].value;
+    var productDiscountPrice = document.getElementsByName("prodDiscountPrice")[0].value;
     var productQuantity = document.getElementsByName("prodQuantity")[0].value;
-    var creditcardPay = document.getElementsByName("creditcardPayment")[0].value;
-    var debitcardPay = document.getElementsByName("debitcardPayment")[0].value;
-    var emiPay = document.getElementsByName("emiPayment")[0].value;
-    var codPay = document.getElementsByName("codPayment")[0].value;
+    var creditcardPay = document.getElementsByName("creditcardPayment")[0];
+    if (creditcardPay.checked) {
+        var ccpay = creditcardPay.value;
+        creditcardPay = ccpay;
+    };
+    var debitcardPay = document.getElementsByName("debitcardPayment")[0];
+    if (debitcardPay.checked) {
+        var dcpay = debitcardPay.value;
+        debitcardPay = dcpay;
+    };
+    var emiPay = document.getElementsByName("emiPayment")[0];
+    if (emiPay.checked) {
+        var epay = emiPay.value;
+        emiPay = epay;
+    };
+    var codPay = document.getElementsByName("codPayment")[0];
+    if (codPay.checked) {
+        var cpay = codPay.value;
+        codPay = cpay;
+    };
     var productManufacturer = document.getElementsByName("prodManufacturer")[0].value;
     var productImage1 = document.getElementsByName("productImg1")[0].value;
     var productImage2 = document.getElementsByName("productImg2")[0].value;
     var productImage3 = document.getElementsByName("productImg3")[0].value;
     var productImage4 = document.getElementsByName("productImg4")[0].value;
     var productImage5 = document.getElementsByName("productImg5")[0].value;
-    var prodArray = [productName, productDescription, productPrice, productDiscount, productQuantity, creditcardPay, debitcardPay, emiPay, codPay, productManufacturer];
-    console.log(prodArray);
+    var prodHL = document.getElementsByClassName("productAttr");
+    var highlightArray = {};
+    var specsArray = {};
+    var prodHLlength = prodHL.length;
+    for (var i = 0; i < prodHLlength; i++) {
+        if (prodHL[i].checked) {
+            var a = prodHL[i].parentNode;
+            var b = a.parentNode;
+            var c = b.parentNode;
+            var d = c.querySelectorAll('select')[0].value;
+            var e = c.nextElementSibling;
+            var f = e.firstElementChild;
+            var g = f.getAttribute('id');
+            var h = CKEDITOR.instances[g].getData();
+            var hi = {};
+            highlightArray[d] = h;
+        };
+    };
+    for (var i = 0; i < prodHLlength; i++) {
+        var a = prodHL[i].parentNode;
+        var b = a.parentNode;
+        var c = b.parentNode;
+        var d = c.querySelectorAll('select')[0].value;
+        var e = c.nextElementSibling;
+        var f = e.firstElementChild;
+        var g = f.getAttribute('id');
+        var h = CKEDITOR.instances[g].getData();
+        var hi = {};
+        if (d == "") {
+
+        } else {
+            specsArray[d] = h;
+        };
+    };
+    var attrJson = JSON.stringify({
+        "Product_Category": CategoryArray,
+        "Product_Name": productName,
+        "Product_Description": {
+            productDescription
+        },
+        "Product_Price": {
+            "cost": productPrice,
+            "discount": productDiscount,
+            "actual_price": productDiscountPrice
+        },
+        "Product_Quantity": productQuantity,
+        "Product_Payment_Method": {
+            "Credit_card_Payment": creditcardPay,
+            "Debit_card_Payment": debitcardPay,
+            "EMI_Pay": emiPay,
+            "Cash_on_Delivery": codPay
+        },
+        "Product_Manufacturer": productManufacturer,
+        "Product_HighLight_List": highlightArray,
+        "Product_Specification_List": specsArray
+    });
+    console.log(JSON.parse(attrJson));
+    var data = attrJson;
+    var type = "application/json";
+    var url = "add_products";
+    var asyn = "true";
+    var method = "POST";
+    var respCallback = function(resp) {
+        console.log(resp);
+        if (resp == "success") {
+            document.getElementById('productdiv').innerHTML = products.productList;
+            document.getElementById('btncls').style.display = 'block';
+            document.getElementById('canclbtn').style.display = 'none';
+            document.getElementById('frmDiv').style.display = 'none';
+            document.getElementById("nxtbtn").style.display = 'none';
+        };
+        if (resp == "error") {
+            alert("Error saving the data");
+        };
+    }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
 }

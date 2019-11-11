@@ -38,5 +38,7 @@ Route::get('/mail-home', 'common_services\emailController@mailDetail');
 
 Route::get('/admin', 'admin\adminController@admin');	
 Route::get('/admin/product', 'admin\productController@product');	
+Route::post('admin/get_product_data', 'admin\productController@getproductdata');	
 Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
 Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');	
+Route::post('admin/add_products', 'admin\productController@addproducts');	

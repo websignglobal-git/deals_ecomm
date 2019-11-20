@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class home_products extends Model
 {
-	const CREATED_AT = 'attribute_created_ts';
-	const UPDATED_AT = 'attribute_updated_ts';
+	const CREATED_AT = 'home_product_created_ts';
+	const UPDATED_AT = 'home_product_updated_ts';
     protected $fillable = [
         'home_product_id',
     	'user_idk',

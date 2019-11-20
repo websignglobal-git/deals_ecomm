@@ -10,5 +10,6 @@
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/admin/admin-template.css">
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/admin/products.css">
 		<link rel="stylesheet" href="{{URL::to('/')}}/assets/css/widgEditor.css">
+		@notify_css
 	</head>
 	<body onload="getProductsData()">

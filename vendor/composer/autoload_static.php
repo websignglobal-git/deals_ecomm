@@ -22,12 +22,17 @@ class ComposerStaticInit89813632aaf807d976ee1f554854c2d3
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'b6ec61354e97f32c0ae683041c78392a' => __DIR__ . '/..' . '/scrivo/highlight.php/HighlightUtilities/functions.php',
+        '3847a7d79cdbf13a4f13711a551b1100' => __DIR__ . '/..' . '/yoeunes/notify/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'Y' => 
+        array (
+            'Yoeunes\\Notify\\' => 15,
         ),
         'X' => 
         array (
@@ -143,6 +148,10 @@ class ComposerStaticInit89813632aaf807d976ee1f554854c2d3
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'Yoeunes\\Notify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yoeunes/notify/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -407,6 +416,21 @@ class ComposerStaticInit89813632aaf807d976ee1f554854c2d3
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\admin\\adminController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/adminController.php',
+        'App\\Http\\Controllers\\admin\\attributelistController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/attributelistController.php',
+        'App\\Http\\Controllers\\admin\\productController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/productController.php',
+        'App\\Http\\Controllers\\buyers\\cartController' => __DIR__ . '/../..' . '/app/Http/Controllers/buyers/cartController.php',
+        'App\\Http\\Controllers\\buyers\\checkoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/buyers/checkoutController.php',
+        'App\\Http\\Controllers\\buyers\\homeProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/buyers/homeProductController.php',
+        'App\\Http\\Controllers\\buyers\\listallcategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/buyers/listallcategoryController.php',
+        'App\\Http\\Controllers\\buyers\\viewproductController' => __DIR__ . '/../..' . '/app/Http/Controllers/buyers/viewproductController.php',
+        'App\\Http\\Controllers\\common_services\\emailController' => __DIR__ . '/../..' . '/app/Http/Controllers/common_services/emailController.php',
+        'App\\Http\\Controllers\\common_services\\fileUploadController' => __DIR__ . '/../..' . '/app/Http/Controllers/common_services/fileUploadController.php',
+        'App\\Http\\Controllers\\home\\genarateHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/home/genarateHomeController.php',
+        'App\\Http\\Controllers\\home\\homeTemplateController' => __DIR__ . '/../..' . '/app/Http/Controllers/home/homeTemplateController.php',
+        'App\\Http\\Controllers\\payment\\paymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/payment/paymentController.php',
+        'App\\Http\\Controllers\\security\\loginController' => __DIR__ . '/../..' . '/app/Http/Controllers/security/loginController.php',
+        'App\\Http\\Controllers\\security\\registerController' => __DIR__ . '/../..' . '/app/Http/Controllers/security/registerController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -415,12 +439,20 @@ class ComposerStaticInit89813632aaf807d976ee1f554854c2d3
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\sendMail' => __DIR__ . '/../..' . '/app/Mail/sendMail.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\models\\attribute_list' => __DIR__ . '/../..' . '/app/models/attribute_list.php',
+        'App\\models\\home_products' => __DIR__ . '/../..' . '/app/models/home_products.php',
+        'App\\models\\productCategory' => __DIR__ . '/../..' . '/app/models/productCategory.php',
+        'App\\models\\products' => __DIR__ . '/../..' . '/app/models/products.php',
+        'App\\models\\user_details' => __DIR__ . '/../..' . '/app/models/user_details.php',
+        'App\\models\\user_payments' => __DIR__ . '/../..' . '/app/models/user_payments.php',
+        'App\\models\\users' => __DIR__ . '/../..' . '/app/models/users.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
         'Carbon\\CarbonInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterface.php',
@@ -4136,6 +4168,15 @@ class ComposerStaticInit89813632aaf807d976ee1f554854c2d3
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'Yoeunes\\Notify\\Facades\\Notify' => __DIR__ . '/..' . '/yoeunes/notify/src/Facades/Notify.php',
+        'Yoeunes\\Notify\\NotifierFactory' => __DIR__ . '/..' . '/yoeunes/notify/src/NotifierFactory.php',
+        'Yoeunes\\Notify\\Notifiers\\AbstractNotifier' => __DIR__ . '/..' . '/yoeunes/notify/src/Notifiers/AbstractNotifier.php',
+        'Yoeunes\\Notify\\Notifiers\\NotifierInterface' => __DIR__ . '/..' . '/yoeunes/notify/src/Notifiers/NotifierInterface.php',
+        'Yoeunes\\Notify\\Notifiers\\Pnotify' => __DIR__ . '/..' . '/yoeunes/notify/src/Notifiers/Pnotify.php',
+        'Yoeunes\\Notify\\Notifiers\\SweetAlert2' => __DIR__ . '/..' . '/yoeunes/notify/src/Notifiers/SweetAlert2.php',
+        'Yoeunes\\Notify\\Notifiers\\Toastr' => __DIR__ . '/..' . '/yoeunes/notify/src/Notifiers/Toastr.php',
+        'Yoeunes\\Notify\\Notify' => __DIR__ . '/..' . '/yoeunes/notify/src/Notify.php',
+        'Yoeunes\\Notify\\NotifyServiceProvider' => __DIR__ . '/..' . '/yoeunes/notify/src/NotifyServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

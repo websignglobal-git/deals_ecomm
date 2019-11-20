@@ -10,7 +10,22 @@
 }
 
 .addbtn {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.addbtnplus {
 	font-size: 55px;
+}
+
+.nxtbtn {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.canclbtn {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .tbody {
@@ -37,4 +52,77 @@
 	background: #323232;
 }
 
-#frmDiv:saturate(40%);
+.description {
+    border: 0.5px solid rgba(0,0,0,0.5);
+    border-radius: 5px;
+    background: rgba(0,0,0,0.4);
+    padding: 10px;
+    color: rgba(225,225,225,0.3);
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+.h6txt {
+	font-size: 20px !important;
+    font-weight: bolder;
+    color: white;
+}
+
+.pophead {
+	background: #222831
+}
+
+.popbody {
+	background: #393e46
+}
+
+.pricetable {
+
+}
+
+.tablehead {
+	background: #222831
+}
+
+.tableheadrow {
+	color: white;
+}
+
+.tablebody {
+	background: rgba(0,0,0,0.4);
+	color: rgba(225,225,225,0.3);
+}
+
+.tablebodyrow {
+	color: rgba(225,225,225,0.3);
+}
+
+.loader-bar {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/*background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif');*/
+	background-image: url('https://miro.medium.com/max/400/1*em5HcTFZIQw90qIgdbYjVg.gif');
+	background-position: 50% 50%;
+	background-color: rgba(0,0,0,0.8);
+	background-repeat: no-repeat;
+}
+
+body.loading {
+	overflow: hidden;
+}
+
+body.loading .loader-bar {
+	display: block;
+}
+
+
+
+
+
+
+

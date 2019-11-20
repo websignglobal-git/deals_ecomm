@@ -1,25 +1,18 @@
 var products = {
-    productList: '<table id="prodTable" class="table table-bordered" style="color:white">\
+    productList: '<table id="prodTable" class="table table-bordered">\
                     <thead class="thead">\
-                        <tr class="font-weight-bold">\
-                            <th>No.</th>\
+                        <tr class="font-weight-bold" style="color:white">\
+                            <th style="display: none;">No.</th>\
                             <th>Name</th>\
                             <th>Catagory</th>\
                             <th>Slug</th>\
-                            <th>Price</th>\
-                            <th>GST Price</th>\
-                            <th>Keywords</th>\
-                            <th>Specification</th>\
-                            <th>Description</th>\
-                            <th>Attributes</th>\
                             <th>Available Stock</th>\
-                            <th>Payment Method</th>\
                             <th>Approve</th>\
                             <th>Deal of the Day</th>\
                             <th>Edit & Delete</th>\
                         </tr>\
                     </thead>\
-                    <tbody class="tbody">\
+                    <tbody class="tbody" id="prodTablebody" style="color:rgba(225,225,225,0.6)">\
                     </tbody>\
                 </table>',
 
@@ -33,7 +26,11 @@ document.getElementById('productdiv').innerHTML = products.productList;
 document.getElementById('canclbtn').style.display = 'none';
 document.getElementById('frmDiv').style.display = 'none';
 
+var productDetails = [];
+var allData = [];
+
 function getProductsData() {
+    document.body.className = "loading"
     var data = "";
     var type = "application/x-www-form-urlencoded";
     var url = "get_product_data";
@@ -41,54 +38,253 @@ function getProductsData() {
     var method = "POST";
     var respCallback = function(resp) {
         var proddata = JSON.parse(resp);
-        var table = document.getElementById('prodTable');
+        productDetails = proddata;
+        var table = document.getElementById('prodTablebody');
         proddata.forEach((object) => {
             var tr = document.createElement('tr');
-            tr.innerHTML = '<td>' + object.home_product_id + '</td>' +
+            var category = JSON.parse(object.home_product_category) != null ? JSON.parse(object.home_product_category).join(' > ') : '';
+
+            tr.innerHTML = '<td style="display: none;">' + object.home_product_id + '</td>' +
                 '<td>' + object.home_product_name + '</td>' +
-                '<td>' + object.home_product_category + '</td>' +
+                '<td>' + category + '</td>' +
                 '<td>' + object.home_product_slug + '</td>' +
-                '<td>' + object.home_product_amount + '</td>' +
-                '<td>' + object.home_product_gst + '</td>' +
-                '<td>' + object.home_product_keywords + '</td>' +
-                '<td>' + object.home_product_specification + '</td>' +
-                '<td>' + object.home_product_description + '</td>' +
-                '<td>' + object.home_product_attributes + '</td>' +
                 '<td>' + object.home_product_available_stock + '</td>' +
-                '<td>' + object.home_product_payment_method + '</td>' +
-                '<td><lable><input type="checkbox" id="approveProd' + object.home_product_id + '" onclick="approveProduct(this)" data="approve" data-approve-product="' + object.home_product_id + '" name="approval' + object.home_product_id + '" value=' + object.home_product_approval_status + '>Approve</label></td>' +
-                '<td><label><input type="checkbox" id="DealoftheDay' + object.home_product_id + '" onclick="dealsofthedayProduct(this)" data="dealofday" data-dealoftheday-product="' + object.home_product_id + '" name="dealoftheday' + object.home_product_id + '" value=' + object.home_product_deal_of_the_day + '>Deal of the Day</label></td>' +
-                '<td><button class="btn btn-outline-info" type="button"><i class="fa fa-pencil-square"></i></button> <button class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></button></td>';
+                '<td><lable><input type="checkbox" id="' + object.home_product_id + '" onclick="approveProduct(this)" data="approve" data-approve-product="' + object.home_product_id + '" name="approval' + object.home_product_id + '" value=' + object.home_product_approval_status + '><span>Approve</span></label></td>' +
+                '<td><label><input type="checkbox" id="' + object.home_product_id + '" onclick="dealsofthedayProduct(this)" data="dealofday" data-dealoftheday-product="' + object.home_product_id + '" name="dealoftheday' + object.home_product_id + '" value=' + object.home_product_deal_of_the_day + '><span>Deal of the Day</span></label></td>' +
+                '<td><button class="btn btn-outline-info" onclick="editprodInfo(this)" type="button"><i class="fa fa-pencil-square"></i></button> <button class="btn btn-outline-danger" onclick="delprodInfo(this)" type="button"><i class="fa fa-trash"></i></button> <button class="btn btn-outline-primary" onclick="showprodInfo(this)" data-toggle="modal" data-target="#largeModal" type="button"><i class="fa fa-info-circle"></i></button></td>';
             table.appendChild(tr);
         });
         var check = document.querySelectorAll('input');
         for (var i = 0; i < check.length; i++) {
             if (check[i].value == "1") {
-                check[i].checked = true;
+                check[i].checked = true
+                var approvechk = check[i].nextSibling;
+                var txt = approvechk.innerText
+                if (txt == "Approve") {
+                    approvechk.innerHTML = "Approved";
+                };
             } else {
-                check[i].checked = false;
+                check[i].checked = false
+                var approvechk = check[i].nextSibling;
+                var txt = approvechk.innerText
+                if (txt == "Approve") {
+                    approvechk.innerHTML = "Not Approved";
+                };
             }
         };
     }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);    
+
+    var data = "";
+    var type = "application/x-www-form-urlencoded";
+    var url = "get_initial_category";
+    var asyn = "true";
+    var method = "POST";
+
+    var respCallback = function(resp) {
+        var catList = JSON.parse(resp);
+        allData = catList;
+         document.body.className = ""
+        }
     var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
 
-function approveProduct() {
-    var chkid = document.querySelectorAll('input');
-    for (var i = 0; i < chkid.length; i++) {
-        var type = chkid[i].getAttribute('data');
-        if (type == "approve") {
-            var chk = chkid[i].getAttribute('data_approve_product');
-            var chk1 = chkid[i].checked;
-            if (chk1 == true) {
-                if (confirm("Press a button!")) {
-                    console.log("You pressed OK!");
-                } else {
-                    console.log("You pressed Cancel!");
-                }
-            };
+function showprodInfo(e) {
+    var a = e.parentNode.parentNode.firstElementChild.innerHTML
+    for (var i = 0; i < productDetails.length; i++) {
+        if (productDetails[i].home_product_id == a) {
+            var price = JSON.parse(productDetails[i].home_product_amount)
+            var cost = price.cost
+            var discount = price.discount
+            var actualprice = price.actual_price
+            var gst = JSON.parse(productDetails[i].home_product_gst)
+            var cgst = gst.cgst
+            var sgst = gst.sgst
+            var igst = gst.igst
+            var paymethod = JSON.parse(productDetails[i].home_product_payment_method)
+            var emi = paymethod.EMI_Pay
+            var cod = paymethod.Cash_on_Delivery
+            var dcpay = paymethod.Debit_card_Payment
+            var ccpay = paymethod.Credit_card_Payment
+            var desc = JSON.parse(productDetails[i].home_product_description)
+            var specs = JSON.parse(productDetails[i].home_product_specification)
+            document.getElementById('specsbody').innerHTML = ""
+            for(key in specs){
+                var table = document.getElementById('specsbody');
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + key + '</td>' +
+                    '<td>' + specs[key] + '</td>'
+                table.appendChild(tr);
+            }
+            var highlights = JSON.parse(productDetails[i].home_products_highlights)
+            document.getElementById('highlightsbody').innerHTML = ""
+            for(key in highlights){
+                var table = document.getElementById('highlightsbody');
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + key + '</td>' +
+                    '<td>' + specs[key] + '</td>'
+                table.appendChild(tr);
+            }
+            document.querySelector('.description').innerHTML = desc.productDescription
+            document.getElementById('costPrice').innerHTML = cost
+            document.getElementById('actualPrice').innerHTML = discount
+            document.getElementById('discountPercentage').innerHTML = actualprice
+            document.getElementById('cgstPrice').innerHTML = cgst
+            document.getElementById('sgstPrice').innerHTML = sgst
+            document.getElementById('igstPrice').innerHTML = igst
+            if (emi == "emipay") {
+                document.getElementById('emipay').innerHTML = "Available"
+            } else {
+                document.getElementById('emipay').innerHTML = "Not available"
+            }
+            if (cod == "codpay") {
+                document.getElementById('codpay').innerHTML = "Available"
+            } else {
+                document.getElementById('codpay').innerHTML = "Not available"
+            }
+            if (dcpay == "dcpay") {
+                document.getElementById('dcpay').innerHTML = "Available"
+            } else {
+                document.getElementById('dcpay').innerHTML = "Not available"
+            }
+            if (ccpay == "ccpay") {
+                document.getElementById('ccpay').innerHTML = "Available"
+            } else {
+                document.getElementById('ccpay').innerHTML = "Not available"
+            }
         };
     };
+}
+
+function approveProduct(id) {
+    var vid = id
+    var txt = id.nextSibling
+    var chkid = vid.id
+    if (vid.checked) {
+        var value = 1;
+
+        var data = JSON.stringify({
+            "id": chkid,
+            "val": value
+        });
+        var type = "application/json";
+        var url = "approved";
+        var asyn = "true";
+        var method = "POST";
+
+        var respCallback = function(resp) {
+            if (resp == "success") {
+                toastr.success('The product has been Approved.')
+                txt.innerHTML = "Approved"
+            } else {
+                alert('Try again later...')
+            }
+        }
+        var res = serverRequest(data, method, url, asyn, type, respCallback);
+    } else {
+        var value = 0;
+
+        var data = JSON.stringify({
+            "id": chkid,
+            "val": value
+        });
+        var type = "application/json";
+        var url = "not_approved";
+        var asyn = "true";
+        var method = "POST";
+
+        var respCallback = function(resp) {
+            if (resp == "success") {
+                toastr.error('The product has not been Approved.')
+                txt.innerHTML = "Not Approved"
+            } else {
+                alert('Try again later...')
+            }
+        }
+        var res = serverRequest(data, method, url, asyn, type, respCallback);
+    }
+}
+
+function dealsofthedayProduct(id) {
+    var vid = id
+    var chkid = vid.id
+    if (vid.checked) {
+        var value = 1;
+
+        var data = JSON.stringify({
+            "id": chkid,
+            "val": value
+        });
+        var type = "application/json";
+        var url = "dealoftheday";
+        var asyn = "true";
+        var method = "POST";
+
+        var respCallback = function(resp) {
+            if (resp == "success") {
+                toastr.success('Product has been added to Deal of the Day List.')
+            } else {
+                alert('Try again later...')
+            }
+        }
+        var res = serverRequest(data, method, url, asyn, type, respCallback);
+    } else {
+        var value = 0;
+
+        var data = JSON.stringify({
+            "id": chkid,
+            "val": value
+        });
+        var type = "application/json";
+        var url = "not_dealoftheday";
+        var asyn = "true";
+        var method = "POST";
+
+        var respCallback = function(resp) {
+            if (resp == "success") {
+                toastr.error('Product has been removed from Deal of the Day List.')
+            } else {
+                alert('Try again later...')
+            }
+        }
+        var res = serverRequest(data, method, url, asyn, type, respCallback);
+    }
+}
+
+function editprodInfo(e) {
+    document.getElementById('productdiv').style.display = 'none';
+    document.getElementById('canclbtn').style.display = 'block';
+    document.getElementById('frmDiv').style.display = 'block';
+}
+
+function delprodInfo(e) {
+    var conf = confirm('Are you sure you want to remove the product?')
+    if (conf == true) {
+        var a = e.parentNode
+        var b = a.parentNode
+        var c = b.firstChild
+        var d = c.innerHTML
+
+        var data = JSON.stringify({
+            "id": d
+        });
+        var type = "application/json";
+        var url = "delete_product";
+        var asyn = "true";
+        var method = "POST";
+
+        var respCallback = function(resp) {
+            if (resp == "success") {
+                toastr.error('Product has been deleted from the List.')
+                b.remove();
+            } else {
+                alert('Try again later...')
+            }
+        }
+        var res = serverRequest(data, method, url, asyn, type, respCallback);
+    } else {
+        alert("You Clicked cancel button.")
+    }
 }
 
 function canclBtn() {
@@ -99,31 +295,18 @@ function canclBtn() {
     document.getElementById("nxtbtn").style.display = 'none'
 }
 
-var allData = [];
+
 
 function frstDropdown() {
     document.getElementById('btncls').style.display = 'none';
     document.getElementById('canclbtn').style.display = 'block';
-    // if (true) {};
-    var data = "";
-    var type = "application/x-www-form-urlencoded";
-    var url = "get_initial_category";
-    var asyn = "true";
-    var method = "POST";
-
-    var respCallback = function(resp) {
-        var catList = JSON.parse(resp);
-        allData = catList;
-        var options = '<option value = ""> select </option>';
-        for (var i = 0; i < allData.length; i++) {
-            if (allData[i].product_cat_parent_id == 0) {
-                options += '<option value = "' + allData[i].product_cat_id + '"> ' + allData[i].product_cat_name + '</option>'
-            }
+    var options = '<option value = ""> select </option>';
+    for (var i = 0; i < allData.length; i++) {
+        if (allData[i].product_cat_parent_id == 0) {
+            options += '<option value = "' + allData[i].product_cat_id + '"> ' + allData[i].product_cat_name + '</option>'
         }
-        document.getElementById('productdiv').innerHTML = '<select id="mainCat" onchange = "dynamicDropDown(this)">' + options + '</select>';
     }
-    var res = serverRequest(data, method, url, asyn, type, respCallback);
-
+    document.getElementById('productdiv').innerHTML = '<select id="mainCat" onchange = "dynamicDropDown(this)">' + options + '</select>';
 }
 
 document.getElementById('nxtbtn').style.display = 'none';
@@ -161,7 +344,6 @@ function dynamicDropDown(id) {
         if (valid) {
             element.insertAdjacentHTML('afterend', '<span style="color:#fff5">----------</span><select class="subCatList" id ="' + id.value + '"  onchange="dynamicDropDown(this)">' + options + '</select>');
         } else {
-            //document.querySelector('#nodrop_alert').innerHTML = 'No data found'
             document.getElementById("nxtbtn").style.display = 'block'
         }
     }
@@ -260,6 +442,45 @@ function prodDiscountPrice_validate() {
         return false;
     };
     Discountprice.style.border = "";
+    document.prodForm.prodCgstPrice.focus();
+    return true;
+}
+
+function prodcgst_validate() {
+    var Cgst = document.prodForm.prodCgstPrice;
+    var CgstVal = Cgst.value;
+    if (CgstVal == "") {
+        Cgst.style.border = "2px solid red";
+        Cgst.focus();
+        return false;
+    };
+    Cgst.style.border = "";
+    document.prodForm.prodSgstPrice.focus();
+    return true;
+}
+
+function prodsgst_validate() {
+    var Sgst = document.prodForm.prodSgstPrice;
+    var SgstVal = Sgst.value;
+    if (SgstVal == "") {
+        Sgst.style.border = "2px solid red";
+        Sgst.focus();
+        return false;
+    };
+    Sgst.style.border = "";
+    document.prodForm.prodIgstPrice.focus();
+    return true;
+}
+
+function prodigst_validate() {
+    var Igst = document.prodForm.prodIgstPrice;
+    var IgstVal = Igst.value;
+    if (IgstVal == "") {
+        Igst.style.border = "2px solid red";
+        Igst.focus();
+        return false;
+    };
+    Igst.style.border = "";
     document.prodForm.prodQuantity.focus();
     return true;
 }
@@ -342,18 +563,6 @@ function AttrList3() {
     return true;
 }
 
-// function AttrList4() {
-//     var select = document.prodForm.AttributeList4;
-//     var selectVal = select.value;
-//     if (selectVal == "") {
-//         select.style.border = "2px solid red";
-//         select.focus;
-//         return false;
-//     };
-//     select.style.border = "";
-//     return true;
-// }
-
 function productValidate() {
     var MainCategory = document.getElementById('mainCat');
     var MainCategoryText = MainCategory.options[MainCategory.selectedIndex].text;
@@ -369,6 +578,9 @@ function productValidate() {
     var productPrice = document.getElementsByName("prodPrice")[0].value;
     var productDiscount = document.getElementsByName("prodDiscount")[0].value;
     var productDiscountPrice = document.getElementsByName("prodDiscountPrice")[0].value;
+    var productCgst = document.getElementsByName("prodCgstPrice")[0].value;
+    var productSgst = document.getElementsByName("prodSgstPrice")[0].value;
+    var productIgst = document.getElementsByName("prodIgstPrice")[0].value;
     var productQuantity = document.getElementsByName("prodQuantity")[0].value;
     var creditcardPay = document.getElementsByName("creditcardPayment")[0];
     if (creditcardPay.checked) {
@@ -441,6 +653,11 @@ function productValidate() {
             "discount": productDiscount,
             "actual_price": productDiscountPrice
         },
+        "Product_Gst": {
+            "cgst": productCgst,
+            "sgst": productSgst,
+            "igst": productIgst
+        },
         "Product_Quantity": productQuantity,
         "Product_Payment_Method": {
             "Credit_card_Payment": creditcardPay,
@@ -452,20 +669,14 @@ function productValidate() {
         "Product_HighLight_List": highlightArray,
         "Product_Specification_List": specsArray
     });
-    console.log(JSON.parse(attrJson));
     var data = attrJson;
     var type = "application/json";
     var url = "add_products";
     var asyn = "true";
     var method = "POST";
     var respCallback = function(resp) {
-        console.log(resp);
         if (resp == "success") {
-            document.getElementById('productdiv').innerHTML = products.productList;
-            document.getElementById('btncls').style.display = 'block';
-            document.getElementById('canclbtn').style.display = 'none';
-            document.getElementById('frmDiv').style.display = 'none';
-            document.getElementById("nxtbtn").style.display = 'none';
+            window.location.reload()
         };
         if (resp == "error") {
             alert("Error saving the data");

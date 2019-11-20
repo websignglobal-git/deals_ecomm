@@ -39,7 +39,11 @@ Route::get('/mail-home', 'common_services\emailController@mailDetail');
 Route::get('/admin', 'admin\adminController@admin');	
 Route::get('/admin/product', 'admin\productController@product');	
 Route::post('admin/get_product_data', 'admin\productController@getproductdata');	
+Route::post('admin/approved', 'admin\productController@approved');	
+Route::post('admin/not_approved', 'admin\productController@notapproved');	
+Route::post('admin/dealoftheday', 'admin\productController@dealoftheday');	
+Route::post('admin/not_dealoftheday', 'admin\productController@notdealoftheday');	
 Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
 Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');	
 Route::post('admin/add_products', 'admin\productController@addproducts');	
-
+Route::post('admin/delete_product', 'admin\productController@deleteproduct');	

@@ -2,10 +2,12 @@
 @include("../common/admin/admin-header-scripts")
 {{-- admin left menu --}}
 @include("../common/admin/admin-left-menu")
-<section id="contents">
+<section id="contents" >
 	{{-- admin header --}}
 	@include("../common/admin/admin-header")
-
+	<div class="loader-bar">
+		
+	</div>
 	<div class="welcome">
 		<div class="container-fluid">
 			<div class="row">
@@ -17,23 +19,20 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="container-fluid" id="btncls">
+	<div class="container-fluid addbtn" id="btncls">
 		<div class="row">
 			<div class="col">
-				<button class="btn btn-outline-light" type="button" onclick="frstDropdown()"><i class="fa fa-plus-circle addbtn"></i></button>
+				<button class="btn btn-outline-light" type="button" onclick="frstDropdown()"><i class="fa fa-plus-circle addbtnplus"></i></button>
 			</div>
 		</div>
 	</div>
-
-	<div class="container-fluid" id="canclbtn">
+	<div class="container-fluid canclbtn" id="canclbtn">
 		<div class="row">
 			<div class="col">
-				<button class="btn btn - btn-outline-danger" type="button" onclick="canclBtn()"><i class="fa fa-times"></i>Cancel</button>
+				<button class="btn btn - btn-outline-danger" type="button" onclick="canclBtn(); getProductsData()"><i class="fa fa-times"></i>Cancel</button>
 			</div>
 		</div>
 	</div>
-
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
@@ -43,15 +42,13 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="container-fluid" id="nxtbtn">
+	<div class="container-fluid nxtbtn" id="nxtbtn">
 		<div class="row">
 			<div class="col">
 				<button type="button" class="btn btn-outline-light" onclick="nxtBtn()">Next</button>
 			</div>
 		</div>
 	</div>
-
 	<div id="frmDiv"  class="container">
 		<form name="prodForm">
 			<div class="form-group">
@@ -75,13 +72,31 @@
 			<div class="form-group">
 				<label for="prodDiscount" class="form-label">Discount %</label>
 				<div class="">
-					<input name="prodDiscount" type="number" class="form-control" onblur="prodDiscount_validate()" placeholder="Distount %">
+					<input name="prodDiscount" type="text" class="form-control" maxlength="5" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodDiscount_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]./g, '')" placeholder="Distount %">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodDiscountPrice" class="form-label">Discount Price</label>
 				<div class="">
 					<input name="prodDiscountPrice" type="number" class="form-control" onblur="prodDiscountPrice_validate()" placeholder="Product Discount Price">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="prodCgstPrice" class="form-label">C-GST</label>
+				<div class="">
+					<input name="prodCgstPrice" type="text" maxlength="5" class="form-control" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodcgst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter Central GST Percentage here...">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="prodSgstPrice" class="form-label">S-GST</label>
+				<div class="">
+					<input name="prodSgstPrice" type="text" maxlength="5" class="form-control" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodsgst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter State GST Percentage here...">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="prodIgstPrice" class="form-label">I-GST</label>
+				<div class="">
+					<input name="prodIgstPrice" type="text" maxlength="5" class="form-control" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodigst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter Integrated GST Percentage here...">
 				</div>
 			</div>
 			<div class="form-group">
@@ -113,34 +128,34 @@
 			</div>
 			<div class="form-group">
 				<label class="form-label">Choose images to upload</label>
-			  	<div class="custom-file">
-			    	<input name="productImg1" type="file" class="custom-file-input">
-			    	<label class="custom-file-label">Choose file</label>
-			  	</div>
+				<div class="custom-file">
+					<input name="productImg1" type="file" class="custom-file-input">
+					<label class="custom-file-label">Choose file</label>
+				</div>
 			</div>
 			<div class="form-group">
-			  	<div class="custom-file">
-			    	<input name="productImg2" type="file" class="custom-file-input">
-			    	<label class="custom-file-label">Choose file</label>
-			  	</div>
+				<div class="custom-file">
+					<input name="productImg2" type="file" class="custom-file-input">
+					<label class="custom-file-label">Choose file</label>
+				</div>
 			</div>
 			<div class="form-group">
-			  	<div class="custom-file">
-			    	<input name="productImg3" type="file" class="custom-file-input">
-			    	<label class="custom-file-label">Choose file</label>
-			  	</div>
+				<div class="custom-file">
+					<input name="productImg3" type="file" class="custom-file-input">
+					<label class="custom-file-label">Choose file</label>
+				</div>
 			</div>
 			<div class="form-group">
-			  	<div class="custom-file">
-			    	<input name="productImg4" type="file" class="custom-file-input">
-			    	<label class="custom-file-label">Choose file</label>
-			  	</div>
+				<div class="custom-file">
+					<input name="productImg4" type="file" class="custom-file-input">
+					<label class="custom-file-label">Choose file</label>
+				</div>
 			</div>
 			<div class="form-group">
-			  	<div class="custom-file">
-			    	<input name="productImg5" type="file" class="custom-file-input">
-			    	<label class="custom-file-label">Choose file</label>
-			  	</div>
+				<div class="custom-file">
+					<input name="productImg5" type="file" class="custom-file-input">
+					<label class="custom-file-label">Choose file</label>
+				</div>
 			</div>
 			<label class="form-label">Select Specifications</label>
 			<div id="attr1">
@@ -221,9 +236,156 @@
 		<div class="form-group">
 			<button type="submit" onclick="productValidate()" class="btn btn-outline-success">Submit</button>
 		</div>
-
-</section>
-{{-- admin footer script --}}
-@include("../common/admin/admin-footer-scripts")
-{{-- admin footer --}}
-@include("../common/admin/admin-footer")
+	</section>
+	<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header pophead">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body popbody">
+					<div>
+						<h6 class="h6txt">Description</h6>
+						<div class="description">
+							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div>
+								<h6 class="h6txt">Price</h6>
+								<div class="amount">
+									<table id="productPrice" class="table table-bordered pricetable">
+										<thead class="thead tablehead">
+											<tr class="tableheadrow">
+												<th>Type</th>
+												<th>Amount</th>
+											</tr>
+										</thead>
+										<tbody class="tbody tablebody">
+											<tr class="tablebodyrow">
+												<td>Cost</td>
+												<td id="costPrice"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>Actual Price</td>
+												<td id="actualPrice"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>Discount</td>
+												<td id="discountPercentage"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div>
+								<h6 class="h6txt">G.S.T</h6>
+								<div class="gst">
+									<table id="gstPrice" class="table table-bordered pricetable">
+										<thead class="thead tablehead">
+											<tr class="tableheadrow">
+												<th>Type</th>
+												<th>G.S.T</th>
+											</tr>
+										</thead>
+										<tbody class="tbody tablebody">
+											<tr class="tablebodyrow">
+												<td>CGST</td>
+												<td id="cgstPrice"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>SGST</td>
+												<td id="sgstPrice"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>IGST</td>
+												<td id="igstPrice"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div>
+								<h6 class="h6txt">Payment Methods</h6>
+								<div class="paymentmtd">
+									<table id="gstPrice" class="table table-bordered pricetable">
+										<thead class="thead tablehead">
+											<tr class="tableheadrow">
+												<th>Type</th>
+												<th>Method</th>
+											</tr>
+										</thead>
+										<tbody class="tbody tablebody">
+											<tr class="tablebodyrow">
+												<td>EMI Pay</td>
+												<td id="emipay"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>Cash on Delivery</td>
+												<td id="codpay"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>Debit card Payment</td>
+												<td id="dcpay"></td>
+											</tr>
+											<tr class="tablebodyrow">
+												<td>Credit card Payment</td>
+												<td id="ccpay"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div>
+								<h6 class="h6txt">Specifications</h6>
+								<div class="specs">
+									<table id="specsTable" class="table table-bordered pricetable">
+										<thead class="thead tablehead">
+											<tr class="tableheadrow">
+												<th>Type</th>
+												<th>Specifications</th>
+											</tr>
+										</thead>
+										<tbody id="specsbody" class="tbody tablebody">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div>
+								<h6 class="h6txt">HighLights</h6>
+								<div class="highlights">
+									<table id="highlightsTable" class="table table-bordered pricetable">
+										<thead class="thead tablehead">
+											<tr class="tableheadrow">
+												<th>Type</th>
+												<th>HighLights</th>
+											</tr>
+										</thead>
+										<tbody id="highlightsbody" class="tbody tablebody">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{-- admin footer script --}}
+	@include("../common/admin/admin-footer-scripts")
+	{{-- admin footer --}}
+	@include("../common/admin/admin-footer")

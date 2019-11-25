@@ -128,19 +128,26 @@ body{
 			    <div class="cmn_prod_crsl">
 			      <div class="prodct_pg_carosl_sub">
 			        <div class="carousel-indicators">
-			           <?php for($i=0; $i<count($imgs); $i++){ ?>
+
+			           <?php
+			           if($imgs){
+     					for($i=0; $i<count($imgs); $i++){ ?>
 				          <div data-target="#demo" data-slide-to="<?php echo $i; ?>" class="item"><img src="{{ URL::asset($imgs[$i])}}" class="img-fluid img_ful_wid"></div>
-			           <?php  } ?>
+			           <?php  } } ?>
 			        </div>
 			      </div><!-- col-sm-4 Indicators -->
 			      <div class="prodct_pg_details_sub">
 			        <div class="carousel-inner adst_border_img">
-			        	<?php for($i=0; $i<count($imgs); $i++){ ?>
+			        	<?php if($imgs){ 
+			        	for($i=0; $i<count($imgs); $i++){ ?>
 				          <div class="carousel-item">
 				      		<div class="heart_iconm"><i class="fa fa-heart"></i></div>
 				            	<img src="{{ URL::asset($imgs[$i])}}" class="img-fluid img_full_wid">
 				          </div>
-				         <?php  } ?>
+				         <?php  }}
+
+				         
+				         ?>
 			        </div>
 			        <div class="cmn_prod_btns">
 				        <div class="cmn_prod_btns_addcart addcart_btn">
@@ -158,29 +165,33 @@ body{
 				<div class="product_view_menu"><a href="" class="pro_view_home">Home</a><i class="fa fa-chevron-right"></i></div>
 				<div class="product_view_head">
 					{{ $datas[0]->home_product_name }}	
+
 					</div>
 				<!-- <div class="product_view_rating_cmn"><span class="product_view_rating">5.0 <i class="fa fa-star satr"></i></span><span class="product_view_rate_txt">Rating & Reviews Count</span></div> -->
 				<div class="product_view_price">
 					<span class="price_p">
 					<?php $amount=json_decode($datas[0]->home_product_amount);
+
 					?>
 					{{ $amount->actual_price }}
 				</span>
 				<span class="price_cut">{{ $amount->cost }}</span><span class="price_original">
 					{{ $amount->discount }}</span></div>
+
 				<div class="product_view_color">
 					<span class="color_p">color</span><span class="color_colon">:</span>
 					<span class="color_col"></span>
 				</div>
 				<div class="product_color">
-					<?php $general=json_decode($datas[0]->home_product_attributes);
+					<?php if($datas[0]->home_product_attributes){ $general=json_decode($datas[0]->home_product_attributes);
 						for($i=0; $i<count($general); $i++){
 							if(isset($general[$i]->color)){
 							  $color = $general[$i]->color;
 								for($j=0; $j<count($color); $j++){
 						?>
 						<span class="color_box1" style="background-color: {{$color[$j]}}"></span>
-					 <?php }}} ?>
+					 <?php }}} }?>
+
 				</div>
 				<!-- <div class="delivery_pincode">Delivery Pincode Check</div>
 				<div class="delivery_pincode_input"> 
@@ -196,7 +207,7 @@ body{
 						<p class="prodct_highlit_head"> Highlights </p>
 						<?php $highlihts=json_decode($datas[0]->home_products_highlights);
 					
-						foreach($highlihts[0] as $key=>$value){
+						foreach($highlihts as $key=>$value){
 							?>
 							<div class="cmn_prodct_highlit" >
 								<span class="prodct_highlit_point" >{{$key}}</span> : <span class="prodct_highlit_point">{{$value}}</span>
@@ -204,6 +215,7 @@ body{
 							<?php
 						}
 						?>
+						 
 					</div>
 					<div class="prodct_payoption">
 						<p class="prodct_highlit_head"> Payment Options </p>
@@ -219,9 +231,8 @@ body{
 				<div>
 					<table class="table table-bordered product_view_tbl">
 				    <tbody>
-				    	<?php $soecification=json_decode($datas[0]->home_product_specification);
-					
-						foreach($soecification[0] as $key=>$value){
+				    	<?php $specification=json_decode($datas[0]->home_product_specification);
+						foreach($specification as $key=>$value){
 							?>
 							<tr class="prodct_tr">
 					        <td class="lft_tbl">{{$key}}</td>
@@ -229,7 +240,10 @@ body{
 					      </tr>
 							<?php
 						}
+
 						?>
+
+
 				    </tbody>
 				  </table>
 				</div>
@@ -240,8 +254,10 @@ body{
 					<div class="detail_addi_warrnt">
 						<p class="detail_addi_warrnt_txt">
 							<?php $prod_desc=json_decode($datas[0]->home_product_description);
+								
 							?>
-							{{ $prod_desc->empty }}
+
+							{!! $prod_desc->productDescription !!}
 						</p>
 					</div>
 					<!-- <div class="detail_addi_feedback">
@@ -285,7 +301,7 @@ body{
 		    </div>
 		    </section> 
 
-		    <section class="prod_viewowl_carousel producut1_cmn">
+		    <!-- <section class="prod_viewowl_carousel producut1_cmn">
 		      <div class="container_width_prod_view">
 		        <div class="prodct1_head">
 		          <span class="prod_car_head"> Recommened for you</span>
@@ -311,8 +327,12 @@ body{
 		          <?php  } ?>
 		      </div>
 		    </div>
-		    </section> 
+		    </section>  -->
 		</div>
 	 </div>
 </section>
 <script type="text/javascript" src="{{ URL::asset('assets/js/product.js')}}"></script>
+
+<script>
+	document.querySelectorAll('.carousel-item')[0].classList.add('active');
+	</script>

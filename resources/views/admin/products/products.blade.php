@@ -29,7 +29,7 @@
 	<div class="container-fluid canclbtn" id="canclbtn">
 		<div class="row">
 			<div class="col">
-				<button class="btn btn - btn-outline-danger" type="button" onclick="canclBtn(); getProductsData()"><i class="fa fa-times"></i>Cancel</button>
+				<button class="btn btn - btn-outline-danger" type="button" onclick="canclBtn()"><i class="fa fa-times"></i>Cancel</button>
 			</div>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 			<div class="form-group">
 				<label for="prodName" class="form-label">Product Name</label>
 				<div class="">
-					<input name="prodName" type="text" class="form-control" onblur="prodName_validate()" placeholder="Enter your Product Name here...">
+					<input name="prodName" type="text" class="form-control formdata" onblur="prodName_validate()" placeholder="Enter your Product Name here...">
 				</div>
 			</div>
 			<div class="form-group">
@@ -66,94 +66,94 @@
 			<div class="form-group">
 				<label for="prodPrice" class="form-label">Actual Price</label>
 				<div class="">
-					<input name="prodPrice" type="number" class="form-control" onblur="prodPrice_validate()" placeholder="Product Price">
+					<input name="prodPrice" type="number" class="form-control formdata" onblur="prodPrice_validate()" placeholder="Product Price">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodDiscount" class="form-label">Discount %</label>
 				<div class="">
-					<input name="prodDiscount" type="text" class="form-control" maxlength="5" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodDiscount_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]./g, '')" placeholder="Distount %">
+					<input name="prodDiscount" type="text" class="form-control formdata" maxlength="5" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodDiscount_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]./g, '')" placeholder="Distount %">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodDiscountPrice" class="form-label">Discount Price</label>
 				<div class="">
-					<input name="prodDiscountPrice" type="number" class="form-control" onblur="prodDiscountPrice_validate()" placeholder="Product Discount Price">
+					<input name="prodDiscountPrice" type="number" class="form-control formdata" onblur="prodDiscountPrice_validate()" placeholder="Product Discount Price">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodCgstPrice" class="form-label">C-GST</label>
 				<div class="">
-					<input name="prodCgstPrice" type="text" maxlength="5" class="form-control" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodcgst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter Central GST Percentage here...">
+					<input name="prodCgstPrice" type="text" maxlength="5" class="form-control formdata" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodcgst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter Central GST Percentage here...">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodSgstPrice" class="form-label">S-GST</label>
 				<div class="">
-					<input name="prodSgstPrice" type="text" maxlength="5" class="form-control" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodsgst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter State GST Percentage here...">
+					<input name="prodSgstPrice" type="text" maxlength="5" class="form-control formdata" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodsgst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter State GST Percentage here...">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodIgstPrice" class="form-label">I-GST</label>
 				<div class="">
-					<input name="prodIgstPrice" type="text" maxlength="5" class="form-control" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodigst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter Integrated GST Percentage here...">
+					<input name="prodIgstPrice" type="text" maxlength="5" class="form-control formdata" onblur="this.value = this.value.replace(/[^0-9|.]/g, '') + '%'; prodigst_validate()" onkeyup="this.value = this.value.replace(/[^0-9|.]/g, '')" placeholder="Enter Integrated GST Percentage here...">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodQuantity" class="form-label">Quantity</label>
 				<div class="">
-					<input name="prodQuantity" type="number" class="form-control" onblur="prodQuantity_validate()" placeholder="Enter number of quantity here...">
+					<input name="prodQuantity" type="number" class="form-control formdata" onblur="prodQuantity_validate()" placeholder="Enter number of quantity here...">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label">Payment Method</label>
 				<div class="form-check">
-					<label for="creditcardPayment" class="form-check-label"><input name="creditcardPayment" type="checkbox" value="ccpay" class="form-check-input" checked="checked">Credit Card Payment</label>
+					<label for="creditcardPayment" class="form-check-label"><input name="creditcardPayment" type="checkbox" value="ccpay" class="form-check-input formdata" checked="checked">Credit Card Payment</label>
 				</div>
 				<div class="form-check">
-					<label for="debitcardPayment" class="form-check-label"><input name="debitcardPayment" type="checkbox" value="dcpay" class="form-check-input" checked="checked">Debit Card Payment</label>
+					<label for="debitcardPayment" class="form-check-label"><input name="debitcardPayment" type="checkbox" value="dcpay" class="form-check-input formdata" checked="checked">Debit Card Payment</label>
 				</div>
 				<div class="form-check">
-					<label for="emiPayment" class="form-check-label"><input name="emiPayment" type="checkbox" value="emipay" class="form-check-input" checked="checked">EMI Options</label>
+					<label for="emiPayment" class="form-check-label"><input name="emiPayment" type="checkbox" value="emipay" class="form-check-input formdata" checked="checked">EMI Options</label>
 				</div>
 				<div class="form-check">
-					<label for="codPayment" class="form-check-label"><input name="codPayment" type="checkbox" value="codpay" class="form-check-input" checked="checked">Cash on Delivery</label>
+					<label for="codPayment" class="form-check-label"><input name="codPayment" type="checkbox" value="codpay" class="form-check-input formdata" checked="checked">Cash on Delivery</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="prodManufacturer" class="form-label">Manufacturer</label>
 				<div class="">
-					<input name="prodManufacturer" type="text" class="form-control" onblur="prodManufacturer_validate()" placeholder="Enter Manufacturer name...">
+					<input name="prodManufacturer" type="text" class="form-control formdata" onblur="prodManufacturer_validate()" placeholder="Enter Manufacturer name...">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="form-label">Choose images to upload</label>
 				<div class="custom-file">
-					<input name="productImg1" type="file" class="custom-file-input">
+					<input id="productImg1" name="productImg1" type="file" class="custom-file-input" onchange="productimg1(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="custom-file">
-					<input name="productImg2" type="file" class="custom-file-input">
+					<input id="productImg2" name="productImg2" type="file" class="custom-file-input" onchange="productimg2(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="custom-file">
-					<input name="productImg3" type="file" class="custom-file-input">
+					<input id="productImg3" name="productImg3" type="file" class="custom-file-input" onchange="productimg3(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="custom-file">
-					<input name="productImg4" type="file" class="custom-file-input">
+					<input id="productImg4" name="productImg4" type="file" class="custom-file-input" onchange="productimg4(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="custom-file">
-					<input name="productImg5" type="file" class="custom-file-input">
+					<input id="productImg5" name="productImg5" type="file" class="custom-file-input" onchange="productimg5(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
@@ -234,7 +234,10 @@
 			</div>
 		</form>
 		<div class="form-group">
-			<button type="submit" onclick="productValidate()" class="btn btn-outline-success">Submit</button>
+			<button type="submit" id="submitbtn" onclick="productValidate()" class="btn btn-outline-success">Submit</button>
+			<div id="errorDiv" class="errordiv">
+				
+			</div>
 		</div>
 	</section>
 	<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">

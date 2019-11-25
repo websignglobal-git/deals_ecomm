@@ -6,6 +6,10 @@
 <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 <script>
 	CKEDITOR.replaceAll();
+	$(".custom-file-input").on("change", function() {
+		var fileName = $(this).val().split("\\").pop();
+		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
 </script>
 <script src='{{URL::to('/')}}/assets/js/admin/admin-template.js'></script>
 <script src='{{URL::to('/')}}/assets/js/admin/product.js'></script>

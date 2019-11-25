@@ -29,21 +29,55 @@ class productController extends Controller
     public function addproducts(Request $req)
     {
         $data = $req->all();
-        $qry = homeproduct::insert([
-            'home_product_name'=>$data['Product_Name'],
-            'home_product_amount'=>json_encode($data['Product_Price']),
-            'home_product_gst'=>json_encode($data['Product_Gst']),
-            'home_product_specification'=>json_encode($data['Product_Specification_List']),
-            'home_product_description'=>json_encode($data['Product_Description']),
-            'home_products_highlights'=>json_encode($data['Product_HighLight_List']),
-            'home_product_category'=>json_encode($data['Product_Category']),
-            'home_product_available_stock'=>$data['Product_Quantity'],
-            'home_product_payment_method'=>json_encode($data['Product_Payment_Method'])
-        ]);
-        if($qry==true){
-            $res="success";
-        }else{
-            $res="error";
+        $a = $data['file1'];
+        $b = $data['file2'];
+        $c = $data['file3'];
+        $d = $data['file4'];
+        $e = $data['file5'];
+        $f = json_decode($data['data']);
+        $arr = array();
+
+        for($i=1; $i<count($data); $i++){
+            if (count($data)-1 == 5) {
+                if ($req->hasFile('file'.$i)) {
+                    $name = $_FILES['file'.$i]['name'];
+                    $nameonly = explode(".",$name);
+                    $extension=strchr($name,".");
+                    $dir = "images/productimg/";
+                    if($extension==".jpg" || $extension==".png" || $extension==".jpeg") {
+                        $file_name = $nameonly['0']."-".date("Y-m-d")."-".date("H:i:s")."-".rand();
+                        $file = $dir.$file_name.basename($nameonly['0'].".".$nameonly['1']);
+                        move_uploaded_file($name, $file);
+                        array_push($arr, $dir.$file_name.".".$nameonly['1']);
+                    }
+                    $res = "error";
+                }
+            } else {
+                $res = "error";
+            }
+        }
+        
+        if (count($arr) != 5) {
+            $res = "error";
+        } else {
+            $qry = homeproduct::insert([
+                'home_product_name'=>$f->Product_Name,
+                'home_product_amount'=>json_encode($f->Product_Price),
+                'home_product_images'=>json_encode($arr),
+                'home_product_gst'=>json_encode($f->Product_Gst),
+                'home_product_specification'=>json_encode($f->Product_Specification_List),
+                'home_product_manufacturer'=>$f->Product_Manufacturer,
+                'home_product_description'=>json_encode($f->Product_Description),
+                'home_products_highlights'=>json_encode($f->Product_HighLight_List),
+                'home_product_category'=>json_encode($f->Product_Category),
+                'home_product_available_stock'=>$f->Product_Quantity,
+                'home_product_payment_method'=>json_encode($f->Product_Payment_Method)
+            ]);
+            if($qry==true){
+                $res="success";
+            }else{
+                $res="error";
+            }
         }
         return Response($res);
     }

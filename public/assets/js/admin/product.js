@@ -9,7 +9,7 @@ var products = {
                             <th>Available Stock</th>\
                             <th>Approve</th>\
                             <th>Deal of the Day</th>\
-                            <th>Edit & Delete</th>\
+                            <th>Edit, Delete & Info</th>\
                         </tr>\
                     </thead>\
                     <tbody class="tbody" id="prodTablebody" style="color:rgba(225,225,225,0.6)">\
@@ -19,7 +19,26 @@ var products = {
     addProd: '<div>\
                 <select class="maincat1 custom-select" onchange="subCat(this)">\
                 </select>\
-              </div>'
+              </div>',
+
+    attributes: '<div id="duplicateAttr">\
+                    <div class="form-row">\
+                        <div id="attributeList4" class="form-group col-md-5"></div>\
+                        <div class="col-md-3"></div>\
+                        <div class="form-group col-md-1 text-right">\
+                            <button id="attdelBtn" class="btn btn-outline-danger" type="button" btnId ="2" onclick="delAttrBtn(this)" disabled><i class="fa fa-trash"></i></button>\
+                        </div>\
+                        <div class="form-group col-md-1 text-right">\
+                            <button class="btn btn-outline-primary" type="button" onclick="addattBtn()"><i class="fa fa-plus-circle"></i></button>\
+                        </div>\
+                        <div class="form-check form-group text-right col-md-2">\
+                            <label for="productAttr" class="form-check-label"><input name="productAttr" type="checkbox" class="form-check-input productAttr">Highlight</label>\
+                        </div>\
+                    </div>\
+                    <div class="form-group">\
+                        <textarea name="prodSpecs" type="text" id="txtAttrid5" class="form-control" placeholder="Enter Description Here..."></textarea>\
+                    </div>\
+                </div>'
 }
 
 document.getElementById('productdiv').innerHTML = products.productList;
@@ -73,7 +92,7 @@ function getProductsData() {
             }
         };
     }
-    var res = serverRequest(data, method, url, asyn, type, respCallback);    
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
 
     var data = "";
     var type = "application/x-www-form-urlencoded";
@@ -84,8 +103,8 @@ function getProductsData() {
     var respCallback = function(resp) {
         var catList = JSON.parse(resp);
         allData = catList;
-         document.body.className = ""
-        }
+        document.body.className = ""
+    }
     var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
 
@@ -109,7 +128,7 @@ function showprodInfo(e) {
             var desc = JSON.parse(productDetails[i].home_product_description)
             var specs = JSON.parse(productDetails[i].home_product_specification)
             document.getElementById('specsbody').innerHTML = ""
-            for(key in specs){
+            for (key in specs) {
                 var table = document.getElementById('specsbody');
                 var tr = document.createElement('tr');
                 tr.innerHTML = '<td>' + key + '</td>' +
@@ -118,7 +137,7 @@ function showprodInfo(e) {
             }
             var highlights = JSON.parse(productDetails[i].home_products_highlights)
             document.getElementById('highlightsbody').innerHTML = ""
-            for(key in highlights){
+            for (key in highlights) {
                 var table = document.getElementById('highlightsbody');
                 var tr = document.createElement('tr');
                 tr.innerHTML = '<td>' + key + '</td>' +
@@ -252,9 +271,49 @@ function dealsofthedayProduct(id) {
 }
 
 function editprodInfo(e) {
-    document.getElementById('productdiv').style.display = 'none';
-    document.getElementById('canclbtn').style.display = 'block';
-    document.getElementById('frmDiv').style.display = 'block';
+    var conf = confirm("Are you sure you want to edit the product?")
+    if (conf == true) {
+        document.getElementById('btncls').style.display = 'none';
+        document.getElementById('productdiv').style.display = 'none';
+        document.getElementById('canclbtn').style.display = 'block';
+        document.getElementById('frmDiv').style.display = 'block';
+        var a = e.parentNode.parentNode.firstChild.innerHTML
+        for (var i = 0; i < productDetails.length; i++) {
+            if (productDetails[i].home_product_id == a) {
+                console.log(productDetails[i])
+                var name = productDetails[i].home_product_name
+                var description = JSON.parse(productDetails[i].home_product_description)
+                var price = JSON.parse(productDetails[i].home_product_amount)
+                var gst = JSON.parse(productDetails[i].home_product_gst)
+                var quantity = productDetails[i].home_product_available_stock
+                var paymethod = JSON.parse(productDetails[i].home_product_payment_method)
+                var manufacturer = productDetails[i].home_product_manufacturer
+                document.prodForm.prodName.value = name
+                document.prodForm.prodName.value = name
+                    // document.prodForm.prodDescription.insertHtml(description.productDescription)
+                document.prodForm.prodPrice.value = price.cost
+                document.prodForm.prodDiscount.value = price.discount + '%'
+                document.prodForm.prodDiscountPrice.value = price.actual_price
+                document.prodForm.prodCgstPrice.value = gst.cgst + '%'
+                document.prodForm.prodSgstPrice.value = gst.sgst + '%'
+                document.prodForm.prodIgstPrice.value = gst.igst + '%'
+                document.prodForm.prodQuantity.value = quantity
+                if (paymethod.Credit_card_Payment == "ccpay") {
+                    document.prodForm.creditcardPayment.checked = true
+                };
+                if (paymethod.Debit_card_Payment == "dcpay") {
+                    document.prodForm.debitcardPayment.checked = true
+                };
+                if (paymethod.EMI_Pay == "emipay") {
+                    document.prodForm.emiPayment.checked = true
+                };
+                if (paymethod.Cash_on_Delivery == "codpay") {
+                    document.prodForm.codPayment.checked = true
+                };
+                document.prodForm.prodManufacturer.value = manufacturer
+            };
+        };
+    }
 }
 
 function delprodInfo(e) {
@@ -288,25 +347,37 @@ function delprodInfo(e) {
 }
 
 function canclBtn() {
-    document.getElementById('productdiv').innerHTML = products.productList;
-    document.getElementById('btncls').style.display = 'block';
-    document.getElementById('canclbtn').style.display = 'none';
-    document.getElementById('frmDiv').style.display = 'none';
-    document.getElementById("nxtbtn").style.display = 'none'
+    var conf = confirm("Are you sure you want to cancel?")
+    if (conf == true) {
+        getProductsData()
+        document.getElementById('productdiv').style.display = 'block';
+        document.getElementById('productdiv').innerHTML = products.productList;
+        document.getElementById('btncls').style.display = 'block';
+        document.getElementById('canclbtn').style.display = 'none';
+        document.getElementById('frmDiv').style.display = 'none';
+        document.getElementById("nxtbtn").style.display = 'none'
+        var a = document.querySelectorAll('.formdata')
+        for (var i = 0; i < a.length; i++) {
+            a[i].value = ""
+        }
+    }
 }
 
 
 
 function frstDropdown() {
-    document.getElementById('btncls').style.display = 'none';
-    document.getElementById('canclbtn').style.display = 'block';
-    var options = '<option value = ""> select </option>';
-    for (var i = 0; i < allData.length; i++) {
-        if (allData[i].product_cat_parent_id == 0) {
-            options += '<option value = "' + allData[i].product_cat_id + '"> ' + allData[i].product_cat_name + '</option>'
+    var conf = confirm("Are you sure you want to add product?")
+    if (conf == true) {
+        document.getElementById('btncls').style.display = 'none';
+        document.getElementById('canclbtn').style.display = 'block';
+        var options = '<option value = ""> select </option>';
+        for (var i = 0; i < allData.length; i++) {
+            if (allData[i].product_cat_parent_id == 0) {
+                options += '<option value = "' + allData[i].product_cat_id + '"> ' + allData[i].product_cat_name + '</option>'
+            }
         }
+        document.getElementById('productdiv').innerHTML = '<select id="mainCat" onchange = "dynamicDropDown(this)">' + options + '</select>';
     }
-    document.getElementById('productdiv').innerHTML = '<select id="mainCat" onchange = "dynamicDropDown(this)">' + options + '</select>';
 }
 
 document.getElementById('nxtbtn').style.display = 'none';
@@ -348,6 +419,7 @@ function dynamicDropDown(id) {
         }
     }
 }
+var opt_glob = '';
 
 function nxtBtn() {
     document.getElementById('frmDiv').style.display = 'block';
@@ -366,25 +438,42 @@ function nxtBtn() {
         for (var i = 0; i < attrList.length; i++) {
             attrOpt += '<option id="' + attrList[i].attribute_id + '" value = "' + attrList[i].attribute_name + '"> ' + attrList[i].attribute_name + '</option>'
         };
-
-        document.getElementById('attributeList').innerHTML = '<select name="AttributeList" onblur="AttrList()" class="custom-select form-control">' + attrOpt + '</select>';
-        document.getElementById('attributeList1').innerHTML = '<select name="AttributeList1" onblur="AttrList1()" class="custom-select form-control">' + attrOpt + '</select>';
-        document.getElementById('attributeList2').innerHTML = '<select name="AttributeList2" onblur="AttrList2()" class="custom-select form-control">' + attrOpt + '</select>';
-        document.getElementById('attributeList3').innerHTML = '<select name="AttributeList3" onblur="AttrList3()" class="custom-select form-control">' + attrOpt + '</select>';
-        document.getElementById('attributeList4').innerHTML = '<select name="AttributeList4" onblur="" class="custom-select form-control">' + attrOpt + '</select>';
+        opt_glob = attrOpt;
+        document.getElementById('attributeList').innerHTML = '<select name="AttributeList" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList1').innerHTML = '<select name="AttributeList1" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList2').innerHTML = '<select name="AttributeList2" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList3').innerHTML = '<select name="AttributeList3" class="custom-select form-control">' + attrOpt + '</select>';
+        document.getElementById('attributeList4').innerHTML = '<select name="AttributeList4" class="custom-select form-control">' + attrOpt + '</select>';
     }
     var res = serverRequest(data, method, url, asyn, type, respCallback);
     document.prodForm.prodName.focus();
 }
 
-var i = 0;
+var i = 30;
 var orgAttrDiv = document.getElementById("duplicateAttr");
 
 function addattBtn() {
     document.getElementById("attdelBtn").disabled = false;
-    var duplicateAttribute = orgAttrDiv.cloneNode(true);
-    duplicateAttribute.id = "duplicateAttr" + ++i;
-    orgAttrDiv.parentNode.appendChild(duplicateAttribute);
+    ++i;
+    orgAttrDiv.parentNode.insertAdjacentHTML('beforeend', '<div id="duplicateAttr' + i + '">\
+                    <div class="form-row">\
+                        <div id="attributeList' + i + '" class="form-group col-md-5"><select name="AttributeList" class="custom-select form-control">' + opt_glob + '</select></div>\
+                        <div class="col-md-3"></div>\
+                        <div class="form-group col-md-1 text-right">\
+                            <button id="attdelBtn" class="btn btn-outline-danger" type="button" btnId ="2" onclick="delAttrBtn(this)" disabled><i class="fa fa-trash"></i></button>\
+                        </div>\
+                        <div class="form-group col-md-1 text-right">\
+                            <button class="btn btn-outline-primary" type="button" onclick="addattBtn()"><i class="fa fa-plus-circle"></i></button>\
+                        </div>\
+                        <div class="form-check form-group text-right col-md-2">\
+                            <label for="productAttr" class="form-check-label"><input name="productAttr" type="checkbox" class="form-check-input productAttr">Highlight</label>\
+                        </div>\
+                    </div>\
+                    <div class="form-group">\
+                        <textarea name="prodSpecs" type="text" id="txtAttrid' + i + '" class="form-control ckeditor" placeholder="Enter Description Here..."></textarea>\
+                    </div>\
+                </div>');
+    CKEDITOR.replace(document.querySelector('#txtAttrid' + i));
 }
 
 function delAttrBtn(e) {
@@ -511,56 +600,244 @@ function prodManufacturer_validate() {
     return true;
 }
 
-function AttrList() {
-    var select = document.prodForm.AttributeList;
-    var selectVal = select.value;
-    if (selectVal == "") {
-        select.style.border = "2px solid red";
-        select.focus;
-        return false;
-    };
-    select.style.border = "";
-    document.prodForm.AttributeList1.focus();
-    return true;
+function productimg1(e) {
+    var a = document.getElementById("productImg1").files[0];
+    var b = a.name
+    var size = a.size
+    var c = b.split('.').pop();
+    if (c == "jpg" || c == "jpeg" || c == "png") {
+        if (size < 2000000) {
+            toastr.success("The selected " + b + " is image")
+            e.nextSibling.nextSibling.style.border = ""
+            document.getElementById('submitbtn').disabled = false
+            var serr = document.getElementById("size1Error")
+            if (serr) {
+                serr.innerHTML = ""
+            }
+            var ferr = document.getElementById("fmt1Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+        } else {
+            var ferr = document.getElementById("fmt1Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+            toastr.error("Please select a file below 2MB")
+            e.nextSibling.nextSibling.style.border = "2px solid red"
+            document.getElementById('submitbtn').disabled = true
+            var p = document.createElement('p')
+            p.setAttribute("id", "size1Error")
+            var div = document.getElementById('errorDiv')
+            p.innerHTML = "File 1 size is more than 2mb<br>"
+            div.appendChild(p)
+        }
+    } else {
+        var serr = document.getElementById("size1Error")
+        if (serr) {
+            serr.innerHTML = ""
+        }
+        toastr.error("The selected " + b + " is not an image, Please upload the image in JPG, JPEG or PNG format")
+        e.nextSibling.nextSibling.style.border = "2px solid red"
+        document.getElementById('submitbtn').disabled = true
+        var p = document.createElement('p')
+        p.setAttribute("id", "fmt1Error")
+        var div = document.getElementById('errorDiv')
+        p.innerHTML = "File 1 is not an image, Please upload the image in JPG, JPEG or PNG format<br>"
+        div.appendChild(p)
+    }
 }
 
-function AttrList1() {
-    var select = document.prodForm.AttributeList1;
-    var selectVal = select.value;
-    if (selectVal == "") {
-        select.style.border = "2px solid red";
-        select.focus;
-        return false;
-    };
-    select.style.border = "";
-    document.prodForm.AttributeList2.focus();
-    return true;
+function productimg2(e) {
+    var a = document.getElementById("productImg2").files[0];
+    var b = a.name
+    var size = a.size
+    var c = b.split('.').pop();
+    if (c == "jpg" || c == "jpeg" || c == "png") {
+        if (size < 2000000) {
+            toastr.success("The selected " + b + " is image")
+            e.nextSibling.nextSibling.style.border = ""
+            document.getElementById('submitbtn').disabled = false
+            var serr = document.getElementById("size2Error")
+            if (serr) {
+                serr.innerHTML = ""
+            }
+            var ferr = document.getElementById("fmt2Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+        } else {
+            var ferr = document.getElementById("fmt2Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+            toastr.error("Please select a file below 2MB")
+            e.nextSibling.nextSibling.style.border = "2px solid red"
+            document.getElementById('submitbtn').disabled = true
+            var p = document.createElement('p')
+            p.setAttribute("id", "size2Error")
+            var div = document.getElementById('errorDiv')
+            p.innerHTML = "File 2 size is more than 2mb<br>"
+            div.appendChild(p)
+        }
+    } else {
+        var serr = document.getElementById("size2Error")
+        if (serr) {
+            serr.innerHTML = ""
+        }
+        toastr.error("The selected " + b + " is not an image, Please upload the image in JPG, JPEG or PNG format")
+        e.nextSibling.nextSibling.style.border = "2px solid red"
+        document.getElementById('submitbtn').disabled = true
+        var p = document.createElement('p')
+        p.setAttribute("id", "fmt2Error")
+        var div = document.getElementById('errorDiv')
+        p.innerHTML = "File 2 is not an image, Please upload the image in JPG, JPEG or PNG format<br>"
+        div.appendChild(p)
+    }
 }
 
-function AttrList2() {
-    var select = document.prodForm.AttributeList2;
-    var selectVal = select.value;
-    if (selectVal == "") {
-        select.style.border = "2px solid red";
-        select.focus;
-        return false;
-    };
-    select.style.border = "";
-    document.prodForm.AttributeList3.focus();
-    return true;
+function productimg3(e) {
+    var a = document.getElementById("productImg3").files[0];
+    var b = a.name
+    var size = a.size
+    var c = b.split('.').pop();
+    if (c == "jpg" || c == "jpeg" || c == "png") {
+        if (size < 2000000) {
+            toastr.success("The selected " + b + " is image")
+            e.nextSibling.nextSibling.style.border = ""
+            document.getElementById('submitbtn').disabled = false
+            var serr = document.getElementById("size3Error")
+            if (serr) {
+                serr.innerHTML = ""
+            }
+            var ferr = document.getElementById("fmt3Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+        } else {
+            var ferr = document.getElementById("fmt3Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+            toastr.error("Please select a file below 2MB")
+            e.nextSibling.nextSibling.style.border = "2px solid red"
+            document.getElementById('submitbtn').disabled = true
+            var p = document.createElement('p')
+            p.setAttribute("id", "size3Error")
+            var div = document.getElementById('errorDiv')
+            p.innerHTML = "File 3 size is more than 2mb<br>"
+            div.appendChild(p)
+        }
+    } else {
+        var serr = document.getElementById("size3Error")
+        if (serr) {
+            serr.innerHTML = ""
+        }
+        toastr.error("The selected " + b + " is not an image, Please upload the image in JPG, JPEG or PNG format")
+        e.nextSibling.nextSibling.style.border = "2px solid red"
+        document.getElementById('submitbtn').disabled = true
+        var p = document.createElement('p')
+        p.setAttribute("id", "fmt1Error")
+        var div = document.getElementById('errorDiv')
+        p.innerHTML = "File 3 is not an image, Please upload the image in JPG, JPEG or PNG format<br>"
+        div.appendChild(p)
+    }
 }
 
-function AttrList3() {
-    var select = document.prodForm.AttributeList3;
-    var selectVal = select.value;
-    if (selectVal == "") {
-        select.style.border = "2px solid red";
-        select.focus;
-        return false;
-    };
-    select.style.border = "";
-    document.prodForm.AttributeList4.focus();
-    return true;
+function productimg4(e) {
+    var a = document.getElementById("productImg4").files[0];
+    var b = a.name
+    var size = a.size
+    var c = b.split('.').pop();
+    if (c == "jpg" || c == "jpeg" || c == "png") {
+        if (size < 2000000) {
+            toastr.success("The selected " + b + " is image")
+            e.nextSibling.nextSibling.style.border = ""
+            document.getElementById('submitbtn').disabled = false
+            var serr = document.getElementById("size4Error")
+            if (serr) {
+                serr.innerHTML = ""
+            }
+            var ferr = document.getElementById("fmt4Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+        } else {
+            toastr.error("Please select a file below 2MB")
+            var ferr = document.getElementById("fmt4Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+            e.nextSibling.nextSibling.style.border = "2px solid red"
+            document.getElementById('submitbtn').disabled = true
+            var p = document.createElement('p')
+            p.setAttribute("id", "size4Error")
+            var div = document.getElementById('errorDiv')
+            p.innerHTML = "File 4 size is more than 2mb<br>"
+            div.appendChild(p)
+        }
+    } else {
+        var serr = document.getElementById("size4Error")
+        if (serr) {
+            serr.innerHTML = ""
+        }
+        toastr.error("The selected " + b + " is not an image, Please upload the image in JPG, JPEG or PNG format")
+        e.nextSibling.nextSibling.style.border = "2px solid red"
+        document.getElementById('submitbtn').disabled = true
+        var p = document.createElement('p')
+        p.setAttribute("id", "fmt4Error")
+        var div = document.getElementById('errorDiv')
+        p.innerHTML = "File 4 is not an image, Please upload the image in JPG, JPEG or PNG format<br>"
+        div.appendChild(p)
+    }
+}
+
+function productimg5(e) {
+    var a = document.getElementById("productImg5").files[0];
+    var b = a.name
+    var size = a.size
+    var c = b.split('.').pop();
+    if (c == "jpg" || c == "jpeg" || c == "png") {
+        if (size < 2000000) {
+            toastr.success("The selected " + b + " is image")
+            e.nextSibling.nextSibling.style.border = ""
+            document.getElementById('submitbtn').disabled = false
+            var serr = document.getElementById("size5Error")
+            if (serr) {
+                serr.innerHTML = ""
+            }
+            var ferr = document.getElementById("fmt5Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+        } else {
+            var ferr = document.getElementById("fmt5Error")
+            if (ferr) {
+                ferr.innerHTML = ""
+            }
+            toastr.error("Please select a file below 2MB")
+            e.nextSibling.nextSibling.style.border = "2px solid red"
+            document.getElementById('submitbtn').disabled = true
+            var p = document.createElement('p')
+            p.setAttribute("id", "size5Error")
+            var div = document.getElementById('errorDiv')
+            p.innerHTML = "File 5 size is more than 2mb<br>"
+            div.appendChild(p)
+        }
+    } else {
+        var serr = document.getElementById("size5Error")
+        if (serr) {
+            serr.innerHTML = ""
+        }
+        toastr.error("The selected " + b + " is not an image, Please upload the image in JPG, JPEG or PNG format")
+        e.nextSibling.nextSibling.style.border = "2px solid red"
+        document.getElementById('submitbtn').disabled = true
+        var p = document.createElement('p')
+        p.setAttribute("id", "fmt5Error")
+        var div = document.getElementById('errorDiv')
+        p.innerHTML = "File 5 is not an image, Please upload the image in JPG, JPEG or PNG format<br>"
+        div.appendChild(p)
+    }
 }
 
 function productValidate() {
@@ -603,11 +880,33 @@ function productValidate() {
         codPay = cpay;
     };
     var productManufacturer = document.getElementsByName("prodManufacturer")[0].value;
-    var productImage1 = document.getElementsByName("productImg1")[0].value;
-    var productImage2 = document.getElementsByName("productImg2")[0].value;
-    var productImage3 = document.getElementsByName("productImg3")[0].value;
-    var productImage4 = document.getElementsByName("productImg4")[0].value;
-    var productImage5 = document.getElementsByName("productImg5")[0].value;
+    var fd = new FormData();
+    var error = []
+    var productImage = {};
+    productImage['1'] = document.getElementById("productImg1").files[0];
+    productImage['2'] = document.getElementById("productImg2").files[0];
+    productImage['3'] = document.getElementById("productImg3").files[0];
+    productImage['4'] = document.getElementById("productImg4").files[0];
+    productImage['5'] = document.getElementById("productImg5").files[0];
+    for (var i = 1; i < 6; i++) {
+        if (productImage[i] == undefined) {
+            error[i] = "noimg"
+            var p = document.createElement('p')
+            p.setAttribute("id", "img"+[i]+"Error")
+            var div = document.getElementById('errorDiv')
+            p.innerHTML = "Please select a file in File "+[i]+"<br>"
+            div.appendChild(p)
+            document.getElementById('submitbtn').disabled = true
+        } else {
+            error[i] = ""
+            fd.append('file'+[i], productImage[i]);
+            var err = document.getElementById('img'+[i]+'Error')
+            if (err) {
+                err.innerHTML = ""
+                document.getElementById('submitbtn').disabled = false
+            }
+        }
+    }
     var prodHL = document.getElementsByClassName("productAttr");
     var highlightArray = {};
     var specsArray = {};
@@ -669,18 +968,23 @@ function productValidate() {
         "Product_HighLight_List": highlightArray,
         "Product_Specification_List": specsArray
     });
-    var data = attrJson;
-    var type = "application/json";
-    var url = "add_products";
-    var asyn = "true";
-    var method = "POST";
-    var respCallback = function(resp) {
-        if (resp == "success") {
-            window.location.reload()
-        };
-        if (resp == "error") {
-            alert("Error saving the data");
-        };
-    }
-    var res = serverRequest(data, method, url, asyn, type, respCallback);
+    fd.append('data', attrJson)
+    if (error[1] == "noimg" || error[2] == "noimg" || error[3] == "noimg" || error[4] == "noimg" || error[5] == "noimg") {
+        alert("Error saving Data")
+    } else{
+        var data = fd;
+        var type = "";
+        var url = "add_products";
+        var asyn = "true";
+        var method = "POST";
+        var respCallback = function(resp) {
+            if (resp == "success") {
+                window.location.reload()
+            };
+            if (resp == "error") {
+                alert("Error saving the data");
+            };
+        }
+        var res = serverRequest(data, method, url, asyn, type, respCallback);
+    };
 }

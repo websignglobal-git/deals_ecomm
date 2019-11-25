@@ -8,7 +8,9 @@ function serverRequest(data,method,url,asyn,type,callback){
         }
     };
     xhttp.open(method, url, asyn);
-    xhttp.setRequestHeader("Content-type", type);
+    if(type != '') {
+        xhttp.setRequestHeader("Content-type", type);
+    }
     xhttp.setRequestHeader('X-CSRF-TOKEN', csrf);
     xhttp.send(data);
 

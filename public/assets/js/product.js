@@ -18,4 +18,15 @@ function setproductid() {
 	arr.push(prodid);
 	localStorage.setItem("product_id" , JSON.stringify(arr));
 	}
+
+
+	var id = localStorage.getItem("product_id");
+	var len = JSON.parse(id).length
+	if(id==""){
+		document.querySelector('.shop_cart_text').innerHTML = Cart;
+	}
+	else{
+ 		document.querySelector('.shop_cart_text').innerHTML = len;
+	}
 }
+setproductid()

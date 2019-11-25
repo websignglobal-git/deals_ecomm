@@ -55,8 +55,8 @@
                             </div>
                         </div>
                         <div class="shopping_carts">
-                            <img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart_box.png')}}">
-                            <a href="{{ url('view-cart') }}"><p class="shop_cart_text">Cart</p></a>
+                            <a href="{{ url('view-cart') }}"><img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart_box.png')}}">
+                            <span class="shop_cart_text badge"></span></a>
                             
                         </div>
                     </div>

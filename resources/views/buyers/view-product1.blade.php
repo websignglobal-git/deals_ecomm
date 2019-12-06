@@ -151,10 +151,10 @@ body{
 			        </div>
 			        <div class="cmn_prod_btns">
 				        <div class="cmn_prod_btns_addcart addcart_btn">
-				        	<button class="btn_add addtocart_id" cid="{{ $datas[0]->home_product_id }}" type="button">Add to cart</button>
+				        	<button class="btn_add addtocart_id" id="{{ $datas[0]->home_product_id }}" type="button">Add to cart</button>
 				        </div>
 				        <div class="cmn_prod_btns_addcart buynow_btn">
-				        	<button class="btn_add" type="button">Buy now</button>
+				        	<button class="btn_add" onclick="buynow(this)" type="button">Buy now</button>
 				        </div>
 			        </div>
 			      </div>
@@ -210,7 +210,7 @@ body{
 						foreach($highlihts as $key=>$value){
 							?>
 							<div class="cmn_prodct_highlit" >
-								<span class="prodct_highlit_point" >{{$key}}</span> : <span class="prodct_highlit_point">{{$value}}</span>
+								<span class="prodct_highlit_point" >{{$key}}</span> : <span class="prodct_highlit_point">{!!$value!!}</span>
 							</div>
 							<?php
 						}
@@ -236,7 +236,7 @@ body{
 							?>
 							<tr class="prodct_tr">
 					        <td class="lft_tbl">{{$key}}</td>
-					        <td class="rht_tbl">{{$value}}</td>
+					        <td class="rht_tbl">{!!$value!!}</td>
 					      </tr>
 							<?php
 						}
@@ -254,10 +254,10 @@ body{
 					<div class="detail_addi_warrnt">
 						<p class="detail_addi_warrnt_txt">
 							<?php $prod_desc=json_decode($datas[0]->home_product_description);
-								
 							?>
 
-							{!! $prod_desc->productDescription !!}
+								{!! $prod_desc->productDescription !!}
+							
 						</p>
 					</div>
 					<!-- <div class="detail_addi_feedback">
@@ -335,4 +335,43 @@ body{
 
 <script>
 	document.querySelectorAll('.carousel-item')[0].classList.add('active');
-	</script>
+
+	// by Ranto
+	function buynow(e) {
+		var prodID = e.parentElement.previousElementSibling.firstElementChild.id
+		localStorage.setItem('buynow_prod_id', prodID)
+		window.location.href = '../checkout-address'
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -44,6 +44,7 @@ var products = {
 document.getElementById('productdiv').innerHTML = products.productList;
 document.getElementById('canclbtn').style.display = 'none';
 document.getElementById('frmDiv').style.display = 'none';
+document.getElementById('savebtn').style.display = 'none';
 
 var productDetails = [];
 var allData = [];
@@ -270,17 +271,40 @@ function dealsofthedayProduct(id) {
     }
 }
 
+var editcategory
+var editimg
+
 function editprodInfo(e) {
     var conf = confirm("Are you sure you want to edit the product?")
     if (conf == true) {
+        document.getElementById('attr1').style.display="none"
+        document.getElementById('attr2').style.display="none"
+        document.getElementById('attr3').style.display="none"
+        document.getElementById('attr4').style.display="none"
+        document.getElementById('duplicateAttr').style.display="none"
+        document.getElementById('savebtn').style.display = 'block';
+        document.getElementById('submitbtn').style.display = 'none';
         document.getElementById('btncls').style.display = 'none';
         document.getElementById('productdiv').style.display = 'none';
         document.getElementById('canclbtn').style.display = 'block';
         document.getElementById('frmDiv').style.display = 'block';
-        var a = e.parentNode.parentNode.firstChild.innerHTML
+        document.getElementById('editcate').innerHTML = ''
+
+        var eid = e.parentNode.parentNode.firstChild.innerHTML
         for (var i = 0; i < productDetails.length; i++) {
-            if (productDetails[i].home_product_id == a) {
-                console.log(productDetails[i])
+            if (productDetails[i].home_product_id == eid) {
+                var categorydiv = document.getElementById('editcate')
+                editcategory = productDetails[i].home_product_category
+                var category = JSON.parse(productDetails[i].home_product_category)
+                for (var b = 0; b < category.length; b++) {
+                    var create = document.createElement('select')
+                    create.innerHTML = '<option>' + category[b] + '</option>'
+                    categorydiv.appendChild(create)
+                };
+                var pid = document.createElement('p')
+                pid.style.cssText = 'display: none'
+                pid.innerHTML = eid
+                categorydiv.appendChild(pid)
                 var name = productDetails[i].home_product_name
                 var description = JSON.parse(productDetails[i].home_product_description)
                 var price = JSON.parse(productDetails[i].home_product_amount)
@@ -288,15 +312,18 @@ function editprodInfo(e) {
                 var quantity = productDetails[i].home_product_available_stock
                 var paymethod = JSON.parse(productDetails[i].home_product_payment_method)
                 var manufacturer = productDetails[i].home_product_manufacturer
+                var images = JSON.parse(productDetails[i].home_product_images)
+                editimg = productDetails[i].home_product_images
+                var highlight = JSON.parse(productDetails[i].home_products_highlights)
                 document.prodForm.prodName.value = name
-                document.prodForm.prodName.value = name
-                    // document.prodForm.prodDescription.insertHtml(description.productDescription)
+                var desc = document.prodForm.prodDescription.id
+                CKEDITOR.instances[desc].setData(description.productDescription)
                 document.prodForm.prodPrice.value = price.cost
-                document.prodForm.prodDiscount.value = price.discount + '%'
+                document.prodForm.prodDiscount.value = price.discount
                 document.prodForm.prodDiscountPrice.value = price.actual_price
-                document.prodForm.prodCgstPrice.value = gst.cgst + '%'
-                document.prodForm.prodSgstPrice.value = gst.sgst + '%'
-                document.prodForm.prodIgstPrice.value = gst.igst + '%'
+                document.prodForm.prodCgstPrice.value = gst.cgst
+                document.prodForm.prodSgstPrice.value = gst.sgst
+                document.prodForm.prodIgstPrice.value = gst.igst
                 document.prodForm.prodQuantity.value = quantity
                 if (paymethod.Credit_card_Payment == "ccpay") {
                     document.prodForm.creditcardPayment.checked = true
@@ -311,9 +338,201 @@ function editprodInfo(e) {
                     document.prodForm.codPayment.checked = true
                 };
                 document.prodForm.prodManufacturer.value = manufacturer
+                for (var j = 0; j <= 4; j++) {
+                    var uploadimg = document.querySelectorAll('#uploadimg')[j]
+                    uploadimg.style.display = "none";
+                };
+                for (var k = 0; k < images.length; k++) {
+                    for (var l = 1; l <= 5; l++) {
+                        var uploadedimg = document.getElementById('uploadedImg'+[l]+'')
+                        var imgsrc = '<img src="../'+images[k]+'" alt="image" class="img-thumbnail">'
+                        uploadedimg.innerHTML = imgsrc
+                    };
+                };
+
+                var specs = JSON.parse(productDetails[i].home_product_specification)
+                var attrOpt = '<option value = ""> select </option>';
+                var editspecdiv = document.getElementById('editspec');
+                editspecdiv.innerHTML = '';
+                var keyArray = []
+
+                var parentidarray = []
+                var slctdiv = document.querySelectorAll('.editAttributeList')
+                for (var z = 0; z < slctdiv.length; z++) {
+                    parentidarray.push(slctdiv[z].id)
+                };
+
+                var data = ''
+                var type = "application/json";
+                var url = "specs_list";
+                var asyn = "true";
+                var method = "POST";
+
+                var respCallback = function(resp) {
+                    var response = JSON.parse(resp)
+                    d = 0
+                    for (var speckey in specs) {
+                        var highlight_check = ''
+                        for(var highkey in highlight){
+                            if(highkey == speckey)
+                                highlight_check = 'checked';
+                        }
+                        var chboxs = '';
+                        for(var q = 0; q < response.length; q++ ){
+                            if(response[q].attribute_name == speckey){
+                                chboxs += '<option selected> '+response[q].attribute_name+' </option>';
+                            }else{
+                                chboxs += '<option> '+response[q].attribute_name+'</option>';
+                            }
+                        }
+
+                        editspecdiv.insertAdjacentHTML('afterbegin', '<div id="editattr' + d + '">\
+                                                                            <div class="form-row">\
+                                                                                <div id="slctboxdivattr'+d+'" class="form-group col-md-5">\
+                                                                                    <select name="editattr" class="custom-select form-control" id="slctbox'+d+'">'+chboxs+'\
+                                                                                        </select>\
+                                                                                </div>\
+                                                                                <div class="col-md-3"></div>\
+                                                                                <div class="col-md-1"></div>\
+                                                                                <div class="col-md-1"></div>\
+                                                                                <div id="highlightChkbox'+d+'" class="form-check form-group text-right col-md-2">\
+                                                                                    <label for="editproductAttr" class="form-check-label"><input name="editproductAttr" type="checkbox" '+highlight_check+' class="form-check-input productAttr">Highlight</label>\
+                                                                                </div>\
+                                                                            </div>\
+                                                                            <div class="form-group">\
+                                                                                <textarea name="editprodSpecs" type="text" id="edttxtAttrid' + d + '" class="form-control ckeditor" placeholder="Enter Description Here..."></textarea>\
+                                                                            </div>\
+                                                                      </div>');
+                        CKEDITOR.replace(document.querySelector('#edttxtAttrid' + d));
+                        var lcl = document.querySelector('#edttxtAttrid' + d)
+                        CKEDITOR.instances[lcl.id].setData(specs[speckey]);
+                        d++
+                    }
+                }
+                var res = serverRequest(data, method, url, asyn, type, respCallback);
             };
         };
     }
+}
+
+function productEdit(e) {
+    var category = editcategory
+    var eid = document.getElementById('editcate').lastElementChild.innerHTML
+    var name = document.getElementsByName("prodName")[0].value;
+    var productDescription = CKEDITOR.instances["txtEditor"].getData();
+    var price = document.getElementsByName("prodPrice")[0].value;
+    var discount = document.getElementsByName("prodDiscount")[0].value;
+    var discountPrice = document.getElementsByName("prodDiscountPrice")[0].value;
+    var cgst = document.getElementsByName("prodCgstPrice")[0].value;
+    var sgst = document.getElementsByName("prodSgstPrice")[0].value;
+    var igst = document.getElementsByName("prodIgstPrice")[0].value;
+    var quantity = document.getElementsByName("prodQuantity")[0].value;
+    var creditcardPay = document.getElementsByName("creditcardPayment")[0];
+    if (creditcardPay.checked) {
+        var ccpay = creditcardPay.value;
+        creditcardPay = ccpay;
+    };
+    console.log(creditcardPay)
+    var debitcardPay = document.getElementsByName("debitcardPayment")[0];
+    if (debitcardPay.checked) {
+        var dcpay = debitcardPay.value;
+        debitcardPay = dcpay;
+    };
+    console.log(creditcardPay)
+    var emiPay = document.getElementsByName("emiPayment")[0];
+    if (emiPay.checked) {
+        var epay = emiPay.value;
+        emiPay = epay;
+    };
+    console.log(creditcardPay)
+    var codPay = document.getElementsByName("codPayment")[0];
+    if (codPay.checked) {
+        var cpay = codPay.value;
+        codPay = cpay;
+    };
+    console.log(creditcardPay)
+    var manufacturer = document.getElementsByName("prodManufacturer")[0].value;
+    var image = editimg
+    var edithighlight = document.getElementsByName("editproductAttr");
+    var highlightArray = {};
+    var fd = new FormData(); 
+    var specsArray = {};
+    var editHLlength = edithighlight.length;
+    for (var i = 0; i < editHLlength; i++) {
+        if (edithighlight[i].checked) {
+            var a = edithighlight[i].parentNode;
+            var b = a.parentNode;
+            var c = b.parentNode;
+            var d = c.querySelectorAll('select')[0].value;
+            var e = c.nextElementSibling;
+            var f = e.firstElementChild;
+            var g = f.getAttribute('id');
+            var h = CKEDITOR.instances[g].getData();
+            var hi = {};
+            highlightArray[d] = h;
+        };
+    };
+    for (var i = 0; i < editHLlength; i++) {
+        var a = edithighlight[i].parentNode;
+        var b = a.parentNode;
+        var c = b.parentNode;
+        var d = c.querySelectorAll('select')[0].value;
+        var e = c.nextElementSibling;
+        var f = e.firstElementChild;
+        var g = f.getAttribute('id');
+        var h = CKEDITOR.instances[g].getData();
+        var hi = {};
+        if (d == "") {
+
+        } else {
+            specsArray[d] = h;
+        };
+    };
+    var editJson = JSON.stringify({
+        "eid": eid,
+        "Edited_Category": category,
+        "Edited_image": image,
+        "Edited_Name": name,
+        "Edited_Description": {
+            productDescription
+        },
+        "Edited_Price": {
+            "cost": price,
+            "discount": discount,
+            "actual_price": discountPrice
+        },
+        "Edited_Gst": {
+            "cgst": cgst,
+            "sgst": sgst,
+            "igst": igst
+        },
+        "Edited_Quantity": quantity,
+        "Edited_Payment_Method": {
+            "Credit_card_Payment": creditcardPay,
+            "Debit_card_Payment": debitcardPay,
+            "EMI_Pay": emiPay,
+            "Cash_on_Delivery": codPay
+        },
+        "Edited_Manufacturer": manufacturer,
+        "Edited_HighLight_List": highlightArray,
+        "Edited_Specification_List": specsArray
+    });
+    fd.append('data',editJson)
+
+    var data = fd;
+    var type = "";
+    var url = "edit_products";
+    var asyn = "true";
+    var method = "POST";
+    var respCallback = function(resp) {
+        if (resp == "success") {
+            window.location.reload()
+        };
+        if (resp == "error") {
+            alert("Error saving the data");
+        };
+    }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
 
 function delprodInfo(e) {
@@ -341,8 +560,6 @@ function delprodInfo(e) {
             }
         }
         var res = serverRequest(data, method, url, asyn, type, respCallback);
-    } else {
-        alert("You Clicked cancel button.")
     }
 }
 
@@ -419,7 +636,8 @@ function dynamicDropDown(id) {
         }
     }
 }
-var opt_glob = '';
+
+var opt_glob = ''
 
 function nxtBtn() {
     document.getElementById('frmDiv').style.display = 'block';
@@ -434,11 +652,11 @@ function nxtBtn() {
 
     var respCallback = function(resp) {
         var attrList = JSON.parse(resp);
+        attrList = opt_glob
         var attrOpt = '<option value = ""> select </option>';
         for (var i = 0; i < attrList.length; i++) {
             attrOpt += '<option id="' + attrList[i].attribute_id + '" value = "' + attrList[i].attribute_name + '"> ' + attrList[i].attribute_name + '</option>'
         };
-        opt_glob = attrOpt;
         document.getElementById('attributeList').innerHTML = '<select name="AttributeList" class="custom-select form-control">' + attrOpt + '</select>';
         document.getElementById('attributeList1').innerHTML = '<select name="AttributeList1" class="custom-select form-control">' + attrOpt + '</select>';
         document.getElementById('attributeList2').innerHTML = '<select name="AttributeList2" class="custom-select form-control">' + attrOpt + '</select>';
@@ -449,10 +667,9 @@ function nxtBtn() {
     document.prodForm.prodName.focus();
 }
 
-var i = 30;
-var orgAttrDiv = document.getElementById("duplicateAttr");
-
 function addattBtn() {
+    var i = 30;
+    var orgAttrDiv = document.getElementById("duplicateAttr");
     document.getElementById("attdelBtn").disabled = false;
     ++i;
     orgAttrDiv.parentNode.insertAdjacentHTML('beforeend', '<div id="duplicateAttr' + i + '">\
@@ -463,7 +680,7 @@ function addattBtn() {
                             <button id="attdelBtn" class="btn btn-outline-danger" type="button" btnId ="2" onclick="delAttrBtn(this)" disabled><i class="fa fa-trash"></i></button>\
                         </div>\
                         <div class="form-group col-md-1 text-right">\
-                            <button class="btn btn-outline-primary" type="button" onclick="addattBtn()"><i class="fa fa-plus-circle"></i></button>\
+                            <button id="attaddBtn" class="btn btn-outline-primary" type="button" onclick="addattBtn()"><i class="fa fa-plus-circle"></i></button>\
                         </div>\
                         <div class="form-check form-group text-right col-md-2">\
                             <label for="productAttr" class="form-check-label"><input name="productAttr" type="checkbox" class="form-check-input productAttr">Highlight</label>\

@@ -21,11 +21,11 @@ Route::post('/file-upload', 'common_services\fileUploadController@fileUpload');
 Route::post('/cart-products', 'buyers\cartController@cart_products');
 // Route::get('/', 'buyers\homeProductController@findHomeProduct');
 
-Route::get('/view-product/{id}', 'buyers\viewproductController@view_product');	
+Route::get('/view-product/{id}', 'buyers\viewproductController@view_product');
 
-Route::get('/list-all-category', 'buyers\listallcategoryController@list_all_category');	
-Route::get('/view-cart', 'buyers\cartController@view_cart');	
-Route::get('/checkout', 'buyers\checkoutController@checkout');	
+Route::get('/list-all-category', 'buyers\listallcategoryController@list_all_category');
+Route::get('/view-cart', 'buyers\cartController@view_cart');
+Route::get('/checkout', 'buyers\checkoutController@checkout');
 Route::get('/email-verification','buyers\checkoutController@email_verification');
 Route::get('/checkout-address','buyers\checkoutController@checkout_address');
 
@@ -36,14 +36,19 @@ Route::get('/online-order-summary', 'payment\paymentController@online_order_summ
 Route::get('/order-successful', 'payment\paymentController@order_successful');
 Route::get('/mail-home', 'common_services\emailController@mailDetail');
 
-Route::get('/admin', 'admin\adminController@admin');	
-Route::get('/admin/product', 'admin\productController@product');	
-Route::post('admin/get_product_data', 'admin\productController@getproductdata');	
-Route::post('admin/approved', 'admin\productController@approved');	
-Route::post('admin/not_approved', 'admin\productController@notapproved');	
-Route::post('admin/dealoftheday', 'admin\productController@dealoftheday');	
-Route::post('admin/not_dealoftheday', 'admin\productController@notdealoftheday');	
-Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');	
-Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');	
-Route::post('admin/add_products', 'admin\productController@addproducts');	
-Route::post('admin/delete_product', 'admin\productController@deleteproduct');	
+Route::get('/admin', 'admin\adminController@admin');
+Route::get('/admin/product', 'admin\productController@product');
+Route::post('admin/get_product_data', 'admin\productController@getproductdata');
+Route::post('admin/approved', 'admin\productController@approved');
+Route::post('admin/not_approved', 'admin\productController@notapproved');
+Route::post('admin/dealoftheday', 'admin\productController@dealoftheday');
+Route::post('admin/not_dealoftheday', 'admin\productController@notdealoftheday');
+Route::post('admin/get_initial_category', 'admin\productController@getinititalcategories');
+Route::post('admin/attribute_list', 'admin\attributelistController@attributelist');
+Route::post('admin/specs_list', 'admin\attributelistController@specslist');
+Route::post('admin/add_products', 'admin\productController@addproducts');
+Route::post('admin/edit_products', 'admin\productController@editproducts');
+Route::post('admin/delete_product', 'admin\productController@deleteproduct');
+
+Route::post('buyers/add_address', 'buyers\userdetailsController@addaddress');
+Route::post('buyers/get_payment_method', 'admin\productController@getpaymentmthd');

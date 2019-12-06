@@ -45,9 +45,9 @@ class productController extends Controller
                     $extension=strchr($name,".");
                     $dir = "images/productimg/";
                     if($extension==".jpg" || $extension==".png" || $extension==".jpeg") {
-                        $file_name = $nameonly['0']."-".date("Y-m-d")."-".date("H:i:s")."-".rand();
-                        $file = $dir.$file_name.basename($nameonly['0'].".".$nameonly['1']);
-                        move_uploaded_file($name, $file);
+                        $file_name = $nameonly['0']."-".date("Y-m-d")."-".rand();
+                        $file = $dir.$file_name.basename(".".$nameonly['1']);
+                        move_uploaded_file($_FILES["file".$i]["tmp_name"], $file);
                         array_push($arr, $dir.$file_name.".".$nameonly['1']);
                     }
                     $res = "error";
@@ -56,7 +56,7 @@ class productController extends Controller
                 $res = "error";
             }
         }
-        
+
         if (count($arr) != 5) {
             $res = "error";
         } else {
@@ -73,11 +73,36 @@ class productController extends Controller
                 'home_product_available_stock'=>$f->Product_Quantity,
                 'home_product_payment_method'=>json_encode($f->Product_Payment_Method)
             ]);
-            if($qry==true){
+            if($qry){
                 $res="success";
             }else{
                 $res="error";
             }
+        }
+        return Response($res);
+    }
+
+    public function editproducts(Request $req)
+    {
+        $data = $req->all();
+        $datajson = json_decode($data['data']);
+        $qry = homeproduct::where('home_product_id', $datajson->eid)->update([
+            'home_product_name'=>$datajson->Edited_Name,
+            'home_product_amount'=>json_encode($datajson->Edited_Price),
+            'home_product_images'=>json_decode($datajson->Edited_image),
+            'home_product_gst'=>json_encode($datajson->Edited_Gst),
+            'home_product_specification'=>json_encode($datajson->Edited_Specification_List),
+            'home_product_manufacturer'=>$datajson->Edited_Manufacturer,
+            'home_product_description'=>json_encode($datajson->Edited_Description),
+            'home_products_highlights'=>json_encode($datajson->Edited_HighLight_List),
+            'home_product_category'=>json_decode($datajson->Edited_Category),
+            'home_product_available_stock'=>$datajson->Edited_Quantity,
+            'home_product_payment_method'=>json_encode($datajson->Edited_Payment_Method)
+        ]);
+        if($qry){
+            $res="success";
+        }else{
+            $res="error";
         }
         return Response($res);
     }
@@ -143,6 +168,12 @@ class productController extends Controller
             $res="error";
         }
         return Response($res);
+    }
+
+    public function getpaymentmthd(request $req) {
+        $data = $req->input('id');
+        $qry = homeproduct::select('home_product_payment_method')->where('home_product_id', $data)->get();
+        return Response($qry);
     }
 
 }

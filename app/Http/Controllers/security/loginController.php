@@ -41,7 +41,6 @@ class loginController extends Controller
     }
 
     public function login(){
-      
       return view('buyers/login');
    }
 }

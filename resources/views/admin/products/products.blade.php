@@ -39,6 +39,9 @@
 				<div id="productdiv">
 					
 				</div>
+				<div id="editcate">
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -106,7 +109,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="form-label">Payment Method</label>
+				<label class="form-label">Payment Methods</label>
 				<div class="form-check">
 					<label for="creditcardPayment" class="form-check-label"><input name="creditcardPayment" type="checkbox" value="ccpay" class="form-check-input formdata" checked="checked">Credit Card Payment</label>
 				</div>
@@ -126,38 +129,59 @@
 					<input name="prodManufacturer" type="text" class="form-control formdata" onblur="prodManufacturer_validate()" placeholder="Enter Manufacturer name...">
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="form-label">Choose images to upload</label>
+			<div id="uploadimg" class="form-group">
+				<label class="form-label">Images</label>
 				<div class="custom-file">
 					<input id="productImg1" name="productImg1" type="file" class="custom-file-input" onchange="productimg1(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div id="uploadimg" class="form-group">
 				<div class="custom-file">
 					<input id="productImg2" name="productImg2" type="file" class="custom-file-input" onchange="productimg2(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div id="uploadimg" class="form-group">
 				<div class="custom-file">
 					<input id="productImg3" name="productImg3" type="file" class="custom-file-input" onchange="productimg3(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div id="uploadimg" class="form-group">
 				<div class="custom-file">
 					<input id="productImg4" name="productImg4" type="file" class="custom-file-input" onchange="productimg4(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div id="uploadimg" class="form-group">
 				<div class="custom-file">
 					<input id="productImg5" name="productImg5" type="file" class="custom-file-input" onchange="productimg5(this)">
 					<label class="custom-file-label">Choose file</label>
 				</div>
 			</div>
-			<label class="form-label">Select Specifications</label>
+			<label class="form-label">Uploaded Images</label>
+			<div class="form-group image">
+				<div id="uploadedImg1" class="imageuplded">
+					
+				</div>
+				<div id="uploadedImg2" class="imageuplded">
+					
+				</div>
+				<div id="uploadedImg3" class="imageuplded">
+					
+				</div>
+				<div id="uploadedImg4" class="imageuplded">
+					
+				</div>
+				<div id="uploadedImg5" class="imageuplded">
+					
+				</div>
+			</div>
+			<label class="form-label">Specifications</label>
+			<div id="editspec">
+				
+			</div>
 			<div id="attr1">
 				<div class="form-row">
 					<div id="attributeList" class="form-group col-md-5"></div>
@@ -222,7 +246,7 @@
 						<button id="attdelBtn" class="btn btn-outline-danger" type="button" btnId ="2" onclick="delAttrBtn(this)" disabled><i class="fa fa-trash"></i></button>
 					</div>
 					<div class="form-group col-md-1 text-right">
-						<button class="btn btn-outline-primary" type="button" onclick="addattBtn()"><i class="fa fa-plus-circle"></i></button>
+						<button id="attaddBtn" class="btn btn-outline-primary" type="button" onclick="addattBtn()"><i class="fa fa-plus-circle"></i></button>
 					</div>
 					<div class="form-check form-group text-right col-md-2">
 						<label for="productAttr" class="form-check-label"><input name="productAttr" type="checkbox" class="form-check-input productAttr">Highlight</label>
@@ -235,6 +259,7 @@
 		</form>
 		<div class="form-group">
 			<button type="submit" id="submitbtn" onclick="productValidate()" class="btn btn-outline-success">Submit</button>
+			<button type="submit" id="savebtn" onclick="productEdit(this)" class="btn btn-outline-success">Save</button>
 			<div id="errorDiv" class="errordiv">
 				
 			</div>

@@ -23,5 +23,11 @@ class attributelistController extends Controller
 	       	}
 	    }
     	return response()->json($outputData);
+	}
+	
+    public function specslist() 
+    {
+        $AttrData = attribute_list::get();
+    	return response($AttrData);
     }
 }

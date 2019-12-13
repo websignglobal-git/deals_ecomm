@@ -26,6 +26,13 @@ class productController extends Controller
         return response()->json($data);
     }
 
+    public function getproductdetails(Request $req)
+    {
+        $reqData = $req->input('id');
+        $data = homeproduct::where('home_product_id', $reqData)->get();
+        return response()->json($data);
+    }
+
     public function addproducts(Request $req)
     {
         $data = $req->all();

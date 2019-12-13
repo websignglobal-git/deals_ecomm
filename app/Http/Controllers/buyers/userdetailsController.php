@@ -27,4 +27,16 @@ class userdetailsController extends Controller
         }
         return Response($res);
     }
+
+    public function getuserdetails()
+    {
+        $req = DB::table('users')->where('user_id', 1)->get();
+        return Response()->json($req);
+    }
+
+    public function getuseraddress()
+    {
+        $req = userdetail::where('user_idk', 1)->get();
+        return Response()->json($req);
+    }
 }

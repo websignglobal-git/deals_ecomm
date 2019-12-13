@@ -52,3 +52,6 @@ Route::post('admin/delete_product', 'admin\productController@deleteproduct');
 
 Route::post('buyers/add_address', 'buyers\userdetailsController@addaddress');
 Route::post('buyers/get_payment_method', 'admin\productController@getpaymentmthd');
+Route::post('buyers/get_user_details', 'buyers\userdetailsController@getuserdetails');
+Route::post('buyers/get_user_address', 'buyers\userdetailsController@getuseraddress');
+Route::post('buyers/get_product_details', 'admin\productController@getproductdetails');

@@ -46,7 +46,7 @@
                                     </button>
                                     <div class="dropdown-menu accounts_dropdown accounts_dropdown_arrow">
                                         <a class="dropdown-item" href="#"><h5 class="accounts_dropdown_title">My Account and List's</h5></a>
-                                        <a class="dropdown-item" href="#">My Account</a>
+                                        <a class="dropdown-item" href="#" onclick="myaccount()">My Account</a>
                                         <a class="dropdown-item" href="#">My Order</a>
                                         <a class="dropdown-item" href="#">My Favourites</a>
                                         <a class="dropdown-item account_signout" href="#">Signout</a>

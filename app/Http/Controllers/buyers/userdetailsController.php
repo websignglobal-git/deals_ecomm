@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 namespace App\Http\Controllers\buyers;
 
 use App\Http\Controllers\Controller;
@@ -11,8 +12,9 @@ class userdetailsController extends Controller
 {
     public function addaddress(Request $req)
     {
+        $id = $_SESSION["user_id"];
         $adrsData = $req->all();
-        $qry = userdetail::where('user_idk', 1)->update([
+        $qry = userdetail::where('user_idk', $id)->update([
             'user_addressline1' =>$adrsData['addressline1'],
             'user_addressline2' =>$adrsData['addressline2'],
             'user_city' =>$adrsData['city'],
@@ -30,13 +32,15 @@ class userdetailsController extends Controller
 
     public function getuserdetails()
     {
-        $req = DB::table('users')->where('user_id', 1)->get();
+        $id = $_SESSION["user_id"];
+        $req = DB::table('users')->where('user_id', $id)->get();
         return Response()->json($req);
     }
 
     public function getuseraddress()
     {
-        $req = userdetail::where('user_idk', 1)->get();
+        $id = $_SESSION["user_id"];
+        $req = userdetail::where('user_idk', $id)->get();
         return Response()->json($req);
     }
 }

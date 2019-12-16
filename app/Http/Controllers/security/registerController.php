@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 namespace App\Http\Controllers\security;
 
@@ -7,27 +8,29 @@ use Illuminate\Http\Request;
 use DB;
 use App\models\users;
 use App\models\user_details;
+
 class registerController extends Controller
 {
    public function buyerDetailRegister(Request $req){
+		$req->validate([
+		'user_name' => 'required',
+		'user_phone' => 'required',
+		'user_email'=>'required',
+		'user_password'=>'required'
+		]);
 
-   	$req->validate([
-    'name' => 'required',
-    'phone' => 'required',
-    'email'=>'required',
-    'password'=>'required'
-	]);
-
-   	$data=$req->all();
-   	$pwd=$data['password'];
-   	$password=password_hash($pwd , PASSWORD_DEFAULT);
-   	$qry=users::insert(["user_name"=>$data['name'],'user_email'=>$data['email'],'user_phone'=>$data['phone'],'user_password'=>$password]);
-	   	if($qry==true){
-	   		$res="Success";
-	   	}else{
-	   		$res="Error";
-	   	}
-   	return Response($res);
+		$data=$req->all();
+		$pwd=$data['user_password'];
+		$password=password_hash($pwd , PASSWORD_DEFAULT);
+		$data['user_password'] = $password;
+		$getNum = users::where('user_phone', $data['user_phone'])->get();
+		if(count($getNum) > 0){
+			return Response('number exits');
+		}else{
+			$qry=users::create($data);
+			$_SESSION["user_id"]=$qry->id;
+			return Response('success'); 
+		}
    }
 
    public function registerAddress(Request $req){
@@ -35,13 +38,11 @@ class registerController extends Controller
    		$qry= new user_details;
     	$data=$req->all();
     	$qry->fill($data)->save();
-   	// $data=$req->all();
 
     	return response("success");
    }
 
     public function register(){
-      
-      return view('buyers/register');
+      	return view('buyers/register');
    }
 }

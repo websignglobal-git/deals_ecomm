@@ -1,7 +1,7 @@
 <?php
 
-session_start();
 namespace App\Http\Controllers\buyers;
+session_start();
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,9 +12,8 @@ class userdetailsController extends Controller
 {
     public function addaddress(Request $req)
     {
-        $id = $_SESSION["user_id"];
         $adrsData = $req->all();
-        $qry = userdetail::where('user_idk', $id)->update([
+        $qry = userdetail::insert([
             'user_addressline1' =>$adrsData['addressline1'],
             'user_addressline2' =>$adrsData['addressline2'],
             'user_city' =>$adrsData['city'],
@@ -32,15 +31,13 @@ class userdetailsController extends Controller
 
     public function getuserdetails()
     {
-        $id = $_SESSION["user_id"];
-        $req = DB::table('users')->where('user_id', $id)->get();
+        $req = DB::table('users')->where('user_id', $_SESSION["user_id"])->get();
         return Response()->json($req);
     }
 
     public function getuseraddress()
     {
-        $id = $_SESSION["user_id"];
-        $req = userdetail::where('user_idk', $id)->get();
+        $req = userdetail::where('user_idk', $_SESSION["user_id"])->get();
         return Response()->json($req);
     }
 }

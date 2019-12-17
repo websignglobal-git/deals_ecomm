@@ -1,4 +1,4 @@
-               
+     
     <body onscroll="scroll()">
         <section class="header_bg_clr">
             <div class="header_sticky">
@@ -49,7 +49,11 @@
                                         <a class="dropdown-item" href="#" onclick="myaccount()">My Account</a>
                                         <a class="dropdown-item" href="#">My Order</a>
                                         <a class="dropdown-item" href="#">My Favourites</a>
-                                        <a class="dropdown-item account_signout" href="#">Signout</a>
+                                        @if(isset($_SESSION['user_id']))
+                                            <a class="dropdown-item account_signout" id="signout" href="#" onclick="logout()">Signout</a>
+                                        @else
+                                            <a class="dropdown-item account_signout" id="signin" href="#" onclick="signin()">Sign in</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

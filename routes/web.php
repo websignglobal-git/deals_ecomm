@@ -55,3 +55,6 @@ Route::post('buyers/get_payment_method', 'admin\productController@getpaymentmthd
 Route::post('buyers/get_user_details', 'buyers\userdetailsController@getuserdetails');
 Route::post('buyers/get_user_address', 'buyers\userdetailsController@getuseraddress');
 Route::post('buyers/get_product_details', 'admin\productController@getproductdetails');
+
+Route::post('logout', 'security\logoutController@logout');
+Route::post('add-to-cart', 'security\logoutController@logout');

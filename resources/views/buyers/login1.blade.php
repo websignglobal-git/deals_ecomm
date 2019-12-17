@@ -14,16 +14,16 @@ body{
 			</div>
 			<div class="checkout_cmn_login">
 				<p class="login_p">Login</p>
-				<p class="check_login_labl">Email</p>
+				<p class="check_login_labl">Phone Number</p>
 				<div class="form-group">
-				    <input type="email" id="login_email" class="form-control mail_num_checkout">
+				    <input type="tel" id="login_number" class="form-control mail_num_checkout" maxlength="10">
 			    </div>
 			    <p class="check_login_labl">Password</p>
 			    <div class="form-group">
 				    <input type="password" id="login_pass" class="form-control mail_num_checkout">
 			    </div>
 			    <div class="chkout_coninue_btn">
-				  <button class="continue_btn btn_click_save" type="button">Continue</button>
+				  <button class="continue_btn btn_click_save" onclick="continuelogin()" type="button">Continue</button>
 			    </div>
 			    <div class="forget_pass_checkout">
 			    	<details>
@@ -40,3 +40,44 @@ body{
 			</div>
 		</div>
 	</section>
+
+	<script>
+		function continuelogin() {
+			var mainurl = localStorage.url
+			var num = document.getElementById('login_number').value
+			var pass = document.getElementById('login_pass').value
+
+			if (num == "") {
+				alert("Enter your number...")
+				document.getElementById('login_number').style.border = "2px solid red"
+				document.getElementById('login_number').focus()
+			} else if (pass == "") {
+				document.getElementById('login_number').style.border = ""
+				alert("Enter your password...")
+				document.getElementById('login_pass').style.border = "2px solid red"
+				document.getElementById('login_pass').focus()
+			}
+			document.getElementById('login_pass').style.border = ""
+
+			var data = JSON.stringify({
+	            "num": num,
+	            "pass": pass
+	        });
+	        var type = "application/json";
+	        var url = "buyer-login";
+	        var asyn = "true";
+	        var method = "POST";
+
+	        var respCallback = function(resp) {
+	            	console.log(resp)
+	            if (resp == '"success"') {
+	            	window.location.href = localStorage.url
+	            }
+
+	            if (resp == '"error"') {
+	            	alert('Incorrect Phone Number or Password')
+	            }
+	        }
+	        var res = serverRequest(data, method, url, asyn, type, respCallback);
+		}
+	</script>

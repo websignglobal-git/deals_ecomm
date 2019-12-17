@@ -151,7 +151,7 @@ body{
 			        </div>
 			        <div class="cmn_prod_btns">
 				        <div class="cmn_prod_btns_addcart addcart_btn">
-				        	<button class="btn_add addtocart_id" id="{{ $datas[0]->home_product_id }}" type="button">Add to cart</button>
+				        	<button class="btn_add addtocart_id" cid="{{ $datas[0]->home_product_id }}" onclick="setproductid()" type="button">Add to cart</button>
 				        </div>
 				        <div class="cmn_prod_btns_addcart buynow_btn">
 				        	<button class="btn_add" onclick="buynow(this)" type="button">Buy now</button>
@@ -331,7 +331,6 @@ body{
 		</div>
 	 </div>
 </section>
-<script type="text/javascript" src="{{ URL::asset('assets/js/product.js')}}"></script>
 
 <script>
 	document.querySelectorAll('.carousel-item')[0].classList.add('active');
@@ -341,6 +340,12 @@ body{
 		var prodID = e.parentElement.previousElementSibling.firstElementChild.id
 		localStorage.setItem('buynow_prod_id', prodID)
 		window.location.href = '../checkout-address'
+	}
+
+	function addtocart(e) {
+		var prodID = e.id
+		localStorage.setItem('buynow_prod_id', prodID)
+
 	}
 </script>
 

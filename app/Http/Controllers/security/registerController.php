@@ -1,7 +1,7 @@
 <?php
-session_start();
 
 namespace App\Http\Controllers\security;
+session_start();
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

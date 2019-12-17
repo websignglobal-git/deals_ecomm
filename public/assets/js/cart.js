@@ -52,12 +52,13 @@ function getProduct_cart(){
 
 function removeProduct(id) {
 	var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
+	var rem = id.parentNode.parentNode.parentNode.parentNode.parentNode
 	var localvar = [];
 	var local = JSON.parse(localStorage.getItem('product_id'))
 
 	for (var i = 0; i < local.length; i++) {
 		if (prodId == local[i]) {
-			
+			rem.remove()
 		}else {
 			localvar.push(local[i])
 		}

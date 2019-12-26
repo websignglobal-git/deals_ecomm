@@ -57,4 +57,4 @@ Route::post('buyers/get_user_address', 'buyers\userdetailsController@getuseraddr
 Route::post('buyers/get_product_details', 'admin\productController@getproductdetails');
 
 Route::post('logout', 'security\logoutController@logout');
-Route::post('add-to-cart', 'security\logoutController@logout');
+Route::post('view-product/add-to-cart', 'buyers\cartController@addtocart');

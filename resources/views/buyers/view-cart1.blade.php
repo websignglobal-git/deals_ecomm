@@ -29,6 +29,6 @@ body{
 		function checkout() {
 			var url = window.location.href
 			localStorage.setItem("url", url)
-			window.location.href="login"
+			window.location.href="checkout-address"
 		}
 	</script>

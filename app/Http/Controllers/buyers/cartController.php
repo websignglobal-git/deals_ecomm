@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\buyers;
+session_start();
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,12 +11,19 @@ use DB;
 class cartController extends Controller
 {
    public function view_cart(){
-     	
+
    		return view('buyers/view-cart');
    }
+
    public function cart_products(Request $request){
    	$cart_prod_id = json_decode($request->input('ad_cart_id'), true);
      	$datas = home_products::wherein('home_product_id', $cart_prod_id)->get();
    	return response()->json($datas);
+   }
+
+   public function addtocart(Request $req){
+      $data = $req->all();
+      print_r($data);
+      exit;
    }
 }

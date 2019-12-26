@@ -19,8 +19,8 @@ function setproductid() {
 	localStorage.setItem("product_id" , JSON.stringify(arr));
 	}
 
-	var data = prodid;
-    var type = "application/x-www-form-urlencoded";
+	var data = JSON.stringify({"id":prodid});
+    var type = "application/json";
     var url = "add-to-cart";
     var asyn = "true";
     var method = "POST";

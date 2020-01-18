@@ -433,11 +433,11 @@ p.prodct_highlit_point {
 }
 .detail_addi_warrnt_txt,.detail_addi_feedback_txt {
     font-family: Source Sans Pro;
-    font-size: 16px;
+    font-size: 13.5px;
     text-align: justify;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     color: #000000;
-    margin-left: 30px;
+    margin-left: 0px;
 }
 .prod_car_icon,.prod_car_time {
     font-family: Source Sans Pro;
@@ -599,8 +599,16 @@ p.name_cart_prod{
     color: #fff !important;
 }
 .cmn_prodct_highlit{
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     font-size: 14px;
+    display: flex;
+}
+.lft_span_prodt {
+    margin-right: 8px;
+    font-weight: 700;
+}
+.rht_span_prodt {
+    margin-left: 8px;
 }
 td.lft_tbl {
     width: 30%;

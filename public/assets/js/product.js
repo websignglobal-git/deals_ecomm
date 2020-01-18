@@ -30,10 +30,9 @@ function setproductid() {
     var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
 
-cartprod()
-
 function cartprod() {
 	var id = localStorage.getItem("product_id");
 	var len = JSON.parse(id).length
  	document.querySelector('.shop_cart_text').innerHTML = len;
 }
+cartprod()

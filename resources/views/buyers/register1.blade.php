@@ -24,16 +24,8 @@ body{
 	          <div class="reg_mobile">
 	            <label class="reg_mob_num mob_label check_login_labl">Mobile number</label>
 	            <div class="reg_cmn_drop_dwn">
-		           <!--  <div class="dropdown reg_mobile_num">
-		              <select class="custom-select mob_code">
-		                <option selected>select</option>
-		                <option value="1">IN+91</option>
-		                <option value="2">USA+69</option>
-		                <option value="3">CAN+07</option>
-		              </select>
-		            </div> -->
 		            <div class="reg_mobile_num_input">
-		               <input type="tel" id="reg_phone" class="form-control name_text_box" maxlength="10"  onblur="phNumber()" placeholder="Your mobile number" name="">
+		               <input type="tel" id="reg_phone" class="form-control name_text_box" maxlength="10"  onChange="phNumber()" placeholder="Your mobile number" name="">
 		            </div>
 	            </div>
 	          </div>
@@ -41,13 +33,13 @@ body{
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="email_label check_login_labl">Your Email</label>
-	            <input type="email" id="reg_email" class="form-control name_text_box" onblur="emailVal()" name="name" placeholder="Your E-Mail address">
+	            <input type="email" id="reg_email" class="form-control name_text_box" onChange="emailVal()" name="name" placeholder="Your E-Mail address">
 	          </div>
 	        </div>
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="pwd_label check_login_labl">Password</label>
-	            <input type="text" id="reg_pass" class="form-control name_text_box" name="name" onblur="userPwd()" placeholder="Password atleast 6 characters">
+	            <input type="text" id="reg_pass" class="form-control name_text_box" name="name" onChange="userPwd()" placeholder="Password atleast 6 characters">
 	            <p class="pwd_text">Password must be atleast 6 characters</p>
 	          </div>
 	          <div class="pwd_req">

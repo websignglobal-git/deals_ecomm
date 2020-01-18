@@ -1,4 +1,3 @@
-<?php session_start() ?>     
     <body onscroll="scroll()">
         <section class="header_bg_clr">
             <div class="header_sticky">

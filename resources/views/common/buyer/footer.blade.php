@@ -1,4 +1,4 @@
-
+<div id="content" class="content"></div>
   <section class="footer_cmn_ends">
   <div class="footer_cmn_end">
     <div class="footer_main_div">
@@ -6,10 +6,10 @@
         <div class="row row-one">
           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12 col-one">
             <ul class="un-list">
-              <li class="main-li">ABOUT</li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Careers</a></li>
+              <li class="main-li">Navigation</li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="about">About Us</a></li>
+              <li><a href="career">Careers</a></li>
             </ul>
           </div>
           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12 col-one">
@@ -33,10 +33,10 @@
           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12 col-one">
               <ul class="un-list">
               <li class="main-li">SOCIAL</li>
-              <li><a href="#">FaceBook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">YouTube</a></li>
-              <li><a href="#">LinkedIN</a></li>
+              <li><a href="https://www.facebook.com/">FaceBook</a></li>
+              <li><a href="https://twitter.com/">Twitter</a></li>
+              <li><a href="https://www.youtube.com/">YouTube</a></li>
+              <li><a href="https://www.linkedin.com">LinkedIN</a></li>
             </ul>
           </div>
           <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1 hr">
@@ -64,5 +64,20 @@
     </div>
     </div>
   </section>
+         <script>
+        function autoHeight() {
+                let body = document.body;
+                let bodyHeight = body.scrollHeight;
+                var vwptHeight =  window.innerHeight;
+                var gap = vwptHeight - bodyHeight;
+                if (vwptHeight > bodyHeight) {
+                  document.getElementById('content').style.marginBottom = gap+'px';
+                } else {
+                    document.getElementById('content').style.marginBottom = "0px";
+
+                }
+            }
+            autoHeight()
+        </script>
 </body>
 </html>

@@ -48,13 +48,13 @@ body{
 			var pass = document.getElementById('login_pass').value
 
 			if (num == "") {
-				alert("Enter your number...")
-				document.getElementById('login_number').style.border = "2px solid red"
+				alertify.alert('Enter your number...');
+				document.getElementById('login_number').style.border = "1px solid red"
 				document.getElementById('login_number').focus()
 			} else if (pass == "") {
 				document.getElementById('login_number').style.border = ""
-				alert("Enter your password...")
-				document.getElementById('login_pass').style.border = "2px solid red"
+				alertify.alert('Enter your password...');
+				document.getElementById('login_pass').style.border = "1px solid red"
 				document.getElementById('login_pass').focus()
 			}
 			document.getElementById('login_pass').style.border = ""
@@ -69,13 +69,13 @@ body{
 	        var method = "POST";
 
 	        var respCallback = function(resp) {
-	            	console.log(resp)
+	           console.log(resp)
 	            if (resp == '"success"') {
 	            	window.location.href = localStorage.url
 	            }
 
 	            if (resp == '"error"') {
-	            	alert('Incorrect Phone Number or Password')
+					alertify.alert('Incorrect Phone Number or Password');
 	            }
 	        }
 	        var res = serverRequest(data, method, url, asyn, type, respCallback);

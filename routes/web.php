@@ -28,6 +28,10 @@ Route::get('/view-cart', 'buyers\cartController@view_cart');
 Route::get('/checkout', 'buyers\checkoutController@checkout');
 Route::get('/email-verification','buyers\checkoutController@email_verification');
 Route::get('/checkout-address','buyers\checkoutController@checkout_address');
+Route::get('/contact','home\homeTemplateController@contactpage');
+Route::get('/about','home\homeTemplateController@aboutpage');
+Route::get('/career','home\homeTemplateController@careerpage');
+Route::get('/category','home\homeTemplateController@categorypage');
 
 Route::get('/payment', 'payment\paymentController@paymentPage');
 Route::get('/payment-methode', 'payment\paymentController@paymentmethode');

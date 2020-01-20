@@ -12,14 +12,15 @@ function getProduct_cart(){
 	var respCallback = function(datas){
 		var d1 = document.querySelector('.cmn_cart_prodcts');
 		var d2 = JSON.parse(datas);
-
 			// for(var j=0; j < JSON.parse(d2.home_product_images); j++){
 				for(var i=0; i < d2.length; i++){
+					var prodImgArr = JSON.parse(d2[i].home_product_images);
+
 					d1.insertAdjacentHTML('beforeend', '<div class="cart_product_dtl">\
 															<hr class="top_hr">\
 																<div class="sub_cmn_cart_product">\
 																	<div class="add_cart_product_img">\
-																		<img class="img-fluid img_view" src="">\
+																		<img class="img-fluid img_view vr_adjst_imgx" src='+prodImgArr[0]+'>\
 																	</div>\
 																<div class="add_cart_product_detail">\
 																	<p id="'+d2[i].home_product_id+'" class="name_cart_prod">'+d2[i].home_product_name+'</p>\

@@ -17,7 +17,7 @@ body{
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="name_label check_login_labl">Your Name</label>
-	            <input type="text" id="reg_name" class="form-control name_text_box" name="name" placeholder="Your Full Name">
+	            <input type="text" id="reg_name" class="form-control name_text_box" onKeyup="nameval('keyup')"  onChange="nameval('change')" name="name" placeholder="Your Full Name">
 	          </div>
 	        </div>
 	        <div class="reg_name_row">
@@ -25,7 +25,7 @@ body{
 	            <label class="reg_mob_num mob_label check_login_labl">Mobile number</label>
 	            <div class="reg_cmn_drop_dwn">
 		            <div class="reg_mobile_num_input">
-		               <input type="tel" id="reg_phone" class="form-control name_text_box" maxlength="10"  onChange="phNumber()" placeholder="Your mobile number" name="">
+		               <input type="tel" id="reg_phone" class="form-control name_text_box" maxlength="10" onKeyup="phNumber('keyup')"  onChange="phNumber('change')" placeholder="Your mobile number" name="">
 		            </div>
 	            </div>
 	          </div>
@@ -33,13 +33,13 @@ body{
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="email_label check_login_labl">Your Email</label>
-	            <input type="email" id="reg_email" class="form-control name_text_box" onChange="emailVal()" name="name" placeholder="Your E-Mail address">
+	            <input type="email" id="reg_email" class="form-control name_text_box" onKeyup="emailVal('keyup')" onChange="emailVal('change')" name="name" placeholder="Your E-Mail address">
 	          </div>
 	        </div>
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="pwd_label check_login_labl">Password</label>
-	            <input type="text" id="reg_pass" class="form-control name_text_box" name="name" onChange="userPwd()" placeholder="Password atleast 6 characters">
+	            <input type="text" id="reg_pass" class="form-control name_text_box" name="name" onKeyup="userPwd('keyup')" onChange="userPwd('change')" placeholder="Password atleast 6 characters">
 	            <p class="pwd_text">Password must be atleast 6 characters</p>
 	          </div>
 	          <div class="pwd_req">
@@ -56,38 +56,49 @@ body{
 	</section>
 
 <script>
-	function phNumber() {
+	function nameval(e) {
+		var num = document.getElementById('reg_name').value
+		if (num.length < 3) {
+			if(e=='change')
+			alertify.alert('Please enter the correct Name');
+			document.getElementById('reg_name').style.border = "1px solid red"
+		} else {
+			document.getElementById('reg_name').style.border = ""
+		}		
+	}
+
+	function phNumber(e) {
 		var num = document.getElementById('reg_phone').value
 		if (num.length > 10 || num.length <10 ) {
-			alert("enter 10 digit number")
-			document.getElementById('reg_phone').style.border = "2px solid red"
-			document.getElementById('reg_phone').focus()
+			if(e=='change')
+			alertify.alert('Please enter 10 digit number');
+			document.getElementById('reg_phone').style.border = "1px solid red"
 		} else {
 			document.getElementById('reg_phone').style.border = ""
 		}		
 	}
 
-	function emailVal() {
+	function emailVal(e) {
 		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 		var email = document.getElementById('reg_email').value
 		if (email.match(mailformat)) {
 			document.getElementById('reg_email').style.border = ""
 		} else {
-			alert("enter correct email address")
-			document.getElementById('reg_email').style.border = "2px solid red"
-			document.getElementById('reg_email').focus()
+			if(e=='change')
+			alertify.alert('enter correct email address');
+			document.getElementById('reg_email').style.border = "1px solid red"
 		}
 	}
 
-	function userPwd() {
+	function userPwd(e) {
 		var decimal =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,15}$/;
 		var password = document.getElementById('reg_pass').value;
 		if (password.match(decimal)) {
 			document.getElementById('reg_pass').style.border = ""
 		} else{
-			alert("enter a password with atleast one uppercase, one lowercase, one number and one special charcter with minimum 6 charcter and maximum 15 character")
-			document.getElementById('reg_pass').style.border = "2px solid red"
-			document.getElementById('reg_pass').focus()
+			if(e=='change')
+			alertify.alert('enter a password with atleast one uppercase, one lowercase, one number and one special charcter with minimum 6 charcter and maximum 15 character');
+			document.getElementById('reg_pass').style.border = "1px solid red"
 		};
 	}
 
@@ -100,21 +111,21 @@ body{
 		var password = document.getElementById('reg_pass').value
 
 		if (name == "") {
-			alert("Enter your name...")
-			document.getElementById('reg_name').style.border = "2px solid red"
+			alertify.alert('Enter your name...');
+			document.getElementById('reg_name').style.border = "1px solid red"
 			document.getElementById('reg_name').focus()
 		} else if (num == "") {
 			document.getElementById('reg_name').style.border = ""
-			alert("Enter your phone number...")
-			document.getElementById('reg_phone').style.border = "2px solid red"
+			alertify.alert('Enter  your phone number...');
+			document.getElementById('reg_phone').style.border = "1px solid red"
 			document.getElementById('reg_phone').focus()
 		} else if (email == "") {
-			alert("Enter your email...")
-			document.getElementById('reg_email').style.border = "2px solid red"
+			alertify.alert('Enter  your email...');
+			document.getElementById('reg_email').style.border = "1px solid red"
 			document.getElementById('reg_email').focus()
 		} else if (password == "") {
-			alert("Enter the password...")
-			document.getElementById('reg_pass').style.border = "2px solid red"
+			alertify.alert('Enter  your password...');
+			document.getElementById('reg_pass').style.border = "1px solid red"
 			document.getElementById('reg_pass').focus()
 		}
 

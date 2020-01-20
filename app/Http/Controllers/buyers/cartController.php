@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\buyers;
-session_start();
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\models\home_products;

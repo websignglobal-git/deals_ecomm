@@ -26,4 +26,21 @@ class homeTemplateController extends Controller
    		}
 		return view('buyers/home', compact( 'allCatData', 'categories'));
    }
+
+   public function contactpage(){
+
+      return view('buyers/contact');
+   } 
+   public function aboutpage(){
+
+      return view('buyers/about');
+   }
+    public function careerpage(){
+
+      return view('buyers/career');
+   }
+    public function categorypage(){
+
+      return view('buyers/category');
+   }
 }

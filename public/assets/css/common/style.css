@@ -187,7 +187,7 @@ img.img-fluid.product_imgs {
 	flex-basis: 70%;
 }
 .img_ful_wid{
-	width: 100px;
+	width: 80px;
 }
 .img_full_wid{
     height: 320px !important;
@@ -528,9 +528,6 @@ hr.top_hr {
 	flex-basis: 25%;
     display: flex;
     justify-content: flex-end;
-}
-.img-fluid.img_view {
-    width: 100%;
 }
 .dropdown_dtl {
     display: flex;
@@ -1053,3 +1050,7 @@ p.order_successful_head {
    border-radius: 10px;
 }
 /****payment page*****/
+/****vr page*****/
+.vr_adjst_imgx {
+    width: 100px;
+}

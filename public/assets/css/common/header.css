@@ -633,3 +633,22 @@ button.btn.dropdown_btn.dropdown-toggle.dropdown-toggle-split {
     width: 100%;
     margin-top: 68px;
 }
+/******vr****/
+.categories_dropdown_vr{
+    background: linear-gradient(180deg, #0A507D 0%, rgba(10, 80, 125, 0.68) 100%);
+}
+.vr_headr_catbtn {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+button:focus {
+   outline: none !important;
+   box-shadow: none !important;
+}
+.my_catgry,.my_accnt {
+    display: flex;
+    align-items: center;
+}
+.my_catgry button,.my_accnt button{
+    padding: 0px !important;
+}

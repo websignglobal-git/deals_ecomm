@@ -32,6 +32,7 @@ Route::get('/contact','home\homeTemplateController@contactpage');
 Route::get('/about','home\homeTemplateController@aboutpage');
 Route::get('/career','home\homeTemplateController@careerpage');
 Route::get('/category','home\homeTemplateController@categorypage');
+Route::get('/cart-empty','home\homeTemplateController@cart_empty');
 
 Route::get('/payment', 'payment\paymentController@paymentPage');
 Route::get('/payment-methode', 'payment\paymentController@paymentmethode');

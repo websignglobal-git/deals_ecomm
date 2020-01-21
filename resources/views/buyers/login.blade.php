@@ -3,6 +3,7 @@
 
 @if(isset($_SESSION["user_id"]))
 	@include('buyers/my-account')
+
 @else
 	@include('buyers/login1')
 @endif

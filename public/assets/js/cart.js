@@ -24,13 +24,15 @@ function getProduct_cart(){
 																	</div>\
 																<div class="add_cart_product_detail">\
 																	<p id="'+d2[i].home_product_id+'" class="name_cart_prod">'+d2[i].home_product_name+'</p>\
-																	<p class="stock_cart_prod">In stock : '+d2[i].home_product_available_stock+'</p>\
+																	<p class="stock_cart_prod'+d2[i].home_product_id+'" stock="'+d2[i].home_product_available_stock+'">In stock : '+d2[i].home_product_available_stock+'</p>\
 																	<div class="dropdown_dtl">\
 																		<div class="form-group drop_detl">\
 																			<label for="sel1">Qty:</label>\
-																				<select class="form-control" id="sel1">\
-																					<option>4</option>\
-																				</select>\
+																			<div class="cmn_cart_icr">\
+																				  <div class="value-button decrease" id="'+d2[i].home_product_id+'" onclick="decreaseValue(this.id)" value="Decrease Value">-</div>\
+																				  <input type="number" class="number crt_indc_val'+d2[i].home_product_id+'" id="number'+d2[i].home_product_id+'" value="1" />\
+																				  <div class="value-button increase" id="'+d2[i].home_product_id+'" onclick="increaseValue(this.id)" value="Increase Value">+</div>\
+																			</div>\
 																		</div>\
 																		<div class="dlt_div">\
 																			<a href="#" class="dlt_a" onclick="removeProduct(this)">Remove</a>\
@@ -67,6 +69,22 @@ function removeProduct(id) {
 	};
 }
 
+function increaseValue(id) {
+	var availStock = document.querySelector('.stock_cart_prod'+id).getAttribute('stock');
+	var exVal = document.querySelector('.crt_indc_val'+id).value;
+	if(availStock != exVal){
+	var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)+1;
+	}
+}
+
+function decreaseValue(id) {
+	var exVal = document.querySelector('.crt_indc_val'+id).value;
+	if(exVal != 1){
+		var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)-1;
+	}
+
+}
+	
 
 
 

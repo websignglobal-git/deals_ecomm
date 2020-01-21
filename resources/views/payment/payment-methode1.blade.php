@@ -7,30 +7,6 @@
 	body {
 		background-color: #fff;
 	}
-
-	.loader-bar {
-		display: none;
-		position: fixed;
-		z-index: 1000;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		/*background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif');*/
-		background-image: url('assets/images/loader/cart_loader.gif');
-		background-position: 50% 50%;
-		background-color: rgba(225,225,225,0.5);
-		background-repeat: no-repeat;
-	}
-
-	body.loading {
-		overflow: hidden;
-	}
-
-	body.loading .loader-bar {
-		display: block;
-	}
-
 	.errordiv {
 		color: red;
 		font-size: 20px;
@@ -42,9 +18,6 @@
 	}
 </style>
 	<section class="payment_methode_cmn">
-		<div class="loader-bar">
-		
-		</div>
 		<div class="payment_methode_main">
 			<div class="checkout_logo">
 				<p class="logo_checkout"><a href="#" class="logo_a">Deals of market</a></p>
@@ -82,8 +55,6 @@
 
 {{-- by ranto --}}
 	<script>
-		document.body.className = "loading"
-
 		function getPaymentmthd() {
 			var id = localStorage.buynow_prod_id
 			var data = JSON.stringify({'id':id})

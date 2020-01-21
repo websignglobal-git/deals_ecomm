@@ -197,7 +197,7 @@
 							  $color = $general[$i]->color;
 								for($j=0; $j<count($color); $j++){
 						?>
-                    <span class="color_box1" style="background-color: {{$color[$j]}}"></span>
+                    <span class="color_box1  rounded-circle" style="background-color: {{$color[$j]}}"></span>
                     <?php }}} }?>
 
                 </div>

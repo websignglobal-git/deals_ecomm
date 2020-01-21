@@ -43,13 +43,14 @@ class loginController extends Controller
 		// return response($res);
 
 		$data=$req->all();
-		$getUser = DB::table('users')->where('user_phone', $data['num'])->get(['user_id', 'user_password']);
+		$getUser = DB::table('users')->where('user_phone', $data['num'])->get(['user_id', 'user_password', 'user_name']);
 		if (count($getUser) > 0) {
 			$val = Hash::check($data['pass'], $getUser[0]->user_password);
 		
 			if (count($getUser) > 0 && $val == 1) {
 				$_SESSION["user_id"]=$getUser[0]->user_id;
-				return Response()->json('success');
+				$_SESSION["user_name"]=$getUser[0]->user_name;
+				return Response("success");
 			}  else {
 				return Response()->json('error');
 			}

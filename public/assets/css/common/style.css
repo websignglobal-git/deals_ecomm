@@ -1054,3 +1054,48 @@ p.order_successful_head {
 .vr_adjst_imgx {
     width: 100px;
 }
+.mrg_btm_psw{
+    margin-top: 10px;
+}
+#owl-carousel1ban .owl-prev{
+    position: absolute;
+    top: 35%;
+    left: 2% ;
+    font-size: 80px !important;
+}
+#owl-carousel1ban .owl-next{
+    position: absolute;
+    top: 35%;
+    right: 2% ;
+    font-size: 80px !important;
+}
+
+.cmn_cart_icr {
+    display: flex;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+div.decrease, div.increase {
+    border: 1px solid #9c9a9a;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bdbaba;
+    cursor: pointer;
+}
+div.decrease {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+div.increase {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.cmn_cart_icr input.number{
+    width: 40%;
+    text-align: center;
+}

@@ -16,14 +16,15 @@ body{
 				<p class="login_p">Login</p>
 				<p class="check_login_labl">Phone Number</p>
 				<div class="form-group">
-				    <input type="tel" id="login_number" class="form-control mail_num_checkout" maxlength="10">
+				    <input type="tel" id="login_number" value="8667546723" class="form-control mail_num_checkout" maxlength="10">
 			    </div>
 			    <p class="check_login_labl">Password</p>
 			    <div class="form-group">
-				    <input type="password" id="login_pass" class="form-control mail_num_checkout">
+				    <input type="password" value="111111Vr." id="login_pass" class="form-control mail_num_checkout">
+				    <input type="checkbox" class="mrg_btm_psw" onclick="passwordvisible()">Show Password
 			    </div>
 			    <div class="chkout_coninue_btn">
-				  <button class="continue_btn btn_click_save" onclick="continuelogin()" type="button">Continue</button>
+				  <button class="continue_btn btn_click_save" id="myBtn" onclick="continuelogin()" type="button">Continue</button>
 			    </div>
 			    <div class="forget_pass_checkout">
 			    	<details>
@@ -42,6 +43,14 @@ body{
 	</section>
 
 	<script>
+		function passwordvisible() {
+		  var x = document.getElementById("login_pass");
+		  if (x.type === "password") {
+		    x.type = "text";
+		  } else {
+		    x.type = "password";
+		  }
+		}
 		function continuelogin() {
 			var mainurl = localStorage.url
 			var num = document.getElementById('login_number').value
@@ -69,15 +78,22 @@ body{
 	        var method = "POST";
 
 	        var respCallback = function(resp) {
-	           console.log(resp)
-	            if (resp == '"success"') {
-	            	window.location.href = localStorage.url
+	            if (resp == "success") {
+	            	window.location.href = "http://localhost/vishnue/deals_ecomm/public/"
 	            }
 
-	            if (resp == '"error"') {
+	            if (resp == 'error') {
 					alertify.alert('Incorrect Phone Number or Password');
 	            }
 	        }
 	        var res = serverRequest(data, method, url, asyn, type, respCallback);
 		}
+
+		var input = document.getElementById("login_pass");
+		input.addEventListener("keyup", function(event) {
+		  if (event.keyCode === 13) {
+		   event.preventDefault();
+		   document.getElementById("myBtn").click();
+		  }
+		});
 	</script>

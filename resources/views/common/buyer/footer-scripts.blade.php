@@ -9,7 +9,7 @@
     function logout() {
         var data = ""
         var type = "application/json";
-        var url = "logout";
+        var url = "{{ URL('logout')}}";
         var asyn = "true";
         var method = "POST";
 
@@ -23,11 +23,11 @@
         var res = serverRequest(data, method, url, asyn, type, respCallback);
     }
 
-    function signin() {
-        var url = window.location.href
-        localStorage.setItem('url', url)
-        window.location.href = "login"
-    }
+    // function signin() {
+    //     var url = window.location.href
+    //     localStorage.setItem('url', url)
+    //     window.location.href = "login"
+    // }
 </script>
     @notify_js
     @notify_render

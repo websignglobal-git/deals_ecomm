@@ -7,6 +7,7 @@ body{
 	background-color: #fff;
 }
 </style>
+
 	<section class="end_footer">
 		<div class="view_cart_cmn">
 			<p class="shop_cart_head">Shopping Cart</p>
@@ -31,4 +32,10 @@ body{
 			localStorage.setItem("url", url)
 			window.location.href="checkout-address"
 		}
+		let x = localStorage.getItem("product_id");
+        let y = JSON.parse(x);
+        let z = y.length
+        if(z == 0){
+        	window.location.href = "cart-empty";
+        }
 	</script>

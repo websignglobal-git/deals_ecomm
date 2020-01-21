@@ -21,21 +21,21 @@ body{
 				<p class="address_head">Enter a new delivery address.</p>
 				<p class="address_head1">When finished, click the "Continue" button.</p>
 				<div class="cmn">
-					{{-- <div class="form-group">
+					<!-- {{-- <div class="form-group">
 					    <label class="lbl_chek_addrs">Full name : </label>
 					    <input type="text" class="form-control input_checkaddress" id="fname_checkadd">
 				   </div> --}}{{-- 
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Mobile number : </label>
 					    <input type="number" class="form-control input_checkaddress" id="mbl_checkadd">
-				   </div> --}}
+				   </div> --}} -->
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Address Line 1 </label>
-					    <input type="text" class="form-control input_checkaddress" onblur="address1()" id="addl1_checkadd">
+					    <input type="text" class="form-control input_checkaddress"  onKeyup="address1('keyup')"  onChange="address1('change')" id="addl1_checkadd">
 				   </div>
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Address Line 2</label>
-					    <input type="text" class="form-control input_checkaddress" onblur="address2()" id="addl2_checkadd">
+					    <input type="text" class="form-control input_checkaddress" onKeyup="address2('keyup')"  onChange="address2('change')" id="addl2_checkadd">
 				   </div> {{-- 
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Landmark e.g. near st.xavier engg college: </label>
@@ -43,19 +43,19 @@ body{
 				   </div> --}}
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Town/City: </label>
-					    <input type="text" class="form-control input_checkaddress" onblur="city()" id="city_checkadd">
+					    <input type="text" class="form-control input_checkaddress" onKeyup="city('keyup')"  onChange="city('change')" id="city_checkadd">
 				   </div>
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">State: </label>
-					    <input type="text" class="form-control input_checkaddress" onblur="state()" id="state_checkadd">
+					    <input type="text" class="form-control input_checkaddress" onKeyup="state('keyup')"  onChange="state('change')" id="state_checkadd">
 				   </div>
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Pincode : </label>
-					    <input type="number" class="form-control input_checkaddress" onblur="pincode()" id="pincode_checkadd">
+					    <input type="number" class="form-control input_checkaddress" onKeyup="pincode('keyup')"  onChange="pincode('change')" id="pincode_checkadd">
 				   </div>
 				   <div class="form-group">
 					    <label class="lbl_chek_addrs">Country: </label>
-					    <input type="text" class="form-control input_checkaddress" onblur="country()" id="country_checkadd">
+					    <input type="text" class="form-control input_checkaddress" onKeyup="country('keyup')"  onChange="country('change')" id="country_checkadd">
 				   </div>
 				   <div class="chk_addr_btn">
 					   <button type="button" onclick="chkout(this)" class="btn_chk-adrs">Continue</button>
@@ -65,89 +65,82 @@ body{
 		</div>
 	</section>
 
-{{-- by ranto --}}
 	<script>
-		document.getElementById('addl1_checkadd').focus()
-		
-		function address1() {
-			var address1 = document.getElementById('addl1_checkadd')
-			var add1val = address1.value
-			if (add1val == "") {
-				address1.style.border = '2px solid red'
-				address1.focus()
-				return false
+		function address1(e) {
+			var address1val = document.getElementById('addl1_checkadd').value;
+			if (address1val.length < 3) {
+				if(e=='change')
+				alertify.alert('Please enter the address');
+				document.getElementById('addl1_checkadd').style.border = "1px solid red"
 			}
-			address1.style.border = ""
-			document.getElementById('addl2_checkadd').focus()
-			return true
+			else {
+				document.getElementById('addl1_checkadd').style.border = ""
+			}
 		}
 
-		function address2() {
-			var address2 = document.getElementById('addl2_checkadd')
-			var add2val = address2.value
-			if (add2val == "") {
-				address2.style.border = '2px solid red'
-				address2.focus()
-				return false
+		function address2(e) {
+			var address2val = document.getElementById('addl2_checkadd').value
+			if (address2val == "") {
+				if(e=='change')
+				alertify.alert('Please enter the address');
+				document.getElementById('addl2_checkadd').style.border = "1px solid red"
 			}
-			address2.style.border = ""
-			document.getElementById('city_checkadd').focus()
-			return true
+			else {
+				document.getElementById('addl2_checkadd').style.border = ""
+			}
 		}
 
-		function city() {
-			var city = document.getElementById('city_checkadd')
-			var cityval = city.value
+		function city(e) {
+			var cityval = document.getElementById('city_checkadd').value
 			if (cityval == "") {
-				city.style.border = '2px solid red'
-				city.focus()
-				return false
+				if(e=='change')
+				alertify.alert('Please enter the city');
+				document.getElementById('city_checkadd').style.border = "1px solid red"
 			}
-			city.style.border = ""
-			document.getElementById('state_checkadd').focus()
-			return true
+			else {
+				document.getElementById('city_checkadd').style.border = ""
+			}
 		}
 
-		function state() {
-			var state = document.getElementById('state_checkadd')
-			var stateval = state.value
+		function state(e) {
+			var stateval = document.getElementById('state_checkadd').value
 			if (stateval == "") {
-				state.style.border = '2px solid red'
-				state.focus()
-				return false
+				if(e=='change')
+				alertify.alert('Please enter the state');
+				document.getElementById('state_checkadd').style.border = "1px solid red"
 			}
-			state.style.border = ""
-			document.getElementById('pincode_checkadd').focus()
-			return true
+			else {
+				document.getElementById('state_checkadd').style.border = ""
+			}
 		}
 
-		function pincode() {
-			var pincode = document.getElementById('pincode_checkadd')
-			var pinval = pincode.value
-			var pinlength = pinval.length
-			if (pinval == "" || pinlength > 6) {
-				pincode.style.border = '2px solid red'
-				pincode.focus()
-				return false
+		function pincode(e) {
+			var pinval = document.getElementById('pincode_checkadd').value
+			if (pinval == "") {
+				if(e=='change')
+				alertify.alert('Please enter the state');
+				document.getElementById('pincode_checkadd').style.border = "1px solid red"
 			}
-			pincode.style.border = ""
-			document.getElementById('country_checkadd').focus()
-			return true
+			else {
+				document.getElementById('pincode_checkadd').style.border = ""
+			}
 		}
 
-		function country() {
-			var country = document.getElementById('country_checkadd')
-			var countryval = country.value
+		function country(e) {
+			var countryval = document.getElementById('country_checkadd').value
 			if (countryval == "") {
-				country.style.border = '2px solid red'
-				country.focus()
-				return false
+				if(e=='change')
+				alertify.alert('Please enter the state');
+				document.getElementById('country_checkadd').style.border = "1px solid red"
 			}
-			country.style.border = ""
-			return true
+			else {
+				document.getElementById('country_checkadd').style.border = ""
+			}
 		}
 
 		function chkout(e) {
+
+
 			// var fullname = document.getElementById('fname_checkadd').value
 			// var mblnum = document.getElementById('mbl_checkadd').value
 			var pincod = document.getElementById('pincode_checkadd').value
@@ -158,28 +151,54 @@ body{
 			var state = document.getElementById('state_checkadd').value
 			var country = document.getElementById('country_checkadd').value
 
-			var dataJson = JSON.stringify({
-				"pincode": pincod,
-				"addressline1": address1,
-				"addressline2": address2,
-				"city": city,
-				"state": state,
-				"country": country,
-			})
+			if (address1 == "") {
+				alertify.alert('Enter your address1...');
+				document.getElementById('addl1_checkadd').style.border = "1px solid red"
+				document.getElementById('addl1_checkadd').focus()
+			} else if (address2 == "") {
+				document.getElementById('addl2_checkadd').style.border = ""
+				alertify.alert('Enter  your phone address2...');
+				document.getElementById('addl2_checkadd').style.border = "1px solid red"
+				document.getElementById('addl2_checkadd').focus()
+			} else if (city == "") {
+				alertify.alert('Enter  your city...');
+				document.getElementById('city_checkadd').style.border = "1px solid red"
+				document.getElementById('city_checkadd').focus()
+			} else if (state == "") {
+				alertify.alert('Enter  your State...');
+				document.getElementById('state_checkadd').style.border = "1px solid red"
+				document.getElementById('state_checkadd').focus()
+			}
+			else if (country == "") {
+				alertify.alert('Enter  your Country...');
+				document.getElementById('country_checkadd').style.border = "1px solid red"
+				document.getElementById('country_checkadd').focus()
+			}
+			else{
 
-			var data = dataJson;
-	        var type = "application/json";
-	        var url = "buyers/add_address";
-	        var asyn = "true";
-	        var method = "POST";
-	        var respCallback = function(resp) {
-	            if (resp == "success") {
-	            	window.location.href = "payment-methode"
-	            };
-	            if (resp == "error") {
-	                alert("Error saving the data");
-	            };
-	        }
-	        var res = serverRequest(data, method, url, asyn, type, respCallback);
-		}
+				var dataJson = JSON.stringify({
+					"pincode": pincod,
+					"addressline1": address1,
+					"addressline2": address2,
+					"city": city,
+					"state": state,
+					"country": country,
+				})
+
+				var data = dataJson;
+		        var type = "application/json";
+		        var url = "buyers/add_address";
+		        var asyn = "true";
+		        var method = "POST";
+		        var respCallback = function(resp) {
+		            if (resp == "success") {
+		            	window.location.href = "payment-methode"
+		            };
+		            if (resp == "error") {
+		                alert("Error saving the data");
+		            };
+		        }
+		        var res = serverRequest(data, method, url, asyn, type, respCallback);
+			}
+	}
 	</script>

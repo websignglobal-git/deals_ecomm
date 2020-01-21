@@ -42,15 +42,15 @@
                                   </button>
                                   <div class="dropdown-menu categories_dropdown_vr" aria-labelledby="dropdownMenuLink1">
                                     <a class="dropdown-item" href="#"><h5 class="categories_dropdown_title">Categories</h5></a>
-                                        <a class="dropdown-item" href="category">Electronics</a>
-                                        <a class="dropdown-item" href="category">TV and Appliances</a>
-                                        <a class="dropdown-item" href="category">Mens wear</a>
-                                        <a class="dropdown-item" href="category">Womens wear</a>
-                                        <a class="dropdown-item" href="category">Baby and Kids</a>
-                                        <a class="dropdown-item" href="category">Home and Furniture</a>
-                                        <a class="dropdown-item" href="category">Sports</a>
-                                        <a class="dropdown-item" href="category">Books</a>
-                                        <a class="dropdown-item" href="category">More</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Electronics</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">TV and Appliances</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Mens wear</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Womens wear</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Baby and Kids</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Home and Furniture</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Sports</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">Books</a>
+                                        <a class="dropdown-item" href="{{ URL('category')}}">More</a>
                                   </div>
                               </div>
                             </div>
@@ -84,18 +84,26 @@
                                         <a class="dropdown-item" href="#">My Order</a>
                                         <a class="dropdown-item" href="#">My Favourites</a>
                                         @if(isset($_SESSION['user_id']))
-                                            <a class="dropdown-item account_signout" id="signout" href="#" onclick="logout()">Signout</a>
+                                            <a class="dropdown-item account_signout" id="signout" onclick="logout()">Signout</a>
                                         @else
-                                            <a class="dropdown-item account_signout" id="signin" href="#" onclick="signin()">Sign in</a>
+                                            <a class="dropdown-item account_signout" id="signin" href="{{ URL('login')}}">Sign in</a>
                                         @endif
                                   </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="name_nav">
+                            <div class="shopping_name_nav">
+                               @if(isset($_SESSION['user_name']))
+                                {{ $_SESSION['user_name'] }}
+                                @else
+                                Hi,sign in
+                               @endif
+                            </div>
+                        </div>
                         <div class="shopping_carts">
                             <a href="{{ url('view-cart') }}"><img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart_box.png')}}">
                             <span class="shop_cart_text badge"></span></a>
-                            
                         </div>
                     </div>
                 </div>

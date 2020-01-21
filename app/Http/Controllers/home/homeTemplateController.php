@@ -43,4 +43,8 @@ class homeTemplateController extends Controller
 
       return view('buyers/category');
    }
+    public function cart_empty(){
+
+      return view('buyers/cart-empty');
+   }
 }

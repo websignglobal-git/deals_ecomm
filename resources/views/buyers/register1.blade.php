@@ -39,7 +39,8 @@ body{
 	        <div class="reg_name_row">
 	          <div class="reg_name">
 	            <label class="pwd_label check_login_labl">Password</label>
-	            <input type="text" id="reg_pass" class="form-control name_text_box" name="name" onKeyup="userPwd('keyup')" onChange="userPwd('change')" placeholder="Password atleast 6 characters">
+	            <input type="password" id="reg_pass" class="form-control name_text_box" name="name" onKeyup="userPwd('keyup')" onChange="userPwd('change')" placeholder="Password atleast 6 characters">
+	            <input type="checkbox" class="mrg_btm_psw" onclick="passwordvisible()">Show Password
 	            <p class="pwd_text">Password must be atleast 6 characters</p>
 	          </div>
 	          <div class="pwd_req">
@@ -49,13 +50,21 @@ body{
 	            </ul>
 	          </div>
 	        </div>
-	        <div class="reg_contnue_btn"><button class="btn btn-success btn-block btn_reg_save btn_continue" onclick="regContinue()">Continue</button></div>
+	        <div class="reg_contnue_btn"><button class="btn btn-success btn-block btn_reg_save btn_continue" id="myBtn" onclick="regContinue()">Continue</button></div>
 	        <div class="already_accnt"><p>Already have an account? <a href="login">Sign in</a></p></div>
 	      </div>
 		</div>
 	</section>
 
 <script>
+	function passwordvisible() {
+	  var x = document.getElementById("reg_pass");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	}
 	function nameval(e) {
 		var num = document.getElementById('reg_name').value
 		if (num.length < 3) {
@@ -159,6 +168,14 @@ body{
 		}
 		var res = serverRequest(data,method,url,asyn,type,respCallback);
 	}
+
+		var input = document.getElementById("reg_pass");
+		input.addEventListener("keyup", function(event) {
+		  if (event.keyCode === 13) {
+		   event.preventDefault();
+		   document.getElementById("myBtn").click();
+		  }
+		});
 </script>
 
 

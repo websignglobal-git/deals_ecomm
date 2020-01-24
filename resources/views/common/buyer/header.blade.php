@@ -1,11 +1,12 @@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <body <?php session_start(); ?> onscroll="scroll()">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">\
+    <?php if(session_status() == PHP_SESSION_NONE){session_start();} ?>
+    <body  onscroll="scroll()">
         <section class="header_bg_clr">
             <div class="header_sticky">
                 <div id="scroll_full" class="header">
                     <div class="logo">
                         <a href="{{ URL('/')}}"><h1 class="logo_title">Deals of Market</h1></a>
-                        <img class="cart_logo" src="{{ URL::asset('assets/images/common/cartlist.png')}}">
+                        <img class="cart_logo" src="{{ URL::asset('assets/images/common/cart.png')}}">
                     </div>
                     <div class="search_box">
                         <div class="input-group mb-3">
@@ -102,7 +103,7 @@
                             </div>
                         </div>
                         <div class="shopping_carts">
-                            <a href="{{ url('view-cart') }}"><img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart_box.png')}}">
+                            <a href="{{ url('view-cart') }}"><img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart.png')}}">
                             <span class="shop_cart_text badge"></span></a>
                         </div>
                     </div>

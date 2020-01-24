@@ -78,8 +78,13 @@ body{
 	        var method = "POST";
 
 	        var respCallback = function(resp) {
-	            if (resp == "success") {
-	            	window.location.href = "http://localhost/vishnue/deals_ecomm/public/"
+	        	var datas = JSON.parse(resp);
+	        
+	        	// console.log(datas.prodid_data.product_idk)
+	        	var proidd = JSON.stringify(datas.prodid_data);
+				localStorage.setItem('add_prodid', proidd );
+	            if (datas.status == "success") {
+	            	// window.location.href = "http://localhost/vishnue/deals_ecomm/public/"
 	            }
 
 	            if (resp == 'error') {

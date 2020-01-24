@@ -7,7 +7,8 @@
     }
 
     function logout() {
-        var data = ""
+        var a = alertify.confirm('Are you sure you want to signout ?', function(){ alertify.success('Thank you for visiting our website')
+            var data = ""
         var type = "application/json";
         var url = "{{ URL('logout')}}";
         var asyn = "true";
@@ -19,8 +20,12 @@
             localStorage.removeItem("url")
             localStorage.removeItem("product_id")
             window.location.reload()
+            localStorage.clear();
         }
         var res = serverRequest(data, method, url, asyn, type, respCallback);
+         }).set({title:"Deals Of Market"});
+        
+        
     }
 
     // function signin() {

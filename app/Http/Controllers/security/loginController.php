@@ -50,7 +50,9 @@ class loginController extends Controller
 			if (count($getUser) > 0 && $val == 1) {
 				$_SESSION["user_id"]=$getUser[0]->user_id;
 				$_SESSION["user_name"]=$getUser[0]->user_name;
-				return Response("success");
+
+				// $prod_data = DB::table('users')->where('user_id', $_SESSION["user_id"])->leftJoin('user_cart', 'users.user_id','=','user_cart.user_idk')->get(['product_idk']);
+				return Response()->json(['status'=>"success",'prodid_data'=>$prod_data]);
 			}  else {
 				return Response()->json('error');
 			}

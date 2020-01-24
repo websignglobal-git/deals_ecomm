@@ -62,6 +62,7 @@ function removeProduct(id) {
 	for (var i = 0; i < local.length; i++) {
 		if (prodId == local[i]) {
 			rem.remove()
+			window.location.href
 		}else {
 			localvar.push(local[i])
 		}
@@ -69,21 +70,21 @@ function removeProduct(id) {
 	};
 }
 
-function increaseValue(id) {
-	var availStock = document.querySelector('.stock_cart_prod'+id).getAttribute('stock');
-	var exVal = document.querySelector('.crt_indc_val'+id).value;
-	if(availStock != exVal){
-	var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)+1;
-	}
-}
+// function increaseValue(id) {
+// 	var availStock = document.querySelector('.stock_cart_prod'+id).getAttribute('stock');
+// 	var exVal = document.querySelector('.crt_indc_val'+id).value;
+// 	if(availStock != exVal){
+// 	var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)+1;
+// 	}
+// }
 
-function decreaseValue(id) {
-	var exVal = document.querySelector('.crt_indc_val'+id).value;
-	if(exVal != 1){
-		var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)-1;
-	}
+// function decreaseValue(id) {
+// 	var exVal = document.querySelector('.crt_indc_val'+id).value;
+// 	if(exVal != 1){
+// 		var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)-1;
+// 	}
 
-}
+// }
 	
 
 

@@ -1,6 +1,9 @@
 @include('common/buyer/header-scripts')
 @include('common/buyer/header')
-@include('common/buyer/top-banner')
+<?php
+$sample = 'common/buyer/top-banner';
+?>
+@include($sample)
 @include('buyers/home-body1')
 
 @include('common/buyer/footer')

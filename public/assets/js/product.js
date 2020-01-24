@@ -18,8 +18,8 @@ function setproductid() {
 	arr.push(prodid);
 	localStorage.setItem("product_id" , JSON.stringify(arr));
 	}
-window.location.reload()
-	var data = JSON.stringify({"id":prodid});
+window.location.reload();
+	var data = JSON.stringify({"product_idk":prodid});
     var type = "application/json";
     var url = "add-to-cart";
     var asyn = "true";
@@ -32,7 +32,14 @@ window.location.reload()
 
 function cartprod() {
 	var id = localStorage.getItem("product_id");
+	var prodcount = localStorage.getItem("product_count");
 	var len = JSON.parse(id).length
- 	document.querySelector('.shop_cart_text').innerHTML = len;
+	var userId = "<?php $_SESSION['user_id'] ?>";
+	if(userId){
+		document.querySelector('.shop_cart_text').innerHTML = prodcount;
+	}
+	else{
+ 		document.querySelector('.shop_cart_text').innerHTML = len;
+	}
 }
 cartprod()

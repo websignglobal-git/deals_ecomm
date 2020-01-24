@@ -1,10 +1,12 @@
 <section class="end_footer">
     @foreach ($allCatData as $index => $xy)
     <section class="owl_carousel producut1_cmn">
-        <div class="container_width">
+        <div class="prodct1_head_container">
             <div class="prodct1_head">
                 {{$categories[$index]}}
             </div>
+        </div>
+        <div class="container_width owl_crsl">
             <div id="owl-carousel{{$index+1}}" class="owl-carousel owlcarosel_cmn">
 
                 @foreach ($xy as $cat)

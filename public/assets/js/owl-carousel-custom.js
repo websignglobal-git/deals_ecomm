@@ -1,7 +1,7 @@
  $("#owl-carousel1ban").owlCarousel({
  
         // Most important owl features
-        dots: true,
+        dots: false,
         nav:true,
      
         //Basic Speeds
@@ -45,7 +45,6 @@
                 items:1,
                 nav:true,
                 loop:false,
-                dots: true
             }
         }
      
@@ -56,7 +55,7 @@
         // Most important owl features
         dots: false,
         nav:true,
-        margin: 30,
+        margin: 10,
      
         //Basic Speeds
         slideSpeed : 100,
@@ -109,7 +108,7 @@
         // Most important owl features
         dots: false,
         nav:true,
-        margin: 30,
+        margin: 10,
      
         //Basic Speeds
         slideSpeed : 100,
@@ -162,7 +161,7 @@
         // Most important owl features
         dots: false,
         nav:true,
-        margin: 30,
+        margin: 10,
      
         //Basic Speeds
         slideSpeed : 100,
@@ -215,7 +214,7 @@ $("#owl-carousel4").owlCarousel({
         // Most important owl features
         dots: false,
         nav:true,
-        margin: 30,
+        margin: 10,
      
         //Basic Speeds
         slideSpeed : 100,
@@ -268,7 +267,7 @@ $("#owl-carousel5").owlCarousel({
         // Most important owl features
         dots: false,
         nav:true,
-        margin: 30,
+        margin: 10,
      
         //Basic Speeds
         slideSpeed : 100,
@@ -321,7 +320,7 @@ $(".owl_carousel_catgry_pg").owlCarousel({
         // Most important owl features
         dots: false,
         nav:true,
-        margin: 30,
+        margin: 10,
      
         //Basic Speeds
         slideSpeed : 100,

@@ -52,6 +52,8 @@ body{
 		  }
 		}
 		function continuelogin() {
+
+			var pid = localStorage.product_id;
 			var mainurl = localStorage.url
 			var num = document.getElementById('login_number').value
 			var pass = document.getElementById('login_pass').value
@@ -70,7 +72,9 @@ body{
 
 			var data = JSON.stringify({
 	            "num": num,
-	            "pass": pass
+	            "pass": pass,
+	            "prodct_id": pid
+
 	        });
 	        var type = "application/json";
 	        var url = "buyer-login";
@@ -79,12 +83,16 @@ body{
 
 	        var respCallback = function(resp) {
 	        	var datas = JSON.parse(resp);
+	        	var cartarr = []
+	        	var cartval = datas.cartCount;
 	        
-	        	// console.log(datas.prodid_data.product_idk)
-	        	var proidd = JSON.stringify(datas.prodid_data);
-				localStorage.setItem('add_prodid', proidd );
+	        	for(i in cartval){
+	        		cartarr.push(cartval[i].product_idk)
+	        	}
+				localStorage.setItem('product_id', JSON.stringify(cartarr));
+
 	            if (datas.status == "success") {
-	            	// window.location.href = "http://localhost/vishnue/deals_ecomm/public/"
+	            	window.location.href = "http://localhost/vishnue/deals_ecomm/public/"
 	            }
 
 	            if (resp == 'error') {
@@ -92,7 +100,8 @@ body{
 	            }
 	        }
 	        var res = serverRequest(data, method, url, asyn, type, respCallback);
-		}
+			}
+
 
 		var input = document.getElementById("login_pass");
 		input.addEventListener("keyup", function(event) {

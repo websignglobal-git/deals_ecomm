@@ -30,16 +30,3 @@ window.location.reload();
     var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
 
-function cartprod() {
-	var id = localStorage.getItem("product_id");
-	var prodcount = localStorage.getItem("product_count");
-	var len = JSON.parse(id).length
-	var userId = "<?php $_SESSION['user_id'] ?>";
-	if(userId){
-		document.querySelector('.shop_cart_text').innerHTML = prodcount;
-	}
-	else{
- 		document.querySelector('.shop_cart_text').innerHTML = len;
-	}
-}
-cartprod()

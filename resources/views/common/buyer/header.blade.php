@@ -1,5 +1,6 @@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php if(session_status() == PHP_SESSION_NONE){session_start();} ?>
+  
     <body  onscroll="scroll()">
         <section class="header_bg_clr">
             <div class="header_sticky">
@@ -57,25 +58,7 @@
                             </div>
                         </div>
                         <div class="userimg_accnts">
-                            <!--  <div class="user_detail"><img class="img-fluid cart_icon" src="assets/images/common/user_img.png"></div> -->
                             <div class="my_accnt">
-                                <!-- <div class="btn-group">
-                                    <button type="button" class="btn dropdown_btn dropdown_btn_name" id="arrow_change2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</button>
-                                    <button type="button" class="btn dropdown_btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="link_arrow_icon"><i class="fas fa-angle-down btn dropdown-toggle dropdown-toggle-split" ></i></span>
-                                    </button>
-                                    <div class="dropdown-menu accounts_dropdown accounts_dropdown_arrow">
-                                        <a class="dropdown-item" href="#"><h5 class="accounts_dropdown_title">My Account and List's</h5></a>
-                                        <a class="dropdown-item" href="#" onclick="myaccount()">My Account</a>
-                                        <a class="dropdown-item" href="#">My Order</a>
-                                        <a class="dropdown-item" href="#">My Favourites</a>
-                                        @if(isset($_SESSION['user_id']))
-                                            <a class="dropdown-item account_signout" id="signout" href="#" onclick="logout()">Signout</a>
-                                        @else
-                                            <a class="dropdown-item account_signout" id="signin" href="#" onclick="signin()">Sign in</a>
-                                        @endif
-                                    </div>
-                                </div> -->
                                 <div class="dropdown">
                                   <button class="btn btn-secondary dropdown-toggle vr_headr_catbtn"  type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="link_arrow_icon"><i class="fas fa-angle-down btn dropdown-toggle dropdown-toggle-split" ></i></span>
                                   </button>
@@ -104,9 +87,18 @@
                         </div>
                         <div class="shopping_carts">
                             <a href="{{ url('view-cart') }}"><img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart.png')}}">
-                            <span class="shop_cart_text badge"></span></a>
+                              <span class="shop_cart_text badge"></span></a>
                         </div>
                     </div>
                 </div>
             </div>
 
+
+<script type="text/javascript">
+  function cartprod() {
+        var id = localStorage.getItem("product_id");
+        var idval = JSON.parse(id)
+        document.querySelector('.shop_cart_text').innerHTML = idval.length;
+    }
+    cartprod()
+</script>

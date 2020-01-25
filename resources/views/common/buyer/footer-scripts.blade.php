@@ -13,14 +13,13 @@
         var url = "{{ URL('logout')}}";
         var asyn = "true";
         var method = "POST";
-
         var respCallback = function(resp) {
             localStorage.removeItem("paymethd")
             localStorage.removeItem("buynow_prod_id")
             localStorage.removeItem("url")
             localStorage.removeItem("product_id")
             window.location.reload()
-            localStorage.clear();
+            localStorage.removeItem("product_id");
         }
         var res = serverRequest(data, method, url, asyn, type, respCallback);
          }).set({title:"Deals Of Market"});

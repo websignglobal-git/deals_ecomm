@@ -3,7 +3,6 @@ getProduct_cart();
 function getProduct_cart(){
 
 	var add_cart_id = localStorage.getItem('product_id');
-
 	var data =JSON.stringify({ad_cart_id:add_cart_id});
 	var type="application/json";
 	var url="cart-products";
@@ -68,23 +67,32 @@ function removeProduct(id) {
 		}
 		localStorage.setItem('product_id', JSON.stringify(localvar))
 	};
+	var data = JSON.stringify({"product_idk":prodId});
+    var type = "application/json";
+    var url = "remove-product";
+    var asyn = "true";
+    var method = "POST";
+    var respCallback = function(resp) {
+        console.log(resp)
+    }
+    var res = serverRequest(data, method, url, asyn, type, respCallback);
 }
 
-// function increaseValue(id) {
-// 	var availStock = document.querySelector('.stock_cart_prod'+id).getAttribute('stock');
-// 	var exVal = document.querySelector('.crt_indc_val'+id).value;
-// 	if(availStock != exVal){
-// 	var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)+1;
-// 	}
-// }
+function increaseValue(id) {
+	var availStock = document.querySelector('.stock_cart_prod'+id).getAttribute('stock');
+	var exVal = document.querySelector('.crt_indc_val'+id).value;
+	if(availStock != exVal){
+	var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)+1;
+	}
+}
 
-// function decreaseValue(id) {
-// 	var exVal = document.querySelector('.crt_indc_val'+id).value;
-// 	if(exVal != 1){
-// 		var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)-1;
-// 	}
+function decreaseValue(id) {
+	var exVal = document.querySelector('.crt_indc_val'+id).value;
+	if(exVal != 1){
+		var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)-1;
+	}
 
-// }
+}
 	
 
 

@@ -63,3 +63,4 @@ Route::post('buyers/get_product_details', 'admin\productController@getproductdet
 
 Route::post('logout', 'security\logoutController@logout');
 Route::post('view-product/add-to-cart', 'buyers\cartController@addtocart');
+Route::post('remove-product', 'buyers\cartController@remove_product');

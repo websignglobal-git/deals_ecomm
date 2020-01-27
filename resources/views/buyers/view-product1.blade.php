@@ -134,7 +134,7 @@
                         <div class="prodct_pg_carosl_sub">
                             <div class="carousel-indicators">
 
-                                <?php
+                    <?php
 			           if($imgs){
      					for($i=0; $i<count($imgs); $i++){ ?>
                                 <div data-target="#demo" data-slide-to="<?php echo $i; ?>" class="item"><img
@@ -151,9 +151,8 @@
                                     <img src="{{ URL::asset($imgs[$i])}}" class="img-fluid img_full_wid">
                                 </div>
                                 <?php  }}
-
 				         
-				         ?>
+				    ?>
                             </div>
                             <div class="cmn_prod_btns">
                                 <div class="cmn_prod_btns_addcart addcart_btn">
@@ -298,7 +297,7 @@
 </section>
 
 <script>
-    document.querySelectorAll('.carousel-item')[0].classList.add('active');
+    // document.querySelectorAll('.carousel-item')[0].classList.add('active');
 
     // by Ranto
     function buynow(e) {

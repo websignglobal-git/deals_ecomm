@@ -41,21 +41,23 @@ body{
 									</div>
 								</div>
 							</div>
-							<div class="add_cart_product_price"></div>
+							<div class="add_cart_product_price">
+								<!-- print_r($prodDatas->home_product_amount); -->
+							</div>
 						</div>
 					</div>
 				</div>
 				@endforeach
 
-		<?php	}else{ ?>
-				 
-				<div class="cmn_cart_prodcts">
+					<?php	}else{ ?>
+							<div class="cmn_cart_prodcts">
 
-				</div>
-			<?php } ?>
+							</div>
+					<?php } ?>
+
 			 <hr class="bottom_hr">
 			 <div class="checkout_total_amt">
-			 	<span class="checkout_total_txt">Subtotal</span> <span id="product_count" class="checkout_total_item"></span> <span class="checkout_total_item">items</span> : <span class="checkout_total_rs">100</span>
+			 	<span class="checkout_total_txt">Subtotal</span> <span id="product_count" class="checkout_total_item"></span> <span class="checkout_total_item">items</span> : <span class="checkout_total_rs"> // display dynamic data TBD</span>
 			 </div>
 			 <div class="checkout_btn_div">
 			 	<button type="button" onclick="checkout()" class="checkout_btn">Check out</button> 
@@ -64,6 +66,51 @@ body{
 	</section>
 
 	<script>
+		var idproduct = "";
+		@isset($_SESSION['user_id'])
+		idproduct = {!! $_SESSION['user_id'] !!}
+		@endisset
+
+			
+		function removeProduct(id) {
+				//decreasing value of cart badge 
+				var cartCnt = document.querySelector('.shop_cart_text').innerHTML
+				var finalCnt = cartCnt - 1;
+				document.querySelector('.shop_cart_text').innerHTML = finalCnt
+				document.querySelector('#product_count').innerHTML  = finalCnt
+
+			var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
+			console.log(prodId);
+			var rem = id.parentNode.parentNode.parentNode.parentNode.parentNode
+			var localvar = [];
+			var local = JSON.parse(localStorage.getItem('product_id'))
+
+			for (var i = 0; i < local.length; i++) {
+				if (prodId == local[i]) {
+					rem.remove()
+					window.location.href
+				}else {
+					localvar.push(local[i])
+				}
+				localStorage.setItem('product_id', JSON.stringify(localvar))
+			};
+			
+			if(idproduct != null) {
+				var data = JSON.stringify({"product_idk":prodId});
+			    var type = "application/json";
+			    var url = "remove-product";
+			    var asyn = "true";
+			    var method = "POST";
+			    var respCallback = function(resp) {
+			    	// if(prodId){
+			    	// 	localStorage.removeItem("product_id");
+			    	// }
+			        console.log(resp)
+			    }
+			    var res = serverRequest(data, method, url, asyn, type, respCallback);
+			}
+		}
+
 		function checkout() {
 			var url = window.location.href
 			localStorage.setItem("url", url)
@@ -89,24 +136,6 @@ body{
 			if(exVal != 1){
 				var val = document.querySelector('.crt_indc_val'+id).value = Number(exVal)-1;
 			}
-
-		}
-
-		function removeProduct(id) {
-			var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
-			var rem = id.parentNode.parentNode.parentNode.parentNode.parentNode
-			var localvar = [];
-			var local = JSON.parse(localStorage.getItem('product_id'))
-
-			for (var i = 0; i < local.length; i++) {
-				if (prodId == local[i]) {
-					rem.remove()
-					window.location.href
-				}else {
-					localvar.push(local[i])
-				}
-				localStorage.setItem('product_id', JSON.stringify(localvar))
-			};
 
 		}
 

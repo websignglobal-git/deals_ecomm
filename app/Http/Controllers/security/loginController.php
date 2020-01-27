@@ -27,12 +27,10 @@ class loginController extends Controller
 				$_SESSION["user_id"]=$getUser[0]->user_id;
 				$_SESSION["user_name"]=$getUser[0]->user_name;
 				 $user_id = $_SESSION["user_id"];
-				$cartCount = DB::table('users')->join('user_cart', 'user_cart.user_idk', '=', 'users.user_id')->where('users.user_id', $user_id)->select('product_idk')->get();
-
 			      for ($i = 0; $i < count($json); $i++) {
-
 			      	$qry = user_cart::insert(['user_idk'=>$user_id,'product_idk'=>$json[$i]]);
 					}
+				$cartCount = DB::table('users')->join('user_cart', 'user_cart.user_idk', '=', 'users.user_id')->where('users.user_id', $user_id)->where('user_cart.delete','!=','1')->select('product_idk')->get();
 
 				return Response()->json(['status'=>"success",'cartCount'=>$cartCount]);
 			}  else {

@@ -1,5 +1,6 @@
-getProduct_cart();
-
+	if(idproduct == ""){
+		getProduct_cart()
+	}
 function getProduct_cart(){
 
 	var add_cart_id = localStorage.getItem('product_id');
@@ -11,8 +12,11 @@ function getProduct_cart(){
 	var respCallback = function(datas){
 		var d1 = document.querySelector('.cmn_cart_prodcts');
 		var d2 = JSON.parse(datas);
-			// for(var j=0; j < JSON.parse(d2.home_product_images); j++){
+		var d3 = datas.datas
 				for(var i=0; i < d2.length; i++){
+					var cost = JSON.parse(d2[i].home_product_amount).cost
+					var actual = JSON.parse(d2[i].home_product_amount).actual_price
+					totalcost = cost - actual;
 					var prodImgArr = JSON.parse(d2[i].home_product_images);
 
 					d1.insertAdjacentHTML('beforeend', '<div class="cart_product_dtl">\
@@ -41,7 +45,7 @@ function getProduct_cart(){
 																		</div>\
 																	</div>\
 																</div>\
-																<div class="add_cart_product_price"></div>\
+																<div class="add_cart_product_price">'+totalcost+' </div>\
 															</div>\
 														</div>');
 				//}
@@ -52,31 +56,6 @@ function getProduct_cart(){
 
 }
 
-function removeProduct(id) {
-	var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
-	var rem = id.parentNode.parentNode.parentNode.parentNode.parentNode
-	var localvar = [];
-	var local = JSON.parse(localStorage.getItem('product_id'))
-
-	for (var i = 0; i < local.length; i++) {
-		if (prodId == local[i]) {
-			rem.remove()
-			window.location.href
-		}else {
-			localvar.push(local[i])
-		}
-		localStorage.setItem('product_id', JSON.stringify(localvar))
-	};
-	var data = JSON.stringify({"product_idk":prodId});
-    var type = "application/json";
-    var url = "remove-product";
-    var asyn = "true";
-    var method = "POST";
-    var respCallback = function(resp) {
-        console.log(resp)
-    }
-    var res = serverRequest(data, method, url, asyn, type, respCallback);
-}
 
 function increaseValue(id) {
 	var availStock = document.querySelector('.stock_cart_prod'+id).getAttribute('stock');

@@ -1,6 +1,6 @@
 @include('common/buyer/header-scripts')
 @include('common/buyer/header')
-<?php session_start(); ?>
+<?php if(session_status() == PHP_SESSION_NONE){session_start();} ?>
 
 @if(isset($_SESSION["user_id"]))
 	@include('payment/order-successful1')

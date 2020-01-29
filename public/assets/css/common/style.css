@@ -41,6 +41,10 @@ img.img-fluid.product_imgs {
     box-shadow:0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
     background-color: #f9f9f9;
 }
+.container_width_prod_view{
+    box-shadow:0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    background-color: #f9f9f9;
+}
 .product_items {
     height: 300px;
     background: #FFFFFF;
@@ -1127,3 +1131,7 @@ hr.home_hr {
 .product_imgs:hover {
     transition: .5s;
 }*/
+.savlater_cmn {
+    width: 80%;
+    margin: auto;
+}

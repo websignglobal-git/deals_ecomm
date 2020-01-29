@@ -12,11 +12,14 @@ function getProduct_cart(){
 	var respCallback = function(datas){
 		var d1 = document.querySelector('.cmn_cart_prodcts');
 		var d2 = JSON.parse(datas);
+		console.log(d2)
 		var d3 = datas.datas
+		var arr = [];
 				for(var i=0; i < d2.length; i++){
 					var cost = JSON.parse(d2[i].home_product_amount).cost
 					var actual = JSON.parse(d2[i].home_product_amount).actual_price
 					totalcost = cost - actual;
+					arr.push(totalcost);
 					var prodImgArr = JSON.parse(d2[i].home_product_images);
 
 					d1.insertAdjacentHTML('beforeend', '<div class="cart_product_dtl">\
@@ -45,11 +48,15 @@ function getProduct_cart(){
 																		</div>\
 																	</div>\
 																</div>\
-																<div class="add_cart_product_price">'+totalcost+' </div>\
+																<div id="product_price'+d2[i].home_product_id+'" class="add_cart_product_price">'+totalcost+' </div>\
 															</div>\
 														</div>');
-				//}
+
 			}
+			var sum = arr.reduce(function(a, b){
+			        return a + b;
+		    });
+		  document.getElementById('totalrs').innerText = sum;
 
 	}
 	var res=serverRequest(data,method,url,asyn,type,respCallback);
@@ -73,11 +80,6 @@ function decreaseValue(id) {
 
 }
 	
-
-
-
-
-
 
 
 

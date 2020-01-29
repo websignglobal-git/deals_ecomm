@@ -262,11 +262,10 @@
         </div>
         <div class="product_view_carosl">
             <section class="prod_viewowl_carousel producut1_cmn">
-                <div class="container_width_prod_view">
                     <div class="prodct1_head">
-                        <span class="prod_car_head"> Deal of the day </span><span class="prod_car_icon"><i
-                                class="fa fa-clock"></i></span><span class="prod_car_time">(12.42 hrs left)</span>
+                        <span class="prod_car_head"> Deal of the day </span>
                     </div>
+                <div class="container_width_prod_view">
                     <div id="owl-carousel4" class="owl-carousel owlcarosel_cmn">
                         @foreach ($getCat as $cat)
                         <div class="item">
@@ -297,7 +296,7 @@
 </section>
 
 <script>
-    // document.querySelectorAll('.carousel-item')[0].classList.add('active');
+    document.querySelectorAll('.carousel-item')[0].classList.add('active');
 
     // by Ranto
     function buynow(e) {

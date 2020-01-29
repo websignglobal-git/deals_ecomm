@@ -15,10 +15,11 @@ class cartController extends Controller
           $user_id = $_SESSION["user_id"];
            $usr_id = DB::table('users')->where('user_id', $user_id)->first();
            if($usr_id !== null and $user_id == $usr_id->user_id) {
-            $prodData = DB::table('user_cart')->join('home_products', 'home_products.home_product_id', '=', 'user_cart.product_idk')->where('user_cart.user_idk', $user_id)->where('user_cart.delete','!=','1')->get();
+            $prodData = DB::table('user_cart')->join('home_products', 'home_products.home_product_id', '=', 'user_cart.product_idk')->where('user_cart.user_idk', $user_id)->where('user_cart.delete','!=','1')->where('user_cart.save_later','!=','1')->get();
+             $saveproduct = DB::table('user_cart')->LeftJoin('home_products', 'home_products.home_product_id', '=', 'user_cart.product_idk')->where('user_cart.user_idk', $user_id)->where('user_cart.save_later','!=','0')->get();
          }
    
-            return view('buyers/view-cart',compact('prodData'));
+            return view('buyers/view-cart',compact('prodData','saveproduct'));
        }
        else{
          return view('buyers/view-cart');
@@ -31,6 +32,7 @@ class cartController extends Controller
    public function cart_products(Request $request){
    	$cart_prod_id = json_decode($request->input('ad_cart_id'), true);
      	$datas = home_products::wherein('home_product_id', $cart_prod_id)->get();
+     
    	return response()->json($datas);
    }
 
@@ -41,6 +43,16 @@ class cartController extends Controller
          $dltproduct = user_cart::where('user_idk', $user_id)->where('product_idk', $product_idk )->update(['delete' => 1]);
       }
       return response()->json($dltproduct);
+   }
+
+   public function save_later(Request $request){
+      if(isset($_SESSION["user_id"])){
+         $user_id = $_SESSION["user_id"];
+         $product_idk = json_decode($request->input('product_idk'), true);
+         $savelaterproduct = user_cart::where('user_idk', $user_id)->where('product_idk', $product_idk )->update(['save_later' => 1]);
+         
+      }
+      return response()->json($savelaterproduct);
    }
 
    public function addtocart(Request $req){

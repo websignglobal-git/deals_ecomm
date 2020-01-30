@@ -70,7 +70,7 @@ body{
 			var address1val = document.getElementById('addl1_checkadd').value;
 			if (address1val.length < 3) {
 				if(e=='change')
-				alertify.alert('Please enter the address');
+				alertify.alert('Please enter the address').set({title:"Deals Of Market"});
 				document.getElementById('addl1_checkadd').style.border = "1px solid red"
 			}
 			else {
@@ -82,7 +82,7 @@ body{
 			var address2val = document.getElementById('addl2_checkadd').value
 			if (address2val == "") {
 				if(e=='change')
-				alertify.alert('Please enter the address');
+				alertify.alert('Please enter the address').set({title:"Deals Of Market"});
 				document.getElementById('addl2_checkadd').style.border = "1px solid red"
 			}
 			else {
@@ -94,7 +94,7 @@ body{
 			var cityval = document.getElementById('city_checkadd').value
 			if (cityval == "") {
 				if(e=='change')
-				alertify.alert('Please enter the city');
+				alertify.alert('Please enter the city').set({title:"Deals Of Market"});
 				document.getElementById('city_checkadd').style.border = "1px solid red"
 			}
 			else {
@@ -106,7 +106,7 @@ body{
 			var stateval = document.getElementById('state_checkadd').value
 			if (stateval == "") {
 				if(e=='change')
-				alertify.alert('Please enter the state');
+				alertify.alert('Please enter the state').set({title:"Deals Of Market"});
 				document.getElementById('state_checkadd').style.border = "1px solid red"
 			}
 			else {
@@ -118,7 +118,7 @@ body{
 			var pinval = document.getElementById('pincode_checkadd').value
 			if (pinval == "") {
 				if(e=='change')
-				alertify.alert('Please enter the state');
+				alertify.alert('Please enter the state').set({title:"Deals Of Market"});
 				document.getElementById('pincode_checkadd').style.border = "1px solid red"
 			}
 			else {
@@ -130,7 +130,7 @@ body{
 			var countryval = document.getElementById('country_checkadd').value
 			if (countryval == "") {
 				if(e=='change')
-				alertify.alert('Please enter the state');
+				alertify.alert('Please enter the state').set({title:"Deals Of Market"});
 				document.getElementById('country_checkadd').style.border = "1px solid red"
 			}
 			else {
@@ -152,25 +152,25 @@ body{
 			var country = document.getElementById('country_checkadd').value
 
 			if (address1 == "") {
-				alertify.alert('Enter your address1...');
+				alertify.alert('Enter your address1...').set({title:"Deals Of Market"});
 				document.getElementById('addl1_checkadd').style.border = "1px solid red"
 				document.getElementById('addl1_checkadd').focus()
 			} else if (address2 == "") {
 				document.getElementById('addl2_checkadd').style.border = ""
-				alertify.alert('Enter  your phone address2...');
+				alertify.alert('Enter  your phone address2...').set({title:"Deals Of Market"});
 				document.getElementById('addl2_checkadd').style.border = "1px solid red"
 				document.getElementById('addl2_checkadd').focus()
 			} else if (city == "") {
-				alertify.alert('Enter  your city...');
+				alertify.alert('Enter  your city...').set({title:"Deals Of Market"});
 				document.getElementById('city_checkadd').style.border = "1px solid red"
 				document.getElementById('city_checkadd').focus()
 			} else if (state == "") {
-				alertify.alert('Enter  your State...');
+				alertify.alert('Enter  your State...').set({title:"Deals Of Market"});
 				document.getElementById('state_checkadd').style.border = "1px solid red"
 				document.getElementById('state_checkadd').focus()
 			}
 			else if (country == "") {
-				alertify.alert('Enter  your Country...');
+				alertify.alert('Enter  your Country...').set({title:"Deals Of Market"});
 				document.getElementById('country_checkadd').style.border = "1px solid red"
 				document.getElementById('country_checkadd').focus()
 			}

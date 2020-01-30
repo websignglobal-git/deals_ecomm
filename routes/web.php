@@ -65,3 +65,4 @@ Route::post('logout', 'security\logoutController@logout');
 Route::post('view-product/add-to-cart', 'buyers\cartController@addtocart');
 Route::post('remove-product', 'buyers\cartController@remove_product');
 Route::post('save-later', 'buyers\cartController@save_later');
+Route::post('move-to-cart', 'buyers\cartController@move_to_cart');

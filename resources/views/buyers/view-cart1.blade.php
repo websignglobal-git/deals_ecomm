@@ -74,10 +74,10 @@ body{
 			 </div>
 		</div>
 		<div class="savlater_cmn">
-			<p class="shop_cart_head">Saved Later</p>
 			<?php if(isset($_SESSION['user_id'])){ ?>
 				<div class="saveltr_prodcts">
 				@foreach ($saveproduct as $saveproducts)
+				<p class="shop_cart_head">Saved Later</p>
 				<div class="cmn_cart_prodcts">
 					<div class="cart_product_dtl">
 						<hr class="top_hr">
@@ -125,7 +125,8 @@ body{
 
 			
 		function removeProduct(id) {
-				//decreasing value of cart badge 
+
+			// decreasing value of cart badge 
 				var cartCnt = document.querySelector('.shop_cart_text').innerHTML
 				var finalCnt = cartCnt - 1;
 				document.querySelector('.shop_cart_text').innerHTML = finalCnt
@@ -154,10 +155,9 @@ body{
 			    var asyn = "true";
 			    var method = "POST";
 			    var respCallback = function(resp) {
-			    	// if(prodId){
-			    	// 	localStorage.removeItem("product_id");
-			    	// }
 			        console.log(resp)
+			        window.location.reload();
+
 			    }
 			    var res = serverRequest(data, method, url, asyn, type, respCallback);
 			}
@@ -165,7 +165,29 @@ body{
 
 		function save_later(id) {
 
-			var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
+				var cartCnt = document.querySelector('.shop_cart_text').innerHTML
+				var finalCnt = cartCnt - 1;
+				document.querySelector('.shop_cart_text').innerHTML = finalCnt
+				document.querySelector('#product_count').innerHTML  = finalCnt
+				var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
+				var rem = id.parentNode.parentNode.parentNode.parentNode.parentNode
+				var localvar = [];
+				var emptys4l = JSON.parse(localStorage.getItem('save_4_later')) || [];
+				var local = JSON.parse(localStorage.getItem('product_id'))
+				emptys4l.push(prodId)
+				localStorage.setItem('save_4_later',JSON.stringify(emptys4l))
+
+				for (var i = 0; i < local.length; i++) {
+					if (prodId == local[i]) {
+
+					}
+					else {
+						localvar.push(local[i])
+					}
+					localStorage.setItem('product_id', JSON.stringify(localvar))
+				};
+
+				var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
 				var data = JSON.stringify({"product_idk":prodId});
 			    var type = "application/json";
 			    var url = "save-later";
@@ -173,9 +195,31 @@ body{
 			    var method = "POST";
 			    var respCallback = function(resp) {
 		       
+			     window.location.reload();
 			    }
 			    var res = serverRequest(data, method, url, asyn, type, respCallback);
+		}
+
+		function movetocart(id) {
+
+			var prodId = id.parentNode.parentNode.parentNode.firstElementChild.id
+				var data = JSON.stringify({"product_idk":prodId});
+			    var type = "application/json";
+			    var url = "move-to-cart";
+			    var asyn = "true";
+			    var method = "POST";
+			    var emptym2c = []
+ 			    var respCallback = function(resp) {
+		       
+				var move2cart = JSON.parse(localStorage.getItem("product_id"));
+				for (i in move2cart) {
+					emptym2c.push(move2cart[i])
+				}
+				emptym2c.push(prodId)
+				localStorage.setItem("product_id", JSON.stringify(emptym2c))
 			     window.location.reload();
+			    }
+			    var res = serverRequest(data, method, url, asyn, type, respCallback);
 		}
 
 		function checkout() {
@@ -184,9 +228,12 @@ body{
 			window.location.href="checkout-address"
 		}
 		let x = localStorage.getItem("product_id");
+		let a = localStorage.getItem("save_4_later");
         let y = JSON.parse(x);
+        let b = JSON.parse(a);
         let z = y.length
-        if(z == 0){
+        let c = b.length
+        if(z == 0 && c == 0){
         	window.location.href = "cart-empty";
         }
 

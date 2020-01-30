@@ -19,24 +19,6 @@
                     </div>
                     <div class="accnt_sec">
                         <div class="acc_list_carts">
-                          <!--   <div class="btn-group">
-                                <button type="button" class="btn dropdown_btn dropdown_btn_name"  id="arrow_change1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
-                                <button type="button" class="btn dropdown_btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="link_arrow_icon"><i class="fas fa-angle-down btn dropdown-toggle dropdown-toggle-split"></i></span>
-                                </button>
-                                <div class="dropdown-menu categories_dropdown categories_dropdown_arrow">
-                                    <a class="dropdown-item" href="#"><h5 class="categories_dropdown_title">Categories</h5></a>
-                                    <a class="dropdown-item" href="#">Electronics</a>
-                                    <a class="dropdown-item" href="#">TV and Appliances</a>
-                                    <a class="dropdown-item" href="#">Mens wear</a>
-                                    <a class="dropdown-item" href="#">Womens wear</a>
-                                    <a class="dropdown-item" href="#">Baby and Kids</a>
-                                    <a class="dropdown-item" href="#">Home and Furniture</a>
-                                    <a class="dropdown-item" href="#">Sports</a>
-                                    <a class="dropdown-item" href="#">Books</a>
-                                    <a class="dropdown-item" href="#">More</a>
-                                </div>
-                            </div> -->
                             <div class="my_catgry">
                                 <div class="dropdown">
                                   <button class="btn btn-secondary dropdown-toggle vr_headr_catbtn" type="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,7 +69,7 @@
                         </div>
                         <div class="shopping_carts">
                             <a href="{{ url('view-cart') }}"><img class="img-fluid shop_cart_img" src="{{ URL::asset('assets/images/common/cart.png')}}">
-                              <span class="shop_cart_text badge"></span></a>
+                              <span class="shop_cart_text save_cart_text badge"></span></a>
                         </div>
                     </div>
                 </div>

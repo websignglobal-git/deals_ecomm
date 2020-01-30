@@ -16,7 +16,7 @@ class cartController extends Controller
            $usr_id = DB::table('users')->where('user_id', $user_id)->first();
            if($usr_id !== null and $user_id == $usr_id->user_id) {
             $prodData = DB::table('user_cart')->join('home_products', 'home_products.home_product_id', '=', 'user_cart.product_idk')->where('user_cart.user_idk', $user_id)->where('user_cart.delete','!=','1')->where('user_cart.save_later','!=','1')->get();
-             $saveproduct = DB::table('user_cart')->LeftJoin('home_products', 'home_products.home_product_id', '=', 'user_cart.product_idk')->where('user_cart.user_idk', $user_id)->where('user_cart.save_later','!=','0')->get();
+             $saveproduct = DB::table('user_cart')->LeftJoin('home_products', 'home_products.home_product_id', '=', 'user_cart.product_idk')->where('user_cart.user_idk', $user_id)->where('user_cart.delete','!=','1')->where('user_cart.save_later','!=','0')->get();
          }
    
             return view('buyers/view-cart',compact('prodData','saveproduct'));
@@ -53,6 +53,16 @@ class cartController extends Controller
          
       }
       return response()->json($savelaterproduct);
+   }
+
+   public function move_to_cart(Request $request){
+      if(isset($_SESSION["user_id"])){
+         $user_id = $_SESSION["user_id"];
+         $product_idk = json_decode($request->input('product_idk'), true);
+         $movetocart = user_cart::where('user_idk', $user_id)->where('product_idk', $product_idk )->update(['save_later' => 0]);
+         
+      }
+      return response()->json($movetocart);
    }
 
    public function addtocart(Request $req){

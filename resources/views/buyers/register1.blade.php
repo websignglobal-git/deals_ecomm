@@ -69,7 +69,7 @@ body{
 		var num = document.getElementById('reg_name').value
 		if (num.length < 3) {
 			if(e=='change')
-			alertify.alert('Please enter the correct Name');
+			alertify.alert('Please enter the correct Name').set({title:"Deals Of Market"});
 			document.getElementById('reg_name').style.border = "1px solid red"
 		} else {
 			document.getElementById('reg_name').style.border = ""
@@ -80,7 +80,7 @@ body{
 		var num = document.getElementById('reg_phone').value
 		if (num.length > 10 || num.length <10 ) {
 			if(e=='change')
-			alertify.alert('Please enter 10 digit number');
+			alertify.alert('Please enter 10 digit number').set({title:"Deals Of Market"});
 			document.getElementById('reg_phone').style.border = "1px solid red"
 		} else {
 			document.getElementById('reg_phone').style.border = ""
@@ -94,7 +94,7 @@ body{
 			document.getElementById('reg_email').style.border = ""
 		} else {
 			if(e=='change')
-			alertify.alert('enter correct email address');
+			alertify.alert('enter correct email address').set({title:"Deals Of Market"});
 			document.getElementById('reg_email').style.border = "1px solid red"
 		}
 	}
@@ -106,7 +106,7 @@ body{
 			document.getElementById('reg_pass').style.border = ""
 		} else{
 			if(e=='change')
-			alertify.alert('enter a password with atleast one uppercase, one lowercase, one number and one special charcter with minimum 6 charcter and maximum 15 character');
+			alertify.alert('enter a password with atleast one uppercase, one lowercase, one number and one special charcter with minimum 6 charcter and maximum 15 character').set({title:"Deals Of Market"});
 			document.getElementById('reg_pass').style.border = "1px solid red"
 		};
 	}
@@ -120,20 +120,20 @@ body{
 		var password = document.getElementById('reg_pass').value
 
 		if (name == "") {
-			alertify.alert('Enter your name...');
+			alertify.alert('Enter your name...').set({title:"Deals Of Market"});
 			document.getElementById('reg_name').style.border = "1px solid red"
 			document.getElementById('reg_name').focus()
 		} else if (num == "") {
 			document.getElementById('reg_name').style.border = ""
-			alertify.alert('Enter  your phone number...');
+			alertify.alert('Enter  your phone number...').set({title:"Deals Of Market"});
 			document.getElementById('reg_phone').style.border = "1px solid red"
 			document.getElementById('reg_phone').focus()
 		} else if (email == "") {
-			alertify.alert('Enter  your email...');
+			alertify.alert('Enter  your email...').set({title:"Deals Of Market"});
 			document.getElementById('reg_email').style.border = "1px solid red"
 			document.getElementById('reg_email').focus()
 		} else if (password == "") {
-			alertify.alert('Enter  your password...');
+			alertify.alert('Enter  your password...').set({title:"Deals Of Market"});
 			document.getElementById('reg_pass').style.border = "1px solid red"
 			document.getElementById('reg_pass').focus()
 		}

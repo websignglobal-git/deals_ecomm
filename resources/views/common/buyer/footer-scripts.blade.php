@@ -18,7 +18,7 @@
             localStorage.removeItem("buynow_prod_id")
             localStorage.removeItem("url")
             localStorage.removeItem("product_id")
-            window.location.reload()
+            window.location.href='http://localhost/vishnue/deals_ecomm/public/'
             localStorage.removeItem("product_id");
         }
         var res = serverRequest(data, method, url, asyn, type, respCallback);

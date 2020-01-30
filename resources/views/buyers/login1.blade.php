@@ -59,12 +59,12 @@ body{
 			var pass = document.getElementById('login_pass').value
 
 			if (num == "") {
-				alertify.alert('Enter your number...');
+				alertify.alert('Enter your number...').set({title:"Deals Of Market"});
 				document.getElementById('login_number').style.border = "1px solid red"
 				document.getElementById('login_number').focus()
 			} else if (pass == "") {
 				document.getElementById('login_number').style.border = ""
-				alertify.alert('Enter your password...');
+				alertify.alert('Enter your password...').set({title:"Deals Of Market"});
 				document.getElementById('login_pass').style.border = "1px solid red"
 				document.getElementById('login_pass').focus()
 			}
@@ -96,7 +96,7 @@ body{
 	            }
 
 	            if (resp == 'error') {
-					alertify.alert('Incorrect Phone Number or Password');
+					alertify.alert('Incorrect Phone Number or Password').set({title:"Deals Of Market"});
 	            }
 	        }
 	        var res = serverRequest(data, method, url, asyn, type, respCallback);

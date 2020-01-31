@@ -20,40 +20,37 @@
                     <div class="accnt_sec">
                         <div class="acc_list_carts">
                             <div class="my_catgry">
-                                <div class="dropdown">
-                                  <button class="btn btn-secondary dropdown-toggle vr_headr_catbtn" type="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Categories <span class="link_arrow_icon"><i class="fas fa-angle-down btn dropdown-toggle dropdown-toggle-split"></i></span>
-                                  </button>
-                                  <div class="dropdown-menu categories_dropdown_vr" aria-labelledby="dropdownMenuLink1">
-                                    <a class="dropdown-item" href="#"><h5 class="categories_dropdown_title">Categories</h5></a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Electronics</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">TV and Appliances</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Mens wear</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Womens wear</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Baby and Kids</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Home and Furniture</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Sports</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">Books</a>
-                                        <a class="dropdown-item" href="{{ URL('category')}}">More</a>
+                                <div class="dropdown deal_nav_drpdwn">
+                                  <button class="dropbtn deal_nav_drpdwn_btn vr_headr_catbtn">Categories<span class="link_arrow_icon"><i class="fas fa-angle-down fa_arrow" ></i></span></button>
+                                  <div class="dropdown-content deal_nav_drpdwn_cnt">
+                                    <a class="deals_nav_dropdown_a" href="#"><h5 class="categories_dropdown_title">Categories</h5></a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Electronics</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">TV and Appliances</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Mens wear</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Womens wear</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Baby and Kids</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Home and Furniture</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Sports</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">Books</a>
+                                        <a class="deals_nav_dropdown_a" href="{{ URL('category')}}">More</a>
                                   </div>
-                              </div>
+                                </div>
                             </div>
                         </div>
                         <div class="userimg_accnts">
                             <div class="my_accnt">
-                                <div class="dropdown">
-                                  <button class="btn btn-secondary dropdown-toggle vr_headr_catbtn"  type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="link_arrow_icon"><i class="fas fa-angle-down btn dropdown-toggle dropdown-toggle-split" ></i></span>
-                                  </button>
-                                  <div class="dropdown-menu categories_dropdown_vr" aria-labelledby="dropdownMenuLink">
-                                     <a class="dropdown-item" href="#"><h5 class="accounts_dropdown_title">My Account and List's</h5></a>
-                                        <a class="dropdown-item" href="#" onclick="myaccount()">My Account</a>
-                                        <a class="dropdown-item" href="#">My Order</a>
-                                        <a class="dropdown-item" href="#">My Favourites</a>
-                                        @if(isset($_SESSION['user_id']))
-                                            <a class="dropdown-item account_signout" id="signout" onclick="logout()">Signout</a>
-                                        @else
-                                            <a class="dropdown-item account_signout" id="signin" href="{{ URL('login')}}">Sign in</a>
-                                        @endif
+                                <div class="dropdown deal_nav_drpdwn">
+                                  <button class="dropbtn deal_nav_drpdwn_btn vr_headr_catbtn">My Account <span class="link_arrow_icon"><i class="fas fa-angle-down fa_arrow" ></i></span></button>
+                                  <div class="dropdown-content deal_nav_drpdwn_cnt">
+                                    <a class="deals_nav_dropdown_a" href="#"><h5 class="accounts_dropdown_title">My Account and List's</h5></a>
+                                    <a class="deals_nav_dropdown_a" href="#" onclick="myaccount()">My Account</a>
+                                    <a class="deals_nav_dropdown_a" href="#">My Order</a>
+                                    <a class="deals_nav_dropdown_a" href="#">My Favourites</a>
+                                    @if(isset($_SESSION['user_id']))
+                                        <a class="deals_nav_dropdown_a account_signout" id="signout" onclick="logout()">Signout</a>
+                                    @else
+                                        <a class="deals_nav_dropdown_a account_signout" id="signin" href="{{ URL('login')}}">Sign in</a>
+                                    @endif
                                   </div>
                                 </div>
                             </div>

@@ -30,7 +30,7 @@ class cartController extends Controller
    }
 
    public function cart_products(Request $request){
-   	$cart_prod_id = json_decode($request->input('ad_cart_id'), true);
+   	  $cart_prod_id = json_decode($request->input('ad_cart_id'), true);
      	$datas = home_products::wherein('home_product_id', $cart_prod_id)->get();
      
    	return response()->json($datas);

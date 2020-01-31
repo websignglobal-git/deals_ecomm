@@ -43,9 +43,6 @@ function getProduct_cart(){
 																		<div class="dlt_div">\
 																			<a href="#" class="dlt_a" onclick="removeProduct(this)">Remove</a>\
 																		</div>\
-																		<div class="savlater_div">\
-																			<a href="#" class="save_later_a">save for later</a>\
-																		</div>\
 																	</div>\
 																</div>\
 																<div id="product_price'+d2[i].home_product_id+'" class="add_cart_product_price">'+totalcost+' </div>\

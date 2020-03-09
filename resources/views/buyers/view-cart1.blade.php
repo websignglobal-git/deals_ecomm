@@ -241,3 +241,6 @@ body{
 		 var idval = JSON.parse(id)
 		var product_cnt = document.querySelector('#product_count').innerHTML= idval.length;;
 	</script>
+
+
+	["../images/clock.jpeg", "../images/redmi8a.jpeg", "../images/saree.jpeg", "../images/shoe1.jpeg", "../images/toy1.jpeg"]

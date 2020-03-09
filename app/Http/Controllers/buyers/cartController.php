@@ -32,7 +32,11 @@ class cartController extends Controller
    public function cart_products(Request $request){
    	  $cart_prod_id = json_decode($request->input('ad_cart_id'), true);
      	$datas = home_products::wherein('home_product_id', $cart_prod_id)->get();
-     
+    // SELECT MAX(salary) FROM employees WHERE salary NOT IN ( SELECT Max(salary) FROM employees);
+    // $datas = DB::table('home_products')->select(max('home_product_id'))->whereNotIn('home_product_id')->select(max('home_product_id'))->get();
+
+    // $datas = DB::table('home_products')->select(DB::raw('MAX(home_product_id) as home_product_id'))->get();
+
    	return response()->json($datas);
    }
 
